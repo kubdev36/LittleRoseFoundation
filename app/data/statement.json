@@ -1,0 +1,91 @@
+{
+    "accountName": "Quỹ Bông Hồng Nhỏ (LRF)",
+    "bankName": "Vietcombank",
+    "currency": "VND",
+    "currentBalance": 2854320000,
+    "month": "10/2025",
+    "monthIn": 125000000,
+    "monthOut": 45200000,
+    "transactions": [
+        {
+            "id": "FT1357924682",
+            "time": "2025-10-24T14:15:45",
+            "detail": "IBFT - NGUYEN VAN A chuyển tiền ủng hộ",
+            "amount": 500000,
+            "balanceAfter": 2854320000,
+            "type": "IN"
+        },
+        {
+            "id": "FT1357924683",
+            "time": "2025-10-23T09:05:10",
+            "detail": "Thanh toán chi phí vận chuyển chương trình",
+            "amount": 1200000,
+            "balanceAfter": 2853820000,
+            "type": "OUT"
+        },
+        {
+            "id": "FT1357924684",
+            "time": "2025-10-22T16:41:02",
+            "detail": "IBFT - TRAN THI B ủng hộ chiến dịch Trăng Sáng Ước Mơ",
+            "amount": 2000000,
+            "balanceAfter": 2855020000,
+            "type": "IN"
+        },
+        {
+            "id": "FT1357924685",
+            "time": "2025-10-21T10:12:33",
+            "detail": "Mua vật tư (đèn học) - Trăng Sáng Ước Mơ",
+            "amount": 8500000,
+            "balanceAfter": 2846520000,
+            "type": "OUT"
+        },
+        {
+            "id": "FT1357924686",
+            "time": "2025-10-20T08:30:00",
+            "detail": "IBFT - LE VAN C ủng hộ dự án Nhà Yêu Thương",
+            "amount": 5000000,
+            "balanceAfter": 2851520000,
+            "type": "IN"
+        },
+        {
+            "id": "FT1357924687",
+            "time": "2025-10-19T13:22:18",
+            "detail": "Chi hỗ trợ viện phí bệnh nhi (đợt 1)",
+            "amount": 15000000,
+            "balanceAfter": 2836520000,
+            "type": "OUT"
+        },
+        {
+            "id": "FT1357924688",
+            "time": "2025-10-18T11:05:49",
+            "detail": "IBFT - NGO THI D ủng hộ quỹ",
+            "amount": 1000000,
+            "balanceAfter": 2837520000,
+            "type": "IN"
+        },
+        {
+            "id": "FT1357924689",
+            "time": "2025-10-17T15:40:05",
+            "detail": "Chi phí in ấn tài liệu & banner chương trình",
+            "amount": 3200000,
+            "balanceAfter": 2834320000,
+            "type": "OUT"
+        },
+        {
+            "id": "FT1357924690",
+            "time": "2025-10-16T09:18:27",
+            "detail": "IBFT - PHAM VAN E ủng hộ",
+            "amount": 700000,
+            "balanceAfter": 2835020000,
+            "type": "IN"
+        },
+        {
+            "id": "FT1357924691",
+            "time": "2025-10-15T20:01:11",
+            "detail": "Chi hỗ trợ đồng phục học sinh vùng lũ",
+            "amount": 9800000,
+            "balanceAfter": 2825220000,
+            "type": "OUT"
+        }
+    ]
+}

@@ -8,7 +8,7 @@
     "donors": 789,
     "likes": 150,
     "imageSrc": "/images/project1.jpg",
-    "category": "Xây nhà tình thương",
+    "category": "Bác ái xã hội",
     "province": "Gia Lai",
     "status": "Đang gây quỹ",
     "keywords": "nhà tình thương, hộ nghèo, gia lai, trẻ em, xây nhà"
@@ -22,7 +22,7 @@
     "donors": 789,
     "likes": 200,
     "imageSrc": "/images/project2.jpg",
-    "category": "Phẫu thuật tim",
+    "category": "Hỗ trợ y tế và sức khoẻ",
     "province": "TP. Hồ Chí Minh",
     "status": "Đang gây quỹ",
     "keywords": "tim bẩm sinh, phẫu thuật tim, trẻ em, bệnh hiểm nghèo"
@@ -36,7 +36,7 @@
     "donors": 789,
     "likes": 180,
     "imageSrc": "/images/project3.jpg",
-    "category": "Học bổng",
+    "category": "Hỗ trợ phát triển giáo dục",
     "province": "An Giang, Gia Lai",
     "status": "Đang gây quỹ",
     "keywords": "học bổng, học sinh nghèo, đến trường, an giang, gia lai"
@@ -50,7 +50,7 @@
     "donors": 450,
     "likes": 70,
     "imageSrc": "/images/project4.jpg",
-    "category": "Năng lượng sạch",
+    "category": "Bác ái xã hội",
     "province": "Lào Cai",
     "status": "Đang gây quỹ",
     "keywords": "điện mặt trời, vùng cao, năng lượng sạch, học tập, lào cai"
@@ -64,7 +64,7 @@
     "donors": 200,
     "likes": 50,
     "imageSrc": "/images/project5.jpg",
-    "category": "Nước sạch",
+    "category": "Hỗ trợ y tế và sức khoẻ",
     "province": "Đắk Nông",
     "status": "Đang gây quỹ",
     "keywords": "nước sạch, lọc nước, trường học, vùng sâu vùng xa, đắk nông"
@@ -78,7 +78,7 @@
     "donors": 1200,
     "likes": 320,
     "imageSrc": "/images/project6.jpg",
-    "category": "Trẻ mồ côi",
+    "category": "Bác ái xã hội",
     "province": "Quảng Nam",
     "status": "Đang gây quỹ",
     "keywords": "trẻ mồ côi, mái ấm, trung tâm nuôi dưỡng, quảng nam"
@@ -92,7 +92,7 @@
     "donors": 950,
     "likes": 210,
     "imageSrc": "/images/project7.jpg",
-    "category": "Cứu trợ thiên tai",
+    "category": "Bác ái xã hội",
     "province": "Thừa Thiên Huế",
     "status": "Đang gây quỹ",
     "keywords": "lũ lụt, cứu trợ, miền trung, thừa thiên huế, thiên tai"
@@ -106,7 +106,7 @@
     "donors": 380,
     "likes": 95,
     "imageSrc": "/images/project8.jpg",
-    "category": "Cầu đường",
+    "category": "Bác ái xã hội",
     "province": "Hà Giang",
     "status": "Đang gây quỹ",
     "keywords": "xây cầu, cầu dân sinh, vùng cao, hà giang, giao thông"
@@ -120,7 +120,7 @@
     "donors": 1100,
     "likes": 400,
     "imageSrc": "/images/project9.jpg",
-    "category": "Bệnh hiểm nghèo",
+    "category": "Hỗ trợ y tế và sức khoẻ",
     "province": "TP. Hồ Chí Minh",
     "status": "Đang gây quỹ",
     "keywords": "ung thư, ung thư máu, bệnh nhi, điều trị ung thư"
@@ -134,7 +134,7 @@
     "donors": 520,
     "likes": 120,
     "imageSrc": "/images/project10.jpg",
-    "category": "Học bổng",
+    "category": "Hỗ trợ phát triển giáo dục",
     "province": "Cần Thơ, Đồng Tháp",
     "status": "Đang gây quỹ",
     "keywords": "học bổng, xe đạp, miền tây, học sinh nghèo"
@@ -148,7 +148,7 @@
     "donors": 310,
     "likes": 85,
     "imageSrc": "/images/project11.jpg",
-    "category": "Phẫu thuật mắt",
+    "category": "Hỗ trợ y tế và sức khoẻ",
     "province": "Bình Định",
     "status": "Đang gây quỹ",
     "keywords": "đục thủy tinh thể, phẫu thuật mắt, người cao tuổi, bình định"
@@ -162,7 +162,7 @@
     "donors": 680,
     "likes": 160,
     "imageSrc": "/images/project12.jpg",
-    "category": "Giáo dục",
+    "category": "Hỗ trợ phát triển giáo dục",
     "province": "Sơn La",
     "status": "Đang gây quỹ",
     "keywords": "thư viện, sách vở, vùng cao, giáo dục, sơn la"

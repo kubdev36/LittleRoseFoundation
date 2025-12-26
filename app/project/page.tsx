@@ -35,15 +35,8 @@ const calculateProgress = (raised: number, goal: number): number => {
 export default function FundraisingProjectsPage() {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedStatus, setSelectedStatus] = useState('all');
   const [selectedProvince, setSelectedProvince] = useState('all');
-
-  // Lấy danh sách danh mục, trạng thái, tỉnh duy nhất từ dữ liệu
-  const categories = useMemo(() => {
-    const cats = ['all', ...Array.from(new Set(projects.map(p => p.category)))];
-    return cats;
-  }, []);
 
   const statuses = useMemo(() => {
     const stats = ['all', ...Array.from(new Set(projects.map(p => p.status)))];
@@ -66,9 +59,6 @@ export default function FundraisingProjectsPage() {
         project.description.toLowerCase().includes(searchTerm.toLowerCase()) ||
         project.keywords.toLowerCase().includes(searchTerm.toLowerCase());
 
-      // Lọc danh mục
-      const matchesCategory = selectedCategory === 'all' || project.category === selectedCategory;
-
       // Lọc trạng thái
       const matchesStatus = selectedStatus === 'all' || project.status === selectedStatus;
 
@@ -77,9 +67,9 @@ export default function FundraisingProjectsPage() {
         selectedProvince === 'all' ||
         project.province.split(',').some(p => p.trim() === selectedProvince);
 
-      return matchesSearch && matchesCategory && matchesStatus && matchesProvince;
+      return matchesSearch && matchesStatus && matchesProvince;
     });
-  }, [searchTerm, selectedCategory, selectedStatus, selectedProvince]);
+  }, [searchTerm, selectedStatus, selectedProvince]);
 
   // Phân trang trên dữ liệu đã lọc
   const totalPages = Math.ceil(filteredProjects.length / ITEMS_PER_PAGE);
@@ -98,7 +88,7 @@ export default function FundraisingProjectsPage() {
   // Reset về trang 1 khi thay đổi filter/tìm kiếm
   React.useEffect(() => {
     setCurrentPage(1);
-  }, [searchTerm, selectedCategory, selectedStatus, selectedProvince]);
+  }, [searchTerm, selectedStatus, selectedProvince]);
 
   return (
     <>
@@ -125,19 +115,6 @@ export default function FundraisingProjectsPage() {
             onChange={(e) => setSearchTerm(e.target.value)}
             className="px-4 py-2 border border-gray-300 rounded-lg flex-1 min-w-64 focus:outline-none focus:ring-2 focus:ring-green-500"
           />
-
-          <select
-            value={selectedCategory}
-            onChange={(e) => setSelectedCategory(e.target.value)}
-            className="px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-500"
-          >
-            <option value="all">Tất cả danh mục</option>
-            {categories.filter(cat => cat !== 'all').map((cat) => (
-              <option key={cat} value={cat}>
-                {cat}
-              </option>
-            ))}
-          </select>
 
           <select
             value={selectedStatus}
@@ -188,7 +165,7 @@ export default function FundraisingProjectsPage() {
                   className="bg-white rounded-2xl shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 cursor-pointer"
                 >
                   <div className="relative h-64 overflow-hidden">
-                    <Link href={`/detail-project/${project.id}`}>
+                    <Link href={`/project/${project.id}`}>
                       <img
                         src={project.imageSrc}
                         alt={project.title}
@@ -199,7 +176,7 @@ export default function FundraisingProjectsPage() {
 
                   <div className="p-6">
                     <h3 className="text-lg font-bold mb-3 line-clamp-2">
-                      <Link href={`/detail-project/${project.id}`} className="hover:text-green-600 transition-colors">
+                      <Link href={`/project/${project.id}`} className="hover:text-green-600 transition-colors">
                         {project.title}
                       </Link>
                     </h3>
@@ -225,10 +202,12 @@ export default function FundraisingProjectsPage() {
                       </div>
                     </div>
 
-                    <button className="w-full bg-green-500 text-white font-medium py-3 rounded-lg hover:bg-green-600 transition-colors flex items-center justify-center gap-2">
-                      Quyên góp ngay
-                      <ChevronRight className="w-5 h-5" />
-                    </button>
+                    <Link href={`/project/${project.id}`} className="block">
+                      <button className="w-full bg-green-500 text-white font-medium py-3 rounded-lg hover:bg-green-600 transition-colors flex items-center justify-center gap-2">
+                        Quyên góp ngay
+                        <ChevronRight className="w-5 h-5" />
+                      </button>
+                    </Link>
                   </div>
                 </div>
               );

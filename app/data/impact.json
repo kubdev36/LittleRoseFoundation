@@ -1,0 +1,172 @@
+{
+    "hero": {
+        "image": "/images/banner4.jpg"
+    },
+    "intro": {
+        "kicker": "CÂU CHUYỆN & TÁC ĐỘNG",
+        "title": "Chung tay tạo thay đổi bền vững cùng Little Roses Foundation",
+        "paragraphs": [
+            "Quỹ Bông Hồng Nhỏ (LRF) kết nối cộng đồng và các đối tác để gây quỹ, hỗ trợ khẩn cấp và đồng hành dài hạn cùng những hoàn cảnh khó khăn.",
+            "Chúng tôi ưu tiên các chương trình mang tính bền vững: hỗ trợ giáo dục, y tế – sức khỏe, cải thiện điều kiện sống và tiếp sức trong thiên tai.",
+            "Mỗi khoản đóng góp đều được cập nhật tiến độ, ghi nhận minh bạch và tổng hợp báo cáo để bạn nhìn thấy tác động thực tế."
+        ],
+        "ctaText": "Xem báo cáo & công khai",
+        "ctaHref": "/reports"
+    },
+    "highlight": {
+        "image": "/images/banner1.jpg",
+        "title": "Từ đóng góp đến hành động: tác động nổi bật 2025",
+        "body": "Nhờ sự đồng hành của cộng đồng và đối tác, LRF đã triển khai các dự án nhà ở cho gia đình khó khăn, hỗ trợ viện phí cho bệnh nhi, trao học bổng – đèn học cho học sinh vượt khó, và cứu trợ kịp thời sau thiên tai. Mỗi hoạt động đều hướng đến hiệu quả, đúng đối tượng và minh bạch.",
+        "ctaText": "TÌM HIỂU THÊM",
+        "ctaHref": "/impact?all=1"
+    },
+    "stats": {
+        "title": "TÁC ĐỘNG NỔI BẬT",
+        "items": [
+            {
+                "value": "54m²",
+                "label": "Nhà Yêu Thương #4 được trao tặng"
+            },
+            {
+                "value": "28",
+                "label": "Học sinh nhận học bổng & đèn học"
+            },
+            {
+                "value": "1.000",
+                "label": "Bộ đồng phục hỗ trợ vùng lũ"
+            },
+            {
+                "value": "4",
+                "label": "Bệnh viện tuyến tỉnh đồng hành dự án"
+            }
+        ]
+    },
+    "posts": [
+        {
+            "slug": "lrf-x-qme-nha-yeu-thuong-so-4",
+            "title": "LRF x QME: Khánh thành & trao tặng “Nhà Yêu Thương” số 4",
+            "excerpt": "Từ căn chòi tạm bợ tại làng Tào Ròong (Gia Lai), gia đình bé Rah L.H đã nhận mái ấm mới 54m² — khởi đầu an toàn và nhiều hy vọng hơn.",
+            "date": "2025-10-27",
+            "tag": "CÂU CHUYỆN TÁC ĐỘNG",
+            "image": "/images/inpact_nha-4.jpg",
+            "cover": "/images/inpact_nha-4.jpg",
+            "gallery": [
+                "/images/inpact_nha-4.jpg",
+                "/images/banner1.jpg"
+            ],
+            "content": [
+                "Giữa làng Tào Ròong (xã Chư Sê, tỉnh Gia Lai), có một câu chuyện nhỏ nhưng lay động trái tim nhiều người – câu chuyện về mái nhà của bé Rah L. H.",
+                "Ngôi nhà cũ của gia đình có hoàn cảnh đặc biệt khó khăn chỉ là căn chòi tạm bợ, lợp bằng những tấm tôn thủng nát, nền đất đỏ lầy lội và sụt lún. Trời nắng thì cả nhà phải chạy ra ngoài tránh nóng; trời mưa thì mái dột, bùn ngập, trơn trượt khắp nơi.",
+                "Đó lại là tài sản duy nhất của gia đình – không ruộng đất, không việc làm ổn định, không nơi nương tựa khác. Bé H mới 19 tháng tuổi, thường xuyên đau ốm vì điều kiện sống thiếu an toàn và ẩm thấp.",
+                "Sau chuyến thăm vào ngày 22/07/2025, Quỹ Bông Hồng Nhỏ (LRF) cùng Công ty Cổ phần Thiết bị Quang Minh (QME) và các đơn vị thiện nguyện đã quyết tâm chung tay mang đến cho bé một mái ấm vững chãi hơn.",
+                "Ngày 02/09/2025, công trình được khởi công xây dựng. Sau gần hai tháng thi công, sáng 27/10/2025, ngôi nhà mới đủ đầy hơn với diện tích 54m² – gồm 1 phòng khách, 2 phòng ngủ, bếp và nhà vệ sinh – đã chính thức được khánh thành và trao tặng cho gia đình bé H.",
+                "💛 Ngôi nhà nhỏ, nhưng là món quà lớn của tình người — là khởi đầu cho những ngày bình yên, an toàn và tràn ngập hy vọng của một em bé vùng cao."
+            ]
+        },
+        {
+            "slug": "lrf-x-nhg-ban-tay-nhan-ai",
+            "title": "LRF x NHG: Dự án “Bàn tay Nhân ái” hỗ trợ bệnh nhi đặc biệt khó khăn",
+            "excerpt": "Dự án phối hợp 4 bệnh viện tuyến tỉnh nhằm hỗ trợ chi phí điều trị cho bệnh nhi dưới 16 tuổi mắc bệnh nặng, ưu tiên hoàn cảnh đặc biệt khó khăn.",
+            "date": "2025-08-14",
+            "tag": "DỰ ÁN",
+            "image": "/images/news_banlonbaandonghanh.jpg",
+            "cover": "/images/news_banlonbaandonghanh.jpg",
+            "gallery": [
+                "/images/news_banlonbaandonghanh.jpg",
+                "/images/banner4.jpg"
+            ],
+            "content": [
+                "Với sự đồng hành của Tập đoàn Nguyễn Hoàng, Quỹ Bông Hồng Nhỏ (LRF) triển khai dự án “Bàn tay Nhân ái” từ tháng 5/2024, phối hợp với 4 bệnh viện tuyến tỉnh: Phụ Sản Hà Nội, Phụ Sản – Nhi Đà Nẵng, Đa khoa Bình Định và Sản – Nhi Cà Mau.",
+                "Mục tiêu của dự án là hỗ trợ chi phí điều trị cho bệnh nhi dưới 16 tuổi mắc bệnh nặng, bệnh hiểm nghèo và có hoàn cảnh đặc biệt khó khăn; ưu tiên trẻ em dân tộc thiểu số, vùng cao, mồ côi, khuyết tật hoặc phải điều trị dài ngày.",
+                "Ngày 14/08/2025, đại diện LRF đã có buổi thăm và làm việc với Bệnh viện Sản – Nhi Cà Mau để trao đổi về quá trình phối hợp trong khuôn khổ dự án.",
+                "Buổi làm việc có sự tham dự của Ban Giám đốc và Phòng Công tác xã hội của Bệnh viện, cùng đại diện LRF gồm Bà Trương Nguyễn Bảo Trân (Phó Giám đốc Điều hành) và Bà Đoàn Thị Hồng Nhung (Chuyên viên Dự án).",
+                "Tại đây, LRF lắng nghe chia sẻ về những khó khăn hiện tại, đồng thời cùng thảo luận các phương án để việc hỗ trợ bệnh nhi được nhanh chóng, hiệu quả và kịp thời hơn.",
+                "Hai bên cũng trao đổi về các hợp tác tiềm năng trong tương lai như: hỗ trợ bệnh nhi sau xuất viện; hỗ trợ bệnh nhi rối loạn phổ tự kỷ; và phát triển mô hình điều trị – tập huấn nhằm nâng cao năng lực hỗ trợ trẻ em."
+            ]
+        },
+        {
+            "slug": "recap-trang-sang-uoc-mo-an-giang",
+            "title": "[RECAP] Trao học bổng & đèn học cho học sinh khó khăn tại An Giang",
+            "excerpt": "Chiến dịch “Trăng Sáng Ước Mơ” gây quỹ 104.417.212đ để trao học bổng và đèn học cho 28 em nhỏ vượt khó tại An Giang.",
+            "date": "2025-11-30",
+            "tag": "RECAP",
+            "image": "/images/impact_trang-sang.jpg",
+            "cover": "/images/impact_trang-sang.jpg",
+            "gallery": [
+                "/images/impact_trang-sang.jpg",
+                "/images/banner1.jpg"
+            ],
+            "content": [
+                "Tháng 9/2025, chiến dịch “Trăng Sáng Ước Mơ” do Quỹ Bông Hồng Nhỏ khởi xướng đã nhận được sự chung tay ấm áp từ cộng đồng, gây quỹ thành công 104.417.212đ để trao học bổng và đồ dùng học tập cho 28 em nhỏ vượt khó tại tỉnh An Giang.",
+                "Trong hai ngày 29–30/11/2025, đại diện Quỹ đã phối hợp cùng Caritas Long Xuyên trực tiếp đến nhiều địa bàn để trao tận tay các suất học bổng và những chiếc đèn học mới cho các em.",
+                "Trong hoàn cảnh nhiều em phải học trên bàn ăn hay tấm ván đơn sơ, trong căn nhà thiếu ánh sáng, chiếc đèn học trở thành nguồn động lực giúp các em chăm chỉ và tiến bộ hơn mỗi ngày.",
+                "Bên cạnh đó, các suất học bổng cũng hỗ trợ các em duy trì việc học giữa muôn vàn thiếu thốn, khi cha mẹ của nhiều em mắc bệnh nặng, không còn khả năng lao động; có em phải sống cùng ông bà già yếu vì cha mẹ đã bỏ đi.",
+                "Mỗi suất học bổng, mỗi chiếc đèn đều gửi gắm một thông điệp giản dị: “Các em không đơn độc trên hành trình học tập của mình”.",
+                "Xin chân thành cảm ơn sự đồng hành và tin yêu của cộng đồng trong chiến dịch này. LRF hy vọng sẽ tiếp tục nhận được sự ủng hộ để cùng nhau thắp sáng ước mơ, gieo niềm hy vọng và tiếp sức cho các em nhỏ hiếu học vượt khó."
+            ]
+        },
+        {
+            "slug": "lrf-x-hiu-ho-tro-hoc-sinh-vung-lu-khanh-hoa",
+            "title": "LRF x HIU: Sẻ chia cùng học sinh vùng lũ Khánh Hòa",
+            "excerpt": "Trao tặng 1.000 bộ đồng phục, 1.000 bộ sách vở – dụng cụ học tập, túi thuốc thiết yếu và vật dụng sinh hoạt giúp học sinh sớm trở lại trường.",
+            "date": "2025-12-10",
+            "tag": "CỨU TRỢ",
+            "image": "/images/impact_nha-lu-KH.jpg",
+            "cover": "/images/impact_nha-lu-KH.jpg",
+            "gallery": [
+                "/images/impact_nha-lu-KH.jpg",
+                "/images/banner4.jpg"
+            ],
+            "content": [
+                "🌧️ Những ngày qua, tỉnh Khánh Hòa vẫn đang khắc phục hậu quả sau trận lũ lớn. Nhiều trường học bị hư hại, áo quần – vật dụng của học sinh bị cuốn trôi, và việc dạy – học bị gián đoạn.",
+                "Trước tình hình đó, Quỹ Từ thiện Bông Hồng Nhỏ (LRF) và Trường Đại học Quốc tế Hồng Bàng (HIU) đã phối hợp triển khai hỗ trợ đến các điểm trường chịu thiệt hại nặng nề.",
+                "Trong đợt hỗ trợ, đoàn công tác đã trao tặng 1.000 bộ đồng phục may mới từ LRF (mỗi trường 500 bộ) nhằm giúp học sinh có thể trở lại trường với điều kiện tối thiểu nhất.",
+                "HIU đồng thời hỗ trợ 1.000 bộ sách giáo khoa, tập vở – dụng cụ học tập, cùng 500 túi thuốc thiết yếu và 100 bộ chăn – gối – nệm mini để thầy cô và học sinh ổn định sinh hoạt trong giai đoạn khó khăn.",
+                "Bên cạnh vật phẩm, đội ngũ giáo sư, bác sĩ, dược sĩ và điều dưỡng HIU cũng trực tiếp thăm khám sức khỏe ban đầu, cung cấp vitamin và thuốc cơ bản, góp phần phòng ngừa nguy cơ dịch bệnh sau lũ.",
+                "LRF hy vọng sự hỗ trợ kịp thời này sẽ giúp các em sớm ổn định việc học, và những ngôi trường nhanh chóng hoạt động lại bình thường với những tiết học vui tươi, bình an."
+            ]
+        },
+        {
+            "slug": "dong-hanh-cung-hoc-sinh-vung-cao",
+            "title": "Đồng hành cùng học sinh vùng cao: tiếp sức đến trường",
+            "excerpt": "Tập trung hỗ trợ điều kiện học tập và nhu yếu phẩm thiết yếu, giúp các em duy trì việc học trong bối cảnh thiếu thốn và nhiều rào cản.",
+            "date": "2025-09-18",
+            "tag": "GIÁO DỤC",
+            "image": "/images/impact_dong-hanh-vung-cao.jpg",
+            "cover": "/images/impact_dong-hanh-vung-cao.jpg",
+            "gallery": [
+                "/images/impact_dong-hanh-vung-cao.jpg",
+                "/images/banner1.jpg"
+            ],
+            "content": [
+                "Ở nhiều khu vực vùng cao, hành trình đến trường của các em nhỏ vẫn còn rất nhiều rào cản: điều kiện kinh tế khó khăn, thiếu đồ dùng học tập, thiếu ánh sáng và không gian học tập an toàn.",
+                "LRF lựa chọn đồng hành bằng những hỗ trợ thiết thực: học bổng, dụng cụ học tập, đèn học, nhu yếu phẩm và các hoạt động tiếp sức tinh thần để các em vững tin hơn trên con đường học tập.",
+                "Mỗi suất hỗ trợ không chỉ là vật chất, mà còn là lời nhắn rằng: cộng đồng luôn ở bên, luôn tin rằng các em có thể thay đổi tương lai bằng tri thức.",
+                "Chúng tôi ưu tiên kết nối với địa phương, nhà trường và các đơn vị đồng hành để đảm bảo hỗ trợ đến đúng đối tượng, minh bạch và phù hợp với nhu cầu thực tế.",
+                "LRF tin rằng, khi điều kiện học tập được cải thiện, các em sẽ có thêm cơ hội duy trì việc học và nuôi dưỡng ước mơ lâu dài.",
+                "Bạn có thể cùng LRF tiếp sức bằng cách đồng hành gây quỹ, chia sẻ chiến dịch hoặc giới thiệu các điểm trường cần hỗ trợ trong thời gian tới."
+            ]
+        },
+        {
+            "slug": "minh-bach-va-cap-nhat-tien-do",
+            "title": "Minh bạch & cập nhật tiến độ: để mỗi đóng góp đều có ý nghĩa",
+            "excerpt": "Công khai thông tin chương trình, cập nhật tiến độ triển khai và tổng hợp báo cáo — để cộng đồng yên tâm đồng hành lâu dài cùng LRF.",
+            "date": "2025-09-01",
+            "tag": "MINH BẠCH",
+            "image": "/images/impact_ban-tay-nhan-ai.jpg",
+            "cover": "/images/impact_ban-tay-nhan-ai.jpg",
+            "gallery": [
+                "/images/impact_ban-tay-nhan-ai.jpg",
+                "/images/banner4.jpg"
+            ],
+            "content": [
+                "Với LRF, minh bạch không phải là một lựa chọn — đó là nguyên tắc để xây dựng niềm tin và sự đồng hành bền vững cùng cộng đồng.",
+                "Chúng tôi công khai thông tin chương trình, mục tiêu, kế hoạch triển khai và tiến độ theo từng giai đoạn, để người ủng hộ có thể theo dõi rõ ràng tác động của khoản đóng góp.",
+                "Mỗi chiến dịch đều được ghi nhận, tổng hợp dữ liệu và báo cáo định kỳ, kèm cập nhật về hoạt động thực tế, hình ảnh và kết quả hỗ trợ (tùy theo đặc thù chương trình).",
+                "Đồng thời, LRF luôn tiếp nhận phản hồi để cải thiện quy trình vận hành, nâng cao hiệu quả triển khai và đảm bảo hỗ trợ đến đúng đối tượng.",
+                "Chúng tôi tin rằng, khi minh bạch trở thành tiêu chuẩn, niềm tin sẽ trở thành sức mạnh — giúp các hoạt động thiện nguyện lan tỏa sâu hơn, rộng hơn và lâu dài hơn.",
+                "Cảm ơn bạn vì đã tin tưởng đồng hành. Mỗi đóng góp của bạn đều đang tạo ra thay đổi, từng chút một, nhưng rất thật."
+            ]
+        }
+    ]
+}
