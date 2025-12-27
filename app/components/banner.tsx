@@ -75,11 +75,11 @@ export default function HeroBanner() {
 
         {/* Tiêu đề chính */}
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-tight">
-          Gieo mầm <span className="text-[#1a522e]">yêu</span>
+          Gieo mầm yêu
           <br />
-          <span className="text-[#1a522e]">thương</span>,
+          thương
           <br />
-          gặt hái nụ <span className="text-[#1a522e]">cười</span>
+          gặt hái nụ cười
         </h1>
 
         {/* Mô tả */}

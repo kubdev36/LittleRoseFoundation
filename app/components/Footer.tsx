@@ -98,14 +98,14 @@ export default function Footer() {
 
           {/* Address & Contact */}
           <div className="text-center text-gray-400">
-            <p>Tầng 5 tòa nhà ABCABC, 123 Nguyễn Trãi, Thanh Xuân, Hà Nội</p>
+            <p>Tầng 5 tòa nhà ABC, 123 Nguyễn Trãi, Thanh Xuân, Hà Nội</p>
             <p>(84+) 0123456789</p>
-            <p>Contact@bonghongnhohongnho.vn</p>
+            <p>contact@bonghongnho.org.vn</p>
           </div>
 
           {/* Copyright & Links */}
           <div className="text-center text-gray-500 text-xs">
-            <p>2025 Quỹ Bông Hồng Nhỏ. designedwith for commucommunitycommunity.</p>
+            <p>© 2025 Quỹ Bông Hồng Nhỏ. All rights reserved.</p>
             <div className="flex gap-4 justify-center mt-2">
               <a href="#" className="hover:text-white transition">Điều khoản</a>
               <a href="#" className="hover:text-white transition">Bảo mật</a>

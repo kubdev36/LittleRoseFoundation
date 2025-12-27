@@ -41,7 +41,7 @@ export default function VolunteerCTASection() {
         <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
           {/* Nút chính - Đăng ký tình nguyện */}
           <a
-            href="/dang-ky-tinh-nguyen"
+            href="/voluteer"
            className="bg-white text-[#1a522e] font-bold text-xl px-10 py-5 rounded-full shadow-xl transition transform hover:scale-105 hover:bg-gray-100"
           >
             Đăng ký tình nguyện
@@ -49,7 +49,7 @@ export default function VolunteerCTASection() {
 
           {/* Nút phụ - Tìm hiểu quy trình */}
           <a
-            href="/quy-trinh-tinh-nguyen"
+            href="/quyTrinh"
             className="border-2 border-white text-white font-semibold text-xl px-10 py-5 rounded-full hover:bg-white hover:text-[#1a522e] transition"
           >
             Tìm hiểu quy trình

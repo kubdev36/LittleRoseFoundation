@@ -74,6 +74,7 @@ const TeamPage: React.FC = () => {
             <Link
               href="/about/team"
               className="text-lg font-semibold text-[#1a522e] border-b-4 border-[#1a522e] pb-2"
+              scroll={false}
             >
               Hội đồng quản lý
             </Link>
@@ -82,6 +83,7 @@ const TeamPage: React.FC = () => {
             <Link
               href="/about/supervisory-board"
               className="text-lg font-medium text-gray-500 hover:text-[#1a522e] hover:border-b-4 hover:border-[#1a522e] pb-2 transition-all duration-200 "
+              scroll={false}
             >
               Ban kiểm soát
             </Link>
@@ -90,6 +92,7 @@ const TeamPage: React.FC = () => {
             <Link
               href="/about/advisory-board"
               className="text-lg font-medium text-gray-500 hover:text-[#1a522e] hover:border-b-4 hover:border-[#1a522e] pb-2 transition-all duration-200"
+              scroll={false}
             >
               Ban cố vấn
             </Link>
