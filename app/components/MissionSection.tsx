@@ -1,7 +1,6 @@
 'use client';
 
-import Image from 'next/image';
-import { ChevronRight } from 'lucide-react';
+import { ChevronRight, Eye, HeartHandshake, Lightbulb, Handshake } from 'lucide-react';
 
 export default function MissionSection() {
   return (
@@ -11,15 +10,15 @@ export default function MissionSection() {
           {/* Cột trái: Tiêu đề + mô tả */}
           <div>
             {/* Tag nhỏ */}
-            <span className="inline-block bg-green-100 text-green-700 px-6 py-2 rounded-full text-sm font-medium mb-6">
+            <span className="inline-block bg-[#1a522e]/10 text-[#1a522e] px-6 py-2 rounded-full text-sm font-medium mb-6">
               VỀ CHÚNG TÔI
             </span>
 
             {/* Tiêu đề chính */}
             <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-8 leading-tight">
-              Sứ mệnh <span className="text-green-600">kết nối</span>,
+              Sứ mệnh <span className="text-[#1a522e]">kết nối</span>,
               <br />
-              Lan tỏa <span className="text-green-600">yêu thương</span>
+              Lan tỏa <span className="text-[#1a522e]">yêu thương</span>
             </h2>
 
             {/* Mô tả */}
@@ -29,8 +28,8 @@ export default function MissionSection() {
 
             {/* Nút Tìm hiểu thêm */}
             <a
-              href="/ve-chung-toi"
-              className="inline-flex items-center bg-green-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-red-700 transition shadow-lg"
+              href="/about"
+              className="inline-flex items-center bg-[#1a522e] text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-[#1a522e]/90 transition shadow-lg"
             >
               Tìm hiểu thêm
               <ChevronRight className="w-6 h-6 ml-2" />
@@ -41,15 +40,7 @@ export default function MissionSection() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {/* Card 1: Minh bạch 100% */}
             <div className="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition">
-              <div className="w-16 h-16 mb-4">
-                <Image
-                  src="https://uxwing.com/wp-content/themes/uxwing/download/health-sickness-organs/eye-icon.svg" // Eye icon minh bạch
-                  alt="Minh bạch"
-                  width={64}
-                  height={64}
-                  className="object-contain"
-                />
-              </div>
+              <Eye className="w-16 h-16 text-[#1a522e] mb-4" strokeWidth={1.5} />
               <h3 className="text-xl font-bold text-gray-900 mb-3">Minh bạch 100%</h3>
               <p className="text-gray-600 text-sm">
                 Mọi khoản đóng góp và chi tiêu đều được công khai minh bạch, kiểm toán định kỳ.
@@ -58,15 +49,7 @@ export default function MissionSection() {
 
             {/* Card 2: Tận tâm phục vụ */}
             <div className="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition">
-              <div className="w-16 h-16 mb-4">
-                <Image
-                  src="https://static.vecteezy.com/system/resources/thumbnails/056/780/669/small_2x/hand-holding-people-support-and-care-symbol-vector.jpg" // Hands caring icon
-                  alt="Tận tâm"
-                  width={64}
-                  height={64}
-                  className="object-contain"
-                />
-              </div>
+              <HeartHandshake className="w-16 h-16 text-[#1a522e] mb-4" strokeWidth={1.5} />
               <h3 className="text-xl font-bold text-gray-900 mb-3">Tận tâm phục vụ</h3>
               <p className="text-gray-600 text-sm">
                 Đội ngũ tình nguyện viên nhiệt huyết, làm việc với tất cả trái tim vì cộng đồng.
@@ -75,15 +58,7 @@ export default function MissionSection() {
 
             {/* Card 3: Giải pháp thông minh */}
             <div className="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition">
-              <div className="w-16 h-16 mb-4">
-                <Image
-                  src="https://www.shutterstock.com/image-vector/smart-solution-inspiration-knowledge-light-600nw-2368850617.jpg" // Brain lightbulb icon
-                  alt="Giải pháp thông minh"
-                  width={64}
-                  height={64}
-                  className="object-contain"
-                />
-              </div>
+              <Lightbulb className="w-16 h-16 text-[#1a522e] mb-4" strokeWidth={1.5} />
               <h3 className="text-xl font-bold text-gray-900 mb-3">Giải pháp thông minh</h3>
               <p className="text-gray-600 text-sm">
                 Áp dụng công nghệ để tối ưu hóa nguồn lực và gia tăng hiệu quả dự án.
@@ -92,15 +67,7 @@ export default function MissionSection() {
 
             {/* Card 4: Hợp tác mở rộng */}
             <div className="bg-white rounded-2xl shadow-lg p-6 hover:shadow-xl transition">
-              <div className="w-16 h-16 mb-4">
-                <Image
-                  src="https://www.vhv.rs/dpng/d/437-4376880_icon-hand-shake-transparent-background-partnership-icon-hd.png" // Handshake icon
-                  alt="Hợp tác"
-                  width={64}
-                  height={64}
-                  className="object-contain"
-                />
-              </div>
+              <Handshake className="w-16 h-16 text-[#1a522e] mb-4" strokeWidth={1.5} />
               <h3 className="text-xl font-bold text-gray-900 mb-3">Hợp tác mở rộng</h3>
               <p className="text-gray-600 text-sm">
                 Kết nối các tổ chức, doanh nghiệp để cùng tạo ra tác động lớn hơn.

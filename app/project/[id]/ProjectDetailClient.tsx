@@ -230,9 +230,9 @@ export default function ProjectDetailClient({ project, allProjects }: { project:
                             <span className="absolute right-4 top-3.5 text-gray-400 text-sm font-bold">VNĐ</span>
                         </div>
 
-                        <button className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-green-200 transition transform active:scale-[0.98] flex items-center justify-center gap-2 text-base">
+                        <Link href="/donate" className="w-full bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold py-3.5 rounded-xl shadow-lg shadow-green-200 transition transform active:scale-[0.98] flex items-center justify-center gap-2 text-base">
                             <Heart size={20} className="fill-white" /> QUYÊN GÓP NGAY
-                        </button>
+                        </Link>
                     </div>
                 </div>
             </div>

@@ -43,7 +43,7 @@ function DotPatternDark() {
 
 function Pill({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-white/80">
+    <span className="inline-flex items-center rounded-full border border-[#1a522e]/20 bg-[#1a522e]/10 px-3 py-1 text-xs font-medium text-[#1a522e]">
       {children}
     </span>
   );
@@ -51,7 +51,7 @@ function Pill({ children }: { children: React.ReactNode }) {
 
 function ReadMoreButton() {
   return (
-    <span className="inline-flex items-center justify-center rounded-md bg-[#00BF4D] px-4 py-2 text-xs font-semibold text-white shadow-sm transition hover:bg-[#00A640] focus:outline-none focus:ring-2 focus:ring-[#00BF4D]/40">
+    <span className="inline-flex items-center justify-center rounded-md bg-[#1a522e] px-4 py-2 text-xs font-semibold text-white shadow-sm transition hover:bg-[#133f24] hover:shadow-md focus:outline-none focus:ring-2 focus:ring-[#1a522e]/40">
       ĐỌC THÊM
     </span>
   );
@@ -60,8 +60,9 @@ function ReadMoreButton() {
 function PostCard({ post }: { post: NewsPost }) {
   return (
     <Link
-      href={`/news/${post.slug}`}
-      className="group flex h-full flex-col overflow-hidden rounded-xl border border-black/10 bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+      href={`/tin-tuc/${post.slug}`}
+      className="group flex h-full flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-md transition hover:-translate-y-1 hover:shadow-xl"
+      scroll={false}
     >
       <div className="relative aspect-[4/3] w-full overflow-hidden">
         <Image
@@ -69,26 +70,26 @@ function PostCard({ post }: { post: NewsPost }) {
           alt={post.title}
           fill
           sizes="(max-width: 768px) 100vw, 33vw"
-          className="object-cover transition duration-500 group-hover:scale-[1.03]"
+          className="object-cover transition duration-500 group-hover:scale-[1.05]"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/25 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-60" />
       </div>
 
-      <div className="flex flex-1 flex-col space-y-3 p-5">
-        <p className="text-xs font-medium tracking-wide text-black/60">
+      <div className="flex flex-1 flex-col space-y-3 p-6">
+        <p className="text-xs font-medium tracking-wide text-gray-600">
           {post.date}
         </p>
 
-        <h3 className="text-base font-semibold leading-snug text-black">
+        <h3 className="text-lg font-bold leading-snug text-gray-900 line-clamp-2">
           {post.title}
         </h3>
 
-        <p className="text-sm leading-relaxed text-black/70 line-clamp-3">
+        <p className="text-sm leading-relaxed text-gray-700 line-clamp-3">
           {post.excerpt}
         </p>
 
-        <span className="mt-auto inline-flex text-xs font-semibold text-[#00BF4D] hover:underline">
-          ĐỌC THÊM
+        <span className="mt-auto inline-flex text-sm font-semibold text-[#1a522e] hover:underline">
+          ĐỌC THÊM →
         </span>
       </div>
     </Link>
@@ -106,12 +107,12 @@ export default async function NewsPage({
   const visiblePosts = showAll ? posts : posts.slice(0, 6);
 
   return (
-    <main className="bg-white text-black text-[15px] leading-7">
+    <main className="bg-gray-50 text-gray-800">
       {/* HERO (dark) */}
-      <section className="relative overflow-hidden bg-[#1F2323] text-white">
+      <section className="relative overflow-hidden bg-[#1a522e] text-white">
         <DotPatternDark />
 
-        {/* decor dots (giống hình) */}
+        {/* decor dots */}
         <div
           aria-hidden
           className="pointer-events-none absolute right-6 top-14 hidden h-40 w-32 opacity-60 lg:block"
@@ -124,20 +125,20 @@ export default async function NewsPage({
 
         <div className="mx-auto max-w-6xl px-4 pb-40 pt-16 sm:px-6">
           <div className="mx-auto max-w-3xl text-center">
-            <p className="text-[11px] font-extrabold tracking-[0.22em] text-[#00BF4D]">
+            <p className="text-[11px] font-extrabold tracking-[0.22em] text-white/80">
               TIN TỨC & CÂU CHUYỆN
             </p>
 
             <h1 className="mt-4 text-3xl font-extrabold tracking-tight sm:text-5xl">
               Những câu chuyện tạo{" "}
-              <span className="text-[#00BF4D]">tác động</span>
+              <span className="text-white">tác động</span>
             </h1>
 
             <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-white/75 sm:text-base">
               Tin tức, câu chuyện đời thực và báo cáo tác động minh bạch.
             </p>
 
-            <div className="mt-8 flex flex-wrap justify-center gap-2">
+            <div className="mt-8 flex flex-wrap justify-center gap-3">
               <Pill>Tin tức</Pill>
               <Pill>Cập nhật</Pill>
               <Pill>Cộng đồng</Pill>
@@ -146,10 +147,10 @@ export default async function NewsPage({
         </div>
       </section>
 
-      {/* FEATURED CARD (overlap giống hình) */}
+      {/* FEATURED CARD (overlap) */}
       <section className="relative -mt-28">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <article className="overflow-hidden rounded-2xl border border-black/10 bg-white shadow-[0_18px_60px_rgba(0,0,0,0.18)]">
+          <article className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-2xl">
             <div className="grid grid-cols-1 md:grid-cols-5">
               <div className="relative min-h-[240px] md:min-h-[360px] md:col-span-3">
                 <Image
@@ -160,71 +161,73 @@ export default async function NewsPage({
                   className="object-cover"
                   priority
                 />
-                <div className="absolute inset-0 bg-gradient-to-r from-black/15 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-r from-black/30 via-black/10 to-transparent" />
               </div>
 
-              <div className="flex flex-col justify-center p-7 sm:p-10 md:col-span-2">
-                <p className="text-[11px] font-semibold tracking-[0.22em] text-black/55">
+              <div className="flex flex-col justify-center p-8 sm:p-12 md:col-span-2">
+                <p className="text-[11px] font-semibold tracking-[0.22em] text-gray-600">
                   {featured.tag ?? "BÀI VIẾT NỔI BẬT"}
                 </p>
 
-                <h2 className="mt-3 text-xl font-extrabold leading-snug sm:text-2xl">
+                <h2 className="mt-4 text-2xl font-extrabold leading-tight text-gray-900 sm:text-3xl">
                   {featured.title}
                 </h2>
 
-                <p className="mt-3 text-sm leading-relaxed text-black/70">
+                <p className="mt-4 text-base leading-relaxed text-gray-700">
                   {featured.excerpt}
                 </p>
 
-                <div className="mt-6 flex items-center gap-3">
-                  <Link href={`/news/${featured.slug}`}>
+                <div className="mt-8 flex items-center gap-4">
+                  <Link href={`/tin-tuc/${featured.slug}`} scroll={false}>
                     <ReadMoreButton />
                   </Link>
-                  <span className="text-xs text-black/60">{featured.date}</span>
+                  <span className="text-sm text-gray-600">{featured.date}</span>
                 </div>
               </div>
             </div>
           </article>
 
-          {/* RECENT */}
-          <div className="mt-12">
-            <div className="flex items-end justify-between gap-4">
+          {/* RECENT POSTS */}
+          <div className="mt-16">
+            <div className="flex items-end justify-between gap-4 mb-8">
               <div>
-                <h3 className="text-lg font-bold">Bài viết mới</h3>
-                <p className="mt-1 text-sm text-black/70">
+                <h3 className="text-2xl font-bold text-gray-900">Bài viết mới</h3>
+                <p className="mt-1 text-gray-600">
                   Cập nhật, câu chuyện và hoạt động thiện nguyện.
                 </p>
               </div>
 
               {posts.length > 6 && (
                 <Link
-                  href={showAll ? "/news" : "/news?all=1"}
-                  className="hidden text-sm font-semibold text-[#00BF4D] hover:underline sm:inline"
+                  href={showAll ? "/tin-tuc" : "/tin-tuc?all=1"}
+                  className="hidden text-sm font-semibold text-[#1a522e] hover:underline sm:inline-flex items-center gap-1"
+                  scroll={false}
                 >
-                  {showAll ? "Thu gọn" : "Xem tất cả"}
+                  {showAll ? "Thu gọn" : "Xem tất cả"} →
                 </Link>
               )}
             </div>
 
-            <div className="mt-6 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
               {visiblePosts.map((p) => (
                 <PostCard key={p.slug} post={p} />
               ))}
             </div>
 
             {posts.length > 6 && (
-              <div className="mt-6 sm:hidden">
+              <div className="mt-8 text-center sm:hidden">
                 <Link
-                  href={showAll ? "/news" : "/news?all=1"}
-                  className="inline-flex text-sm font-semibold text-[#00BF4D] hover:underline"
+                  href={showAll ? "/tin-tuc" : "/tin-tuc?all=1"}
+                  className="inline-flex text-sm font-semibold text-[#1a522e] hover:underline items-center gap-1"
+                  scroll={false}
                 >
-                  {showAll ? "Thu gọn" : "Xem tất cả"}
+                  {showAll ? "Thu gọn" : "Xem tất cả"} →
                 </Link>
               </div>
             )}
           </div>
 
-          <div className="h-16" />
+          <div className="h-20" />
         </div>
       </section>
     </main>

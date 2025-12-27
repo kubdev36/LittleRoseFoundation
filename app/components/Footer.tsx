@@ -1,6 +1,5 @@
 'use client';
 
-import Image from 'next/image';
 import { Facebook, Youtube } from 'lucide-react';
 
 // Icon TikTok tự tạo vì lucide-react chưa hỗ trợ

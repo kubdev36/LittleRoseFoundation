@@ -13,6 +13,10 @@ export async function generateStaticParams() {
   }));
 }
 
-export default function CategoryProjectsPage() {
-  return <CategoryProjectsClient />;
+export default async function CategoryProjectsPage({ params }: { params: Promise<{ category: string }> }) {
+  const { category } = await params;
+  // Map từ slug sang tên category trong DB/JSON
+  const categoryName = categoryMap[category] || category;
+
+  return <CategoryProjectsClient category={categoryName} />;
 }

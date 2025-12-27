@@ -2,21 +2,42 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Search, HelpCircle, ChevronRight, Phone, Mail, Globe, ChevronDown } from 'lucide-react';
+import {
+  Search,
+  HelpCircle,
+  ChevronRight,
+  Phone,
+  Mail,
+  Globe,
+  ChevronDown,
+  MousePointerClick,
+  Layout,
+  Hash,
+  Calendar,
+  ArrowRightLeft,
+  Info,
+  FileText,
+  Clock,
+  FileCheck,
+  ShieldCheck,
+  Download,
+  ExternalLink
+} from 'lucide-react';
 
 export default function FinancialInfoLookupGuide() {
   const [searchValue, setSearchValue] = useState('');
 
   return (
     <>
-      <div className="min-h-screen bg-gradient-to-b from-green-50 to-white">
+      <div className="min-h-screen bg-gradient-to-b from-[#1a522e]/5 to-white">
         {/* Header Navigation */}
         <header className="bg-white shadow-sm">
           <div className="max-w-7xl mx-auto px-4 py-4">
             <nav className="text-sm text-gray-600">
-              <Link href="/" className="hover:text-green-600">Trang chủ</Link>
+              <Link href="/" className="hover:text-[#1a522e] transition-colors" scroll={false}>
+                Trang chủ
+              </Link>
               <span className="mx-2">/</span>
-             
               <span className="text-gray-900">Chứng kiến nguồn tiền</span>
             </nav>
           </div>
@@ -25,7 +46,7 @@ export default function FinancialInfoLookupGuide() {
         {/* Main Content */}
         <main className="max-w-7xl mx-auto px-4 py-12">
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 bg-green-100 text-green-700 text-sm font-medium px-4 py-2 rounded-full mb-6">
+          <div className="inline-flex items-center gap-2 bg-[#1a522e]/10 text-[#1a522e] text-sm font-medium px-4 py-2 rounded-full mb-6">
             <HelpCircle className="w-4 h-4" />
             <span>HỖ TRỢ TRA CỨU</span>
           </div>
@@ -51,12 +72,12 @@ export default function FinancialInfoLookupGuide() {
                 value={searchValue}
                 onChange={(e) => setSearchValue(e.target.value)}
                 placeholder="Nhập Từ khóa Mã dự án, Tên dự án..."
-                className="w-full pl-12 pr-6 py-4 text-lg border border-gray-300 rounded-full focus:outline-none focus:ring-4 focus:ring-green-200 focus:border-green-500 transition-all"
+                className="w-full pl-12 pr-6 py-4 text-lg border border-gray-300 rounded-full focus:outline-none focus:ring-4 focus:ring-[#1a522e]/20 focus:border-[#1a522e] transition-all"
               />
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-6 h-6 text-gray-400" />
             </div>
 
-            <button className="px-8 py-4 bg-green-600 text-white font-medium text-lg rounded-full hover:bg-green-700 transition-colors shadow-md hover:shadow-lg flex items-center justify-center gap-2">
+            <button className="px-8 py-4 bg-[#1a522e] text-white font-medium text-lg rounded-full hover:bg-[#133f24] transition-colors shadow-md hover:shadow-lg flex items-center justify-center gap-2">
               Tìm kiếm dự án
               <ChevronRight className="w-5 h-5" />
             </button>
@@ -64,49 +85,55 @@ export default function FinancialInfoLookupGuide() {
 
           {/* Steps Guide */}
           <div className="grid md:grid-cols-2 gap-12 mb-16">
-            <div className="space-y-8">
+            <div className="space-y-10">
               {/* Step 1 */}
               <div className="flex gap-6">
-                <div className="flex-shrink-0 w-12 h-12 bg-green-600 text-white rounded-full flex items-center justify-center text-xl font-bold">
+                <div className="flex-shrink-0 w-14 h-14 bg-[#1a522e] text-white rounded-full flex items-center justify-center text-2xl font-bold">
                   1
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold mb-2">Truy cập trang Sao Kê</h3>
-                  <p className="text-gray-700 mb-3">
+                  <h3 className="text-xl font-bold mb-3">Truy cập trang Sao Kê</h3>
+                  <p className="text-gray-700 mb-4">
                     Vào website chính thức{' '}
-                    <a href="#" className="text-green-600 font-medium hover:underline">
-                      https://saoke.example.com
+                    <a href="#" className="text-[#1a522e] font-medium hover:underline">
+                      https://saoke.littlerosesfoundation.org
                     </a>
                   </p>
-                  <p className="text-gray-600 text-sm">
-                    • Truy cập nhanh từ menu Sao kê trên trang chủ
-                    <br />• Hoặc click vào banner Xem sao kê minh bạch trên trang chủ
-                  </p>
+                  <ul className="text-gray-600 text-sm space-y-2">
+                    <li className="flex items-start gap-2">
+                      <MousePointerClick className="w-4 h-4 text-[#1a522e] mt-0.5" />
+                      <span>Truy cập nhanh từ menu <strong>Sao kê</strong> trên trang chủ</span>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Layout className="w-4 h-4 text-[#1a522e] mt-0.5" />
+                      <span>Hoặc click vào banner <strong>Xem sao kê minh bạch</strong> trên trang chủ</span>
+                    </li>
+                  </ul>
                 </div>
               </div>
 
               {/* Step 2 */}
               <div className="flex gap-6">
-                <div className="flex-shrink-0 w-12 h-12 bg-green-600 text-white rounded-full flex items-center justify-center text-xl font-bold">
+                <div className="flex-shrink-0 w-14 h-14 bg-[#1a522e] text-white rounded-full flex items-center justify-center text-2xl font-bold">
                   2
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold mb-2">Sử dụng bộ lọc tìm kiếm</h3>
-                  <p className="text-gray-700 mb-3">
+                  <h3 className="text-xl font-bold mb-3">Sử dụng bộ lọc tìm kiếm</h3>
+                  <p className="text-gray-700 mb-4">
                     Tại giao diện Sao Kê, bạn có thể lọc theo nhiều tiêu chí:
                   </p>
-                  <ul className="text-gray-600 text-sm space-y-1">
-                    <li className="flex items-start gap-2">
-                      <span className="text-green-600 mt-1">•</span>
+                  <ul className="text-gray-700 text-sm space-y-2">
+                    <li className="flex items-start gap-3">
+                      <Hash className="w-4 h-4 text-[#1a522e] mt-0.5" />
                       <span>Mã dự án hoặc Tên dự án (tìm nhanh)</span>
                     </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-green-600 mt-1">•</span>
+                    <li className="flex items-start gap-3">
+                      <Calendar className="w-4 h-4 text-[#1a522e] mt-0.5" />
                       <span>Theo thời gian (từ ngày - đến ngày)</span>
                     </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-green-600 mt-1">•</span>
-                      <span>Loại giao dịch (thu/chi, chuyển khoản, tiền mặt...)</span>
+                    <li className="flex items-start gap-3">
+                      <ArrowRightLeft className="w-4 h-4 text-[#1a522e] mt-0.5" />
+                      <span>Loại giao dịch (thu/chi)</span>
                     </li>
                   </ul>
                 </div>
@@ -114,28 +141,28 @@ export default function FinancialInfoLookupGuide() {
 
               {/* Step 3 */}
               <div className="flex gap-6">
-                <div className="flex-shrink-0 w-12 h-12 bg-green-600 text-white rounded-full flex items-center justify-center text-xl font-bold">
+                <div className="flex-shrink-0 w-14 h-14 bg-[#1a522e] text-white rounded-full flex items-center justify-center text-2xl font-bold">
                   3
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold mb-2">Xác thực & tải chứng từ</h3>
-                  <p className="text-gray-700 mb-3">
+                  <h3 className="text-xl font-bold mb-3">Xác thực & tải chứng từ</h3>
+                  <p className="text-gray-700 mb-4">
                     Khi tìm thấy giao dịch bạn cần xem chi tiết, hệ thống sẽ hiển thị:
                   </p>
-                  <ul className="text-gray-600 text-sm space-y-1">
-                    <li className="flex items-start gap-2">
-                      <span className="text-green-600 mt-1">•</span>
+                  <ul className="text-gray-700 text-sm space-y-2">
+                    <li className="flex items-start gap-3">
+                      <Info className="w-4 h-4 text-[#1a522e] mt-0.5" />
                       <span>Thông tin chuyển khoản đầy đủ</span>
                     </li>
-                    <li className="flex items-start gap-2">
-                      <span className="text-green-600 mt-1">•</span>
+                    <li className="flex items-start gap-3">
+                      <FileText className="w-4 h-4 text-[#1a522e] mt-0.5" />
                       <span>Chứng từ gốc (ảnh chụp, biên lai, ủy nhiệm chi...)</span>
                     </li>
                   </ul>
-                  <p className="text-gray-700 mt-4">
-                    <a href="#" className="text-green-600 font-medium hover:underline flex items-center gap-1">
+                  <p className="text-gray-700 mt-6">
+                    <a href="#" className="text-[#1a522e] font-medium hover:underline flex items-center gap-1">
                       Xem ví dụ về chứng từ hợp lệ
-                      <ChevronRight className="w-4 h-4" />
+                      <ExternalLink className="w-4 h-4" />
                     </a>
                   </p>
                 </div>
@@ -144,38 +171,38 @@ export default function FinancialInfoLookupGuide() {
 
             {/* Right Side - Screenshot Illustration */}
             <div className="flex items-center justify-center">
-              <div className="bg-white rounded-2xl shadow-xl p-6 max-w-lg w-full">
-                <div className="bg-gray-100 rounded-xl p-4 mb-4">
-                  <div className="flex items-center justify-between mb-4">
+              <div className="bg-white rounded-2xl shadow-2xl p-8 max-w-lg w-full border border-gray-100">
+                <div className="bg-gray-50 rounded-2xl p-6 mb-6 border border-gray-200">
+                  <div className="flex items-center justify-between mb-6">
                     <div className="flex gap-2">
                       <div className="w-3 h-3 bg-red-500 rounded-full"></div>
                       <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
                       <div className="w-3 h-3 bg-green-500 rounded-full"></div>
                     </div>
-                    <span className="text-gray-500 text-sm">saoke.example.com</span>
+                    <span className="text-gray-500 text-sm font-medium">saoke.littlerosesfoundation.org</span>
                   </div>
-                  <div className="bg-white rounded-lg shadow p-4 space-y-3">
+                  <div className="bg-white rounded-xl shadow-md p-6 space-y-4">
                     <input
                       type="text"
                       placeholder="Tìm kiếm theo mã dự án, tên dự án..."
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg"
+                      className="w-full px-5 py-4 border border-gray-300 rounded-xl focus:border-[#1a522e] focus:ring-4 focus:ring-[#1a522e]/20"
                     />
-                    <div className="flex gap-3">
+                    <div className="flex gap-4">
                       <input
                         type="date"
-                        className="flex-1 px-4 py-3 border border-gray-300 rounded-lg"
+                        className="flex-1 px-5 py-4 border border-gray-300 rounded-xl focus:border-[#1a522e] focus:ring-4 focus:ring-[#1a522e]/20"
                       />
                       <input
                         type="date"
-                        className="flex-1 px-4 py-3 border border-gray-300 rounded-lg"
+                        className="flex-1 px-5 py-4 border border-gray-300 rounded-xl focus:border-[#1a522e] focus:ring-4 focus:ring-[#1a522e]/20"
                       />
                     </div>
-                    <button className="w-full bg-green-600 text-white py-3 rounded-lg font-medium">
+                    <button className="w-full bg-[#1a522e] text-white py-4 rounded-xl font-bold hover:bg-[#133f24] transition shadow-md">
                       Tìm kiếm
                     </button>
                   </div>
                 </div>
-                <p className="text-center text-sm text-gray-500">
+                <p className="text-center text-sm text-gray-600">
                   Giao diện trang Sao Kê thực tế
                 </p>
               </div>
@@ -185,23 +212,23 @@ export default function FinancialInfoLookupGuide() {
           {/* Bottom Info Boxes */}
           <div className="grid md:grid-cols-2 gap-8 mb-16">
             {/* Left Box */}
-            <div className="bg-green-50 rounded-2xl p-8">
-              <h3 className="text-xl font-bold mb-4">Lưu ý quan trọng</h3>
-              <ul className="space-y-3 text-gray-700">
+            <div className="bg-[#1a522e]/5 rounded-2xl p-8 border border-[#1a522e]/20">
+              <h3 className="text-xl font-bold mb-4 text-gray-900">Lưu ý quan trọng</h3>
+              <ul className="space-y-4 text-gray-700">
                 <li className="flex items-start gap-3">
-                  <span className="text-green-600 font-bold">•</span>
+                  <Clock className="w-5 h-5 text-[#1a522e] mt-0.5" />
                   <span>
                     Tất cả giao dịch đều được cập nhật trong vòng 24h sau khi nhận được tiền
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-green-600 font-bold">•</span>
+                  <FileCheck className="w-5 h-5 text-[#1a522e] mt-0.5" />
                   <span>
                     Mọi giao dịch trên 5 triệu đồng đều có chứng từ gốc kèm theo
                   </span>
                 </li>
                 <li className="flex items-start gap-3">
-                  <span className="text-green-600 font-bold">•</span>
+                  <ShieldCheck className="w-5 h-5 text-[#1a522e] mt-0.5" />
                   <span>
                     Chúng tôi cam kết minh bạch 100% và chịu trách nhiệm trước pháp luật
                   </span>
@@ -210,24 +237,24 @@ export default function FinancialInfoLookupGuide() {
             </div>
 
             {/* Right Box */}
-            <div className="bg-green-50 rounded-2xl p-8">
-              <h3 className="text-xl font-bold mb-4">Bạn cần hỗ trợ tra cứu?</h3>
+            <div className="bg-[#1a522e]/5 rounded-2xl p-8 border border-[#1a522e]/20">
+              <h3 className="text-xl font-bold mb-4 text-gray-900">Bạn cần hỗ trợ tra cứu?</h3>
               <p className="text-gray-700 mb-6">
                 Nếu bạn gặp khó khăn trong quá trình tra cứu hoặc cần hỗ trợ xác minh thông tin,
                 vui lòng liên hệ với chúng tôi:
               </p>
-              <div className="space-y-4">
-                <a href="tel:19001234" className="flex items-center gap-3 text-green-700 font-medium">
-                  <Phone className="w-5 h-5" />
+              <div className="space-y-5">
+                <a href="tel:19001234" className="flex items-center gap-4 text-[#1a522e] font-medium hover:underline">
+                  <Phone className="w-6 h-6" />
                   Hotline: 1900 1234
                 </a>
-                <a href="mailto:hotro@congty.org.vn" className="flex items-center gap-3 text-green-700 font-medium">
-                  <Mail className="w-5 h-5" />
-                  Email: hotro@congty.org.vn
+                <a href="mailto:hotro@littlerosesfoundation.org" className="flex items-center gap-4 text-[#1a522e] font-medium hover:underline">
+                  <Mail className="w-6 h-6" />
+                  Email: hotro@littlerosesfoundation.org
                 </a>
-                <a href="#" className="flex items-center gap-3 text-green-700 font-medium">
-                  <Globe className="w-5 h-5" />
-                  Website: www.congty.org.vn
+                <a href="https://littlerosesfoundation.org" className="flex items-center gap-4 text-[#1a522e] font-medium hover:underline">
+                  <Globe className="w-6 h-6" />
+                  Website: www.littlerosesfoundation.org
                 </a>
               </div>
             </div>
@@ -235,9 +262,11 @@ export default function FinancialInfoLookupGuide() {
 
           {/* FAQ Section */}
           <div className="border-t pt-12">
-            <h2 className="text-2xl font-bold text-center mb-8">Câu hỏi thường gặp</h2>
-            <p className='text-center mb-8'>Giải đáp các thắc mắc về quy trình minh bạch của chúng tôi</p>
-            <div className="space-y-4 max-w-4xl mx-auto">
+            <h2 className="text-3xl font-bold text-center mb-4 text-gray-900">Câu hỏi thường gặp</h2>
+            <p className="text-center text-gray-600 mb-10 max-w-3xl mx-auto">
+              Giải đáp các thắc mắc về quy trình minh bạch của chúng tôi
+            </p>
+            <div className="space-y-5 max-w-4xl mx-auto">
               {[
                 {
                   question: 'Quý vị có phải trả phí vận hành nào 100% tiền quyên góp đi đâu đến đấy?',
@@ -254,16 +283,14 @@ export default function FinancialInfoLookupGuide() {
               ].map((item, index) => (
                 <details
                   key={index}
-                  className="bg-white rounded-xl shadow-md cursor-pointer group"
+                  className="bg-white rounded-2xl shadow-lg cursor-pointer group border border-gray-200"
                 >
-                  <summary className="px-6 py-5 flex items-center justify-between font-bold text-gray-800 list-none [&::-webkit-details-marker]:hidden">
+                  <summary className="px-8 py-6 flex items-center justify-between font-bold text-gray-900 text-lg list-none [&::-webkit-details-marker]:hidden">
                     {item.question}
-                    <ChevronDown className="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform" />
+                    <ChevronDown className="w-6 h-6 text-gray-500 group-open:rotate-180 transition-transform" />
                   </summary>
-                  <div className="px-6 pb-5 text-gray-600">
-                    <p>
-                      {item.answer}
-                    </p>
+                  <div className="px-8 pb-7 text-gray-700 leading-relaxed">
+                    <p>{item.answer}</p>
                   </div>
                 </details>
               ))}

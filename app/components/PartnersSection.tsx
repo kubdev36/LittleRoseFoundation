@@ -17,8 +17,8 @@ export default function PartnersSection() {
   return (
     <section className="py-16 bg-gray-50 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 mb-12">
-          Các đơn vị <span className="text-red-600">đồng hành</span>
+        <h2 className="text-3xl md:text-4xl font-bold text-center text-[#1a522e] mb-12">
+          Các đối tác & Nhà hảo tâm
         </h2>
 
         {/* Marquee tự động chạy ngang, vô tận */}

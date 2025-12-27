@@ -64,8 +64,8 @@ export default function HeroBanner() {
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 z-20 mt-20">
         {/* Badges nhỏ ở trên */}
         <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 mb-6">
-          <span className="bg-white/80 backdrop-blur-sm text-green-600 px-5 py-2 rounded-full text-sm font-semibold flex items-center gap-2">
-            <span className="w-2 h-2 bg-green-600 rounded-full"></span>
+          <span className="bg-white/80 backdrop-blur-sm text-[#1a522e] px-5 py-2 rounded-full text-sm font-semibold flex items-center gap-2">
+            <span className="w-2 h-2 bg-[#1a522e] rounded-full"></span>
             Hành Trình Nhân Ái
           </span>
           <span className="bg-white/80 backdrop-blur-sm text-gray-700 px-5 py-2 rounded-full text-sm font-semibold">
@@ -75,11 +75,11 @@ export default function HeroBanner() {
 
         {/* Tiêu đề chính */}
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-tight">
-          Gieo mầm <span className="text-green-400">yêu</span>
+          Gieo mầm <span className="text-[#1a522e]">yêu</span>
           <br />
-          <span className="text-green-400">thương</span>,
+          <span className="text-[#1a522e]">thương</span>,
           <br />
-          gặt hái nụ <span className="text-green-400">cười</span>
+          gặt hái nụ <span className="text-[#1a522e]">cười</span>
         </h1>
 
         {/* Mô tả */}
@@ -88,16 +88,12 @@ export default function HeroBanner() {
         </p>
 
         {/* Nút Quyên góp */}
-       
-       <a
-          href="/quyen-gop"
-          className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white font-bold px-12 py-5 rounded-full text-xl shadow-2xl transition transform hover:scale-105 mb-35"
+        <a
+          href="/donate"
+          className="bg-[#1a522e] hover:bg-[#1a522e]/90 text-white font-bold px-12 py-5 rounded-full text-xl shadow-2xl transition transform hover:scale-105 mb-35"
         >
           Quyên góp ngay hôm nay
         </a>
-
-      
-        
 
         {/* Thống kê dưới cùng */}
         <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 bg-white/95 backdrop-blur-md rounded-3xl px-10 py-6 shadow-2xl z-30">
@@ -117,7 +113,6 @@ export default function HeroBanner() {
           </div>
         </div>
       </div>
-
     </section>
   );
 }

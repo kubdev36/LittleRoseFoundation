@@ -1,7 +1,8 @@
 'use client';
 
 import React from 'react';
-import { Copy, AlertTriangle, QrCode, Phone } from 'lucide-react';
+import { Copy, AlertTriangle, Phone, ShieldCheck, FileText, Heart } from 'lucide-react';
+import Image from 'next/image';
 import Link from 'next/link';
 
 export default function BankTransferInfoPage() {
@@ -106,7 +107,7 @@ export default function BankTransferInfoPage() {
                   </label>
                   <div className="flex items-center justify-between bg-gray-100 rounded-xl px-5 py-4">
                     <span className="text-lg font-medium text-gray-900">
-                      tên dự án + mã
+                      Tên cá nhân + số điện thoại
                     </span>
                     <button
                       onClick={() => copyToClipboard('tên dự án + mã')}
@@ -134,8 +135,14 @@ export default function BankTransferInfoPage() {
               </p>
 
               <div className="flex justify-center mb-8">
-                <div className="w-64 h-64 bg-gray-200 rounded-2xl shadow-inner flex items-center justify-center">
-                  <QrCode className="w-48 h-48 text-gray-400" />
+                <div className="relative w-64 h-64 bg-white rounded-2xl shadow-inner flex items-center justify-center overflow-hidden">
+                  <Image
+                    src="https://fundraising-frontend-flame.vercel.app/assets/donatelrf-Cd2zm9J3.png"
+                    alt="Mã QR chuyển khoản"
+                    fill
+                    className="object-contain"
+                    unoptimized
+                  />
                 </div>
               </div>
 
@@ -188,7 +195,7 @@ export default function BankTransferInfoPage() {
           <div className="grid md:grid-cols-3 gap-8 text-center">
             <div className="bg-blue-50 rounded-3xl p-8">
               <div className="w-16 h-16 bg-blue-600 rounded-full mx-auto mb-4 flex items-center justify-center">
-                <div className="w-8 h-8 bg-white rounded-full"></div>
+                <ShieldCheck className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-xl font-bold text-blue-900 mb-3">Bảo mật thông tin</h3>
               <p className="text-gray-700">
@@ -199,7 +206,7 @@ export default function BankTransferInfoPage() {
 
             <div className="bg-green-50 rounded-3xl p-8">
               <div className="w-16 h-16 bg-green-600 rounded-full mx-auto mb-4 flex items-center justify-center">
-                <div className="w-8 h-8 bg-white rounded-full"></div>
+                <FileText className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-xl font-bold text-green-900 mb-3">Minh bạch tài chính</h3>
               <p className="text-gray-700">
@@ -210,7 +217,7 @@ export default function BankTransferInfoPage() {
 
             <div className="bg-orange-50 rounded-3xl p-8">
               <div className="w-16 h-16 bg-orange-600 rounded-full mx-auto mb-4 flex items-center justify-center">
-                <div className="w-8 h-8 bg-white rounded-full"></div>
+                <Heart className="w-8 h-8 text-white" />
               </div>
               <h3 className="text-xl font-bold text-orange-900 mb-3">Cam kết sử dụng</h3>
               <p className="text-gray-700">

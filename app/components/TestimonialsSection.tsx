@@ -26,8 +26,8 @@ export default function TestimonialsSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Tiêu đề section */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            <span>Câu chuyện tác động</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-[#1a522e] mb-4">
+            <span>Họ nói gì về chúng tôi ?</span>
           </h2>
           <p className="text-gray-600 text-lg max-w-3xl mx-auto">
             Lắng nghe và chia sẻ từ những người trực tiếp tham gia vào hành trình thay đổi.
