@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import {
   Search,
   HelpCircle,
@@ -29,19 +30,26 @@ export default function FinancialInfoLookupGuide() {
 
   return (
     <>
-      <div className="min-h-screen bg-gradient-to-b from-[#1a522e]/5 to-white">
-        {/* Header Navigation */}
-        <header className="bg-white shadow-sm">
-          <div className="max-w-7xl mx-auto px-4 py-4">
-            <nav className="text-sm text-gray-600">
-              <Link href="/" className="hover:text-[#1a522e] transition-colors" scroll={false}>
+      <div className="min-h-screen bg-gradient-to-b from-[#1a522e]/5 via-white to-gray-50">
+        {/* Hero Banner - Đồng bộ chuẩn với các trang khác */}
+        <div className="relative h-96 w-full">
+          <Image
+            src="/images/banner4.jpg"
+            alt="Hướng dẫn tra cứu thông tin tài chính - Quỹ Từ Thiện Bông Hồng Nhỏ"
+            fill
+            className="object-cover brightness-50"
+            priority
+          />
+          <div className="absolute inset-0 flex flex-col items-center justify-center text-white px-4">
+            <h1 className="text-5xl font-bold mb-4">Chứng kiến nguồn tiền</h1>
+            <p className="text-lg">
+              <Link href="/" className="hover:text-[#1a522e] transition-colors">
                 Trang chủ
-              </Link>
-              <span className="mx-2">/</span>
-              <span className="text-gray-900">Chứng kiến nguồn tiền</span>
-            </nav>
+              </Link>{' '}
+              / <span className="text-[#1a522e]">Chứng kiến nguồn tiền</span>
+            </p>
           </div>
-        </header>
+        </div>
 
         {/* Main Content */}
         <main className="max-w-7xl mx-auto px-4 py-12">

@@ -1,5 +1,8 @@
-import Image from "next/image";
-import Link from "next/link";
+'use client';
+
+import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 import newsData from "../data/news.json";
 
 type NewsPost = {
@@ -108,47 +111,28 @@ export default async function NewsPage({
 
   return (
     <main className="bg-gray-50 text-gray-800">
-      {/* HERO (dark) */}
-      <section className="relative overflow-hidden bg-[#1a522e] text-white">
-        <DotPatternDark />
-
-        {/* decor dots */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute right-6 top-14 hidden h-40 w-32 opacity-60 lg:block"
-          style={{
-            backgroundImage:
-              "radial-gradient(rgba(255,255,255,0.18) 1px, transparent 1px)",
-            backgroundSize: "10px 10px",
-          }}
+      {/* HERO với Banner - Giống chuẩn các trang khác */}
+      <section className="relative h-96 w-full">
+        <Image
+          src="/images/banner4.jpg"
+          alt="Tin tức & Câu chuyện - Quỹ Từ Thiện Bông Hồng Nhỏ"
+          fill
+          className="object-cover brightness-50"
+          priority
         />
-
-        <div className="mx-auto max-w-6xl px-4 pb-40 pt-16 sm:px-6">
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="text-[11px] font-extrabold tracking-[0.22em] text-white/80">
-              TIN TỨC & CÂU CHUYỆN
-            </p>
-
-            <h1 className="mt-4 text-3xl font-extrabold tracking-tight sm:text-5xl">
-              Những câu chuyện tạo{" "}
-              <span className="text-white">tác động</span>
-            </h1>
-
-            <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-white/75 sm:text-base">
-              Tin tức, câu chuyện đời thực và báo cáo tác động minh bạch.
-            </p>
-
-            <div className="mt-8 flex flex-wrap justify-center gap-3">
-              <Pill>Tin tức</Pill>
-              <Pill>Cập nhật</Pill>
-              <Pill>Cộng đồng</Pill>
-            </div>
-          </div>
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-white px-4">
+          <h1 className="text-5xl font-bold mb-4">Tin tức & Câu chuyện</h1>
+          <p className="text-lg">
+            <Link href="/" className="hover:text-[#1a522e] transition-colors">
+              Trang chủ
+            </Link>{' '}
+            / <span className="text-[#1a522e]">Tin tức</span>
+          </p>
         </div>
       </section>
 
-      {/* FEATURED CARD (overlap) */}
-      <section className="relative -mt-28">
+      {/* FEATURED CARD */}
+      <section className="relative -mt-20">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <article className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-2xl">
             <div className="grid grid-cols-1 md:grid-cols-5">

@@ -13,14 +13,13 @@ export default function BankTransferInfoPage() {
 
   return (
     <>
-      <div className="min-h-screen bg-gradient-to-b from-green-50 to-white">
+      <div className="min-h-screen bg-gradient-to-b from-[#1a522e]/5 to-white">
         {/* Header Navigation */}
         <header className="bg-white shadow-sm">
           <div className="max-w-7xl mx-auto px-4 py-4">
             <nav className="text-sm text-gray-600">
-              <Link href="/" className="hover:text-green-600">Trang chủ</Link>
+              <Link href="/" className="hover:text-[#1a522e]">Trang chủ</Link>
               <span className="mx-2">/</span>
-            
               <span className="text-gray-900">Chuyển khoản ngân hàng</span>
             </nav>
           </div>
@@ -42,15 +41,14 @@ export default function BankTransferInfoPage() {
           <div className="grid lg:grid-cols-2 gap-8 mb-12">
             {/* Left Card - Bank Details */}
             <div className="bg-white rounded-3xl shadow-xl p-8 border border-gray-100">
-              {/* Logo Vietcombank chính thức - giống ảnh 100% */}
+              {/* Logo Vietcombank - giữ nguyên nhưng đổi màu viền và nền cho hợp tông */}
               <div className="flex items-center gap-5 mb-8">
-                <div className="w-20 h-20 bg-green-100 rounded-2xl border-2 border-green-600 flex items-center justify-center shadow-md">
-                  {/* Logo Vietcombank SVG đơn giản nhưng giống thật */}
+                <div className="w-20 h-20 bg-[#1a522e]/10 rounded-2xl border-2 border-[#1a522e] flex items-center justify-center shadow-md">
                   <svg viewBox="0 0 100 100" className="w-14 h-14">
-                    <rect x="20" y="30" width="60" height="8" fill="#006633" rx="4"/>
-                    <rect x="20" y="45" width="60" height="8" fill="#006633" rx="4"/>
-                    <rect x="20" y="60" width="60" height="8" fill="#006633" rx="4"/>
-                    <path d="M50 15 L70 30 L30 30 Z" fill="#006633"/>
+                    <rect x="20" y="30" width="60" height="8" fill="#1a522e" rx="4"/>
+                    <rect x="20" y="45" width="60" height="8" fill="#1a522e" rx="4"/>
+                    <rect x="20" y="60" width="60" height="8" fill="#1a522e" rx="4"/>
+                    <path d="M50 15 L70 30 L30 30 Z" fill="#1a522e"/>
                   </svg>
                 </div>
                 <div>
@@ -73,7 +71,7 @@ export default function BankTransferInfoPage() {
                     </span>
                     <button
                       onClick={() => copyToClipboard('Quỹ Bông Hồng Nhỏ')}
-                      className="flex items-center gap-2 text-green-600 hover:text-green-700 font-medium"
+                      className="flex items-center gap-2 text-[#1a522e] hover:text-[#133f24] font-medium"
                     >
                       <Copy className="w-5 h-5" />
                       sao chép
@@ -92,7 +90,7 @@ export default function BankTransferInfoPage() {
                     </span>
                     <button
                       onClick={() => copyToClipboard('123456789999')}
-                      className="flex items-center gap-2 text-green-600 hover:text-green-700 font-medium"
+                      className="flex items-center gap-2 text-[#1a522e] hover:text-[#133f24] font-medium"
                     >
                       <Copy className="w-5 h-5" />
                       sao chép
@@ -111,14 +109,14 @@ export default function BankTransferInfoPage() {
                     </span>
                     <button
                       onClick={() => copyToClipboard('tên dự án + mã')}
-                      className="flex items-center gap-2 text-green-600 hover:text-green-700 font-medium"
+                      className="flex items-center gap-2 text-[#1a522e] hover:text-[#133f24] font-medium"
                     >
                       <Copy className="w-5 h-5" />
                       sao chép
                     </button>
                   </div>
                   <p className="text-sm text-gray-600 mt-3 flex items-start gap-2">
-                    <span className="text-green-600 font-bold">•</span>
+                    <span className="text-[#1a522e] font-bold">•</span>
                     Vui lòng nhập đúng nội dung để chúng tôi xác nhận đóng góp của bạn
                   </p>
                 </div>
@@ -147,13 +145,13 @@ export default function BankTransferInfoPage() {
               </div>
 
               <div className="text-center space-y-4">
-                <button className="px-8 py-4 bg-green-600 text-white font-semibold rounded-full hover:bg-green-700 transition-all shadow-lg">
+                <button className="px-8 py-4 bg-[#1a522e] text-white font-semibold rounded-full hover:bg-[#133f24] transition-all shadow-lg">
                   Tải mã QR về máy
                 </button>
                 <p className="text-gray-600">
                   Gặp khó khăn khi chuyển khoản?
                 </p>
-                <a href="tel:02439999999" className="inline-flex items-center gap-3 text-green-700 font-bold text-lg">
+                <a href="tel:02439999999" className="inline-flex items-center gap-3 text-[#1a522e] font-bold text-lg">
                   <Phone className="w-6 h-6" />
                   Liên hệ hỗ trợ: (024) 3999 9999
                 </a>
@@ -193,33 +191,33 @@ export default function BankTransferInfoPage() {
 
           {/* Bottom Info Cards */}
           <div className="grid md:grid-cols-3 gap-8 text-center">
-            <div className="bg-blue-50 rounded-3xl p-8">
-              <div className="w-16 h-16 bg-blue-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+            <div className="bg-[#1a522e]/5 rounded-3xl p-8 border border-[#1a522e]/10">
+              <div className="w-16 h-16 bg-[#1a522e] rounded-full mx-auto mb-4 flex items-center justify-center">
                 <ShieldCheck className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-xl font-bold text-blue-900 mb-3">Bảo mật thông tin</h3>
+              <h3 className="text-xl font-bold text-[#1a522e] mb-3">Bảo mật thông tin</h3>
               <p className="text-gray-700">
                 Thông tin tài khoản chỉ được sử dụng để nhận đóng góp từ thiện.
                 Được bảo mật tuyệt đối theo tiêu chuẩn ngân hàng.
               </p>
             </div>
 
-            <div className="bg-green-50 rounded-3xl p-8">
-              <div className="w-16 h-16 bg-green-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+            <div className="bg-[#1a522e]/5 rounded-3xl p-8 border border-[#1a522e]/10">
+              <div className="w-16 h-16 bg-[#1a522e] rounded-full mx-auto mb-4 flex items-center justify-center">
                 <FileText className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-xl font-bold text-green-900 mb-3">Minh bạch tài chính</h3>
+              <h3 className="text-xl font-bold text-[#1a522e] mb-3">Minh bạch tài chính</h3>
               <p className="text-gray-700">
                 Mọi khoản thu chi đều được công khai trên hệ thống sao kê trực tuyến.
                 Bạn có thể tra cứu bất kỳ lúc nào.
               </p>
             </div>
 
-            <div className="bg-orange-50 rounded-3xl p-8">
-              <div className="w-16 h-16 bg-orange-600 rounded-full mx-auto mb-4 flex items-center justify-center">
+            <div className="bg-[#1a522e]/5 rounded-3xl p-8 border border-[#1a522e]/10">
+              <div className="w-16 h-16 bg-[#1a522e] rounded-full mx-auto mb-4 flex items-center justify-center">
                 <Heart className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-xl font-bold text-orange-900 mb-3">Cam kết sử dụng</h3>
+              <h3 className="text-xl font-bold text-[#1a522e] mb-3">Cam kết sử dụng</h3>
               <p className="text-gray-700">
                 100% khoản quyên góp được sử dụng đúng mục đích cho các hoàn cảnh khó khăn.
                 Không trừ chi phí vận hành.

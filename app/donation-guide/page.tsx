@@ -1,18 +1,20 @@
 'use client';
 
 import React, { useState } from 'react';
-import { 
-  Search, 
-  HelpCircle, 
-  ChevronRight, 
-  CreditCard, 
-  Banknote, 
-  Smartphone, 
-  ShieldCheck, 
-  Download, 
-  Phone, 
-  Mail, 
-  Clock, 
+import Link from 'next/link';
+import Image from 'next/image';
+import {
+  Search,
+  HelpCircle,
+  ChevronRight,
+  CreditCard,
+  Banknote,
+  Smartphone,
+  ShieldCheck,
+  Download,
+  Phone,
+  Mail,
+  Clock,
   CheckCircle,
   Globe,
   Filter,
@@ -26,8 +28,6 @@ import {
   ArrowRight,
   MessageCircle
 } from 'lucide-react';
-import Link from 'next/link';
-import Image from 'next/image';
 
 export default function DonationGuidePage() {
   const [activeStep, setActiveStep] = useState(1);
@@ -74,23 +74,26 @@ export default function DonationGuidePage() {
 
   return (
     <>
-      <div className="min-h-screen bg-gradient-to-b from-[#1a522e]/5 to-white">
-        {/* Header Navigation */}
-        <header className="bg-white shadow-sm">
-          <div className="max-w-7xl mx-auto px-4 py-4">
-            <nav className="text-sm text-gray-600">
-              <Link href="/" className="hover:text-[#1a522e] transition-colors" scroll={false}>
+      <div className="min-h-screen bg-gradient-to-b from-[#1a522e]/5 via-white to-gray-50">
+        {/* Hero Banner - Đã thêm chuẩn giống tất cả các trang khác */}
+        <div className="relative h-96 w-full">
+          <Image
+            src="/images/banner4.jpg"
+            alt="Hướng dẫn quyên góp - Quỹ Từ Thiện Bông Hồng Nhỏ"
+            fill
+            className="object-cover brightness-50"
+            priority
+          />
+          <div className="absolute inset-0 flex flex-col items-center justify-center text-white px-4">
+            <h1 className="text-5xl font-bold mb-4">Hướng dẫn Quyên góp</h1>
+            <p className="text-lg">
+              <Link href="/" className="hover:text-[#1a522e] transition-colors">
                 Trang chủ
-              </Link>
-              <span className="mx-2">/</span>
-              <Link href="/huong-dan" className="hover:text-[#1a522e] transition-colors" scroll={false}>
-                Hướng dẫn
-              </Link>
-              <span className="mx-2">/</span>
-              <span className="text-gray-900">Quyên góp</span>
-            </nav>
+              </Link>{' '}
+              / <span className="text-[#1a522e]">Quyên góp</span>
+            </p>
           </div>
-        </header>
+        </div>
 
         {/* Main Content */}
         <main className="max-w-7xl mx-auto px-4 py-12">

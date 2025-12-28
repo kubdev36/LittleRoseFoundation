@@ -52,7 +52,7 @@ export default function VolunteerCTASection() {
             href="/quyTrinh"
             className="border-2 border-white text-white font-semibold text-xl px-10 py-5 rounded-full hover:bg-white hover:text-[#1a522e] transition"
           >
-            Tìm hiểu quy trình
+            Liên hệ chung
           </a>
         </div>
       </div>

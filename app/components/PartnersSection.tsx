@@ -4,12 +4,15 @@ import Image from 'next/image';
 
 const partners = [
   
-  { name: 'Vingroup', logo: 'https://upload.wikimedia.org/wikipedia/en/thumb/e/e0/Vingroup_logo_small.svg/1200px-Vingroup_logo_small.svg.png' },
-  { name: 'Vietcombank', logo: 'https://inkythuatso.com/uploads/images/2021/09/logo-vietcombank-inkythuatso-10-10-41-18.jpg' },
-  { name: 'BIDV', logo: 'https://1000logos.net/wp-content/uploads/2022/09/BIDV-Logo-2009.png' },
-  { name: 'Viettel', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Logo_Viettel.svg/250px-Logo_Viettel.svg.png' },
-  { name: 'Save the Children Vietnam', logo: 'https://www.developmentaid.org/files/organizationLogos/save-the-children-vietnam-154442.jpg' },
-  // Thêm nhiều hơn nếu có (lặp lại để carousel dài)
+  { name: 'VietHuong', logo: '/images/vietthuong.png' },
+  { name: 'Truong Hoang Phat', logo: '/images/truong-hoang-phat.png' },
+  { name: 'Microsoft', logo: '/images/Microsoft.png' },
+  { name: 'Deloitte', logo: '/images/deloitte.png' },
+  { name: 'Sacombank', logo: '/images/sacombank.png' },
+  { name: 'PWC', logo: '/images/pwc.png' },
+  { name: 'SCB', logo: '/images/scb.png' },
+  { name: 'Bravo', logo: '/images/bravo.png' },
+  
   
 ];
 
@@ -23,7 +26,7 @@ export default function PartnersSection() {
 
         {/* Marquee tự động chạy ngang, vô tận */}
         <div className="relative">
-          <div className="animate-marquee whitespace-nowrap flex items-center gap-16">
+          <div className="animate-marquee whitespace-nowrap flex items-center gap-16 pr-16 w-max">
             {partners.map((partner, index) => (
               <div
                 key={index}
@@ -41,7 +44,7 @@ export default function PartnersSection() {
           </div>
 
           {/* Duplicate cho hiệu ứng vô tận (nếu cần trên màn lớn) */}
-          <div className="absolute top-0 animate-marquee2 whitespace-nowrap flex items-center gap-16">
+          <div className="absolute top-0 animate-marquee2 whitespace-nowrap flex items-center gap-16 pr-16 w-max">
             {partners.map((partner, index) => (
               <div
                 key={`dup-${index}`}

@@ -1,6 +1,9 @@
-import Image from "next/image";
-import Link from "next/link";
-import { Home, GraduationCap, Shirt, HeartPulse } from "lucide-react";
+'use client';
+
+import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { Home, GraduationCap, Shirt, HeartPulse } from 'lucide-react';
 import impactData from "../data/impact.json";
 
 type Metric = { label: string; value: string };
@@ -36,23 +39,6 @@ type ImpactData = {
 };
 
 const data = impactData as ImpactData;
-
-function DotPatternDark() {
-  return (
-    <div
-      aria-hidden
-      className="pointer-events-none absolute inset-0"
-      style={{
-        backgroundImage:
-          "radial-gradient(rgba(255,255,255,0.10) 1px, transparent 1px)",
-        backgroundSize: "18px 18px",
-        maskImage: "linear-gradient(to bottom, black 65%, transparent 100%)",
-        WebkitMaskImage: "linear-gradient(to bottom, black 65%, transparent 100%)",
-        opacity: 0.6,
-      }}
-    />
-  );
-}
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return <h2 className="text-sm font-extrabold tracking-wide text-gray-900">{children}</h2>;
@@ -153,43 +139,27 @@ export default function ImpactPage({ searchParams }: { searchParams?: { all?: st
   const visiblePosts = showAll ? postsSorted : postsSorted.slice(0, 6);
   const hasMore = postsSorted.length > 6;
 
-  const heroSubtitle =
-    data.intro.paragraphs?.[0] ??
-    "Kết nối cộng đồng và đối tác để gây quỹ, hỗ trợ khẩn cấp và đồng hành dài hạn.";
-
   return (
     <main className="bg-gray-50 text-gray-800">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-[#1a522e] text-white">
-        <DotPatternDark />
-
-        <div
-          aria-hidden
-          className="pointer-events-none absolute right-6 top-14 hidden h-40 w-32 opacity-60 lg:block"
-          style={{
-            backgroundImage:
-              "radial-gradient(rgba(255,255,255,0.18) 1px, transparent 1px)",
-            backgroundSize: "10px 10px",
-          }}
+      {/* Hero Banner - Chuẩn giống AboutPage, ContactPage, VolunteerPage... */}
+      <div className="relative h-96 w-full">
+        <Image
+          src="/images/banner4.jpg"
+          alt="Tác động - Quỹ Từ Thiện Bông Hồng Nhỏ"
+          fill
+          className="object-cover brightness-50"
+          priority
         />
-
-        <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6">
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="text-xs font-extrabold tracking-widest text-white/80">
-              {data.intro.kicker}
-            </p>
-
-            <h1 className="mt-6 text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
-              {data.intro.title.split("Little Roses Foundation")[0]}
-              <span className="text-white">Little Roses Foundation</span>
-            </h1>
-
-            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-white/80">
-              {heroSubtitle}
-            </p>
-          </div>
+        <div className="absolute inset-0 flex flex-col items-center justify-center text-white">
+          <h1 className="text-5xl font-bold mb-4">Tác động</h1>
+          <p className="text-lg">
+            <Link href="/" className="hover:text-[#1a522e] transition-colors">
+              Trang chủ
+            </Link>{' '}
+            / <span className="text-[#1a522e]">Tác động</span>
+          </p>
         </div>
-      </section>
+      </div>
 
       {/* Highlight Section */}
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6">

@@ -100,6 +100,22 @@ export default function Header() {
                 </div>
               </div>
             </div>
+             <div className="relative group">
+              <button className="text-gray-700 font-bold hover:text-[#1a522e] transition flex items-center gap-1">
+                Liên hệ
+                <ChevronDown className="w-4 h-4" />
+              </button>
+              <div className="absolute top-full left-0 pt-2 w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                <div className="bg-white rounded-lg shadow-lg border border-gray-100 py-2">
+                  <Link href="/quyTrinh" className="block px-4 py-2 text-gray-700 hover:bg-green-50 hover:text-[#1a522e]">
+                    Liên hệ chung
+                  </Link>
+                  <Link href="/voluteer" className="block px-4 py-2 text-gray-700 hover:bg-green-50 hover:text-[#1a522e]">
+                    Đăng kí tình nguyện viên
+                  </Link>
+                </div>
+              </div>
+            </div>
           </nav>
 
           <Link
