@@ -22,8 +22,8 @@ import {
   FileCheck,
   ShieldCheck,
   Download,
-  ExternalLink
 } from 'lucide-react';
+import ExternalLinkIcon from '../components/ExternalLinkIcon';
 
 export default function FinancialInfoLookupGuide() {
   const [searchValue, setSearchValue] = useState('');
@@ -170,7 +170,7 @@ export default function FinancialInfoLookupGuide() {
                   <p className="text-gray-700 mt-6">
                     <a href="#" className="text-[#1a522e] font-medium hover:underline flex items-center gap-1">
                       Xem ví dụ về chứng từ hợp lệ
-                      <ExternalLink className="w-4 h-4" />
+                      <ExternalLinkIcon className="w-4 h-4" />
                     </a>
                   </p>
                 </div>

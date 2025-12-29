@@ -1,17 +1,21 @@
 'use client';
 
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { Heart, School, Users, ShieldCheck } from 'lucide-react';
+
+// --- CONFIGURATION ---
+const SLIDE_DURATION = 6000; // 6 seconds
 
 const slides = [
   {
     id: 1,
-    src: '/images/banner1.jpg', // Ảnh đen trắng bàn tay nắm nhau (adult & child)
+    src: '/images/banner1.jpg',
     alt: 'Bàn tay nắm chặt - biểu tượng của sự hỗ trợ và yêu thương',
   },
   {
     id: 2,
-    src: '/images/banner2.jpg', // Ảnh khác tương tự hoặc màu nếu muốn đa dạng
+    src: '/images/banner2.jpg',
     alt: 'Hành trình nhân ái cùng trẻ em khó khăn',
   },
   {
@@ -23,28 +27,70 @@ const slides = [
 
 export default function HeroBanner() {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [progress, setProgress] = useState(0);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  const nextSlide = () => {
-    setCurrentIndex((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+  // --- SLIDER LOGIC ---
+  const startProgress = () => {
+    setProgress(0);
+    if (intervalRef.current) clearInterval(intervalRef.current);
+    intervalRef.current = setInterval(() => {
+      setProgress(prev => {
+        if (prev >= 100) {
+          nextSlide();
+          return 0;
+        }
+        return prev + 100 / (SLIDE_DURATION / 100);
+      });
+    }, 100);
   };
 
-  // Auto-play mỗi 3 giây
+  const nextSlide = () => {
+    setCurrentIndex(prev => (prev === slides.length - 1 ? 0 : prev + 1));
+  };
+
   useEffect(() => {
-    const interval = setInterval(() => {
-      nextSlide();
-    }, 3000);
-    return () => clearInterval(interval);
+    startProgress();
+    return () => {
+      if (intervalRef.current) clearInterval(intervalRef.current);
+    };
   }, [currentIndex]);
 
   return (
-    <section className="relative w-full h-[600px] lg:h-[700px]">
-      {/* Slider Images */}
-      <div className="relative w-full h-full overflow-hidden">
+    <section 
+      className="relative w-full min-h-[600px] lg:h-[700px] flex flex-col justify-center font-sans z-20"
+    >
+      
+      {/* --- CSS ANIMATION & PROGRESS BAR --- */}
+      <style jsx>{`
+        @keyframes ripple-out {
+          0% { transform: scale(1); opacity: 0.7; }
+          100% { transform: scale(1.6); opacity: 0; }
+        }
+        .animate-ripple {
+          animation: ripple-out 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+        .delay-1000 { animation-delay: 1s; }
+        .progress-bar {
+          transition: width 0.1s linear;
+        }
+      `}</style>
+
+      {/* --- PROGRESS BAR --- */}
+      <div className="absolute top-0 left-0 w-full h-2 bg-transparent z-30">
+        <div 
+          className="h-full bg-white/50 backdrop-blur-sm progress-bar" 
+          style={{ width: `${progress}%` }}
+        ></div>
+      </div>
+
+      {/* --- SLIDER BACKGROUND WRAPPER --- */}
+      <div className="absolute inset-0 w-full h-full overflow-hidden rounded-b-[0px]">
         {slides.map((slide, index) => (
           <div
             key={slide.id}
-            className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-              index === currentIndex ? 'opacity-100' : 'opacity-0'
+            className={`absolute inset-0 transition-all duration-1000 ease-in-out ${
+              index === currentIndex ? 'opacity-100 scale-100' : 'opacity-0 scale-105'
             }`}
           >
             <Image
@@ -54,61 +100,82 @@ export default function HeroBanner() {
               className="object-cover"
               priority={index === 0}
             />
-            {/* Overlay tối mạnh hơn cho ảnh đen trắng */}
-            <div className="absolute inset-0 bg-black/60" />
+            <div className="absolute inset-0 bg-black/40" />
           </div>
         ))}
       </div>
 
-      {/* Nội dung overlay - giống 100% với ảnh bạn gửi */}
-      <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-6 z-20 mt-20">
-        {/* Badges nhỏ ở trên */}
-        <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 mb-6">
-          <span className="bg-white/80 backdrop-blur-sm text-[#1a522e] px-5 py-2 rounded-full text-sm font-semibold flex items-center gap-2">
-            <span className="w-2 h-2 bg-[#1a522e] rounded-full"></span>
+      {/* --- MAIN CONTENT --- */}
+      <div className="relative z-20 flex flex-col items-center justify-center text-center px-4 md:px-6 w-full h-full pb-24">
+        
+        {/* Badges */}
+        <div className="flex flex-col sm:flex-row gap-3 mb-6 animate-fade-in-up">
+          <span className="bg-[#143d23] backdrop-blur-md border border-white/20 text-white px-4 py-1.5 text-xs font-bold flex items-center justify-center gap-2 shadow-lg uppercase tracking-wider">
+            <span className="w-1.5 h-1.5 bg-white animate-pulse"></span>
             Hành Trình Nhân Ái
           </span>
-          <span className="bg-white/80 backdrop-blur-sm text-gray-700 px-5 py-2 rounded-full text-sm font-semibold">
-            Tổ chức uy tín
+          <span className="bg-white/10 backdrop-blur-md border border-white/20 text-white px-4 py-1.5 text-xs font-bold shadow-lg flex items-center gap-2 uppercase tracking-wider">
+            <ShieldCheck className="w-4 h-4 text-green-300" />
+            Uy tín 100%
           </span>
         </div>
 
-        {/* Tiêu đề chính */}
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-tight">
-          Gieo mầm yêu
+        {/* Tiêu đề */}
+        <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white mb-6 leading-tight tracking-tight drop-shadow-2xl max-w-5xl">
+          Gieo mầm <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4ade80] to-green-200">yêu thương</span>,
           <br />
-          thương
-          <br />
-          gặt hái nụ cười
+          gặt hái nụ <span className="text-transparent bg-clip-text bg-gradient-to-r from-green-200 to-[#4ade80]">cười</span>
         </h1>
 
-        {/* Mô tả */}
-        <p className="text-white/90 text-base md:text-lg max-w-2xl mb-8 leading-relaxed">
-          Chung tay cùng Quỹ Bông Hồng Nhỏ mang lại tương lai tươi sáng hơn cho trẻ em và cộng đồng khó khăn thông qua giáo dục và y tế vùng.
+        <p className="text-green-50 text-base md:text-lg max-w-2xl mb-10 leading-relaxed font-light drop-shadow-md opacity-95">
+          Chung tay cùng Quỹ Bông Hồng Nhỏ mang lại tương lai tươi sáng hơn cho
+          trẻ em khó khăn thông qua giáo dục và y tế.
         </p>
 
-        {/* Nút Quyên góp */}
-        <a
-          href="/donate"
-          className="bg-[#1a522e] hover:bg-[#1a522e]/90 text-white font-bold px-12 py-5 rounded-full text-xl shadow-2xl transition transform hover:scale-105 mb-35"
-        >
-          Quyên góp ngay hôm nay
-        </a>
+        {/* --- NÚT KÊU GỌI HÀNH ĐỘNG --- */}
+        <div className="relative inline-flex items-center justify-center group">
+          <span className="absolute inset-0 rounded-full bg-[#143d23] animate-ripple"></span>
+          <span className="absolute inset-0 rounded-full bg-[#143d23] animate-ripple delay-1000"></span>
+          
+          <a
+             href="/quyen-gop"
+                className="relative z-10 flex items-center justify-center bg-[#143d23] text-white font-extrabold text-xl px-12 py-5 rounded-full shadow-[0_6px_15px_rgba(0,0,0,0.3)] hover:bg-[#0f2e1b] hover:shadow-[0_8px_20px_rgba(0,0,0,0.4)] transition-all duration-300 transform hover:-translate-y-0.5"
+             >
+              Quyên góp ngay
+</a>
+        </div>
+      </div>
 
-        {/* Thống kê dưới cùng */}
-        <div className="absolute -bottom-16 left-1/2 -translate-x-1/2 bg-white/95 backdrop-blur-md rounded-3xl px-10 py-6 shadow-2xl z-30">
-          <div className="flex flex-col md:flex-row gap-10 lg:gap-16 text-center">
-            <div>
-              <p className="text-4xl font-bold text-gray-900">10 Tỷ+</p>
-              <p className="text-gray-600 text-sm mt-1">Đã quyên góp & sử dụng minh bạch</p>
+      {/* --- STATS BLOCK --- */}
+      <div className="absolute left-1/2 -translate-x-1/2 -bottom-16 md:-bottom-20 w-[95%] max-w-5xl z-50 ">
+        <div className="bg-white shadow-[0_20px_50px_rgba(0,0,0,0.2)] py-8 px-8 border border-gray-100 relative rounded-2xl">
+            
+            <div className="absolute top-0 left-0 w-full h-1.5 bg-[#143d23] rounded-2xl"></div>
+            
+            <div className="flex flex-row justify-between items-center divide-x divide-gray-200">
+            {/* Stat 1 */}
+            <div className="flex-1 flex flex-col items-center text-center px-2">
+              <div className="mb-3 p-3 bg-[#143d23]/5 text-[#143d23]">
+                <Heart className="w-8 h-8 fill-current" />
+              </div>
+              <p className="text-3xl md:text-4xl font-black text-[#143d23] mb-1 leading-none">10 Tỷ+</p>
+              <p className="text-gray-500 text-xs font-bold uppercase tracking-widest mt-2">Minh bạch</p>
             </div>
-            <div>
-              <p className="text-4xl font-bold text-gray-900">50+</p>
-              <p className="text-gray-600 text-sm mt-1">Dự án hoàn thành đúng tiến độ</p>
+            {/* Stat 2 */}
+            <div className="flex-1 flex flex-col items-center text-center px-2">
+              <div className="mb-3 p-3 bg-[#143d23]/5 text-[#143d23]">
+                <School className="w-8 h-8" />
+              </div>
+              <p className="text-3xl md:text-4xl font-black text-[#143d23] mb-1 leading-none">50+</p>
+              <p className="text-gray-500 text-xs font-bold uppercase tracking-widest mt-2">Dự án</p>
             </div>
-            <div>
-              <p className="text-4xl font-bold text-gray-900">10.000+</p>
-              <p className="text-gray-600 text-sm mt-1">Cuộc đời được thay đổi tích cực</p>
+            {/* Stat 3 */}
+            <div className="flex-1 flex flex-col items-center text-center px-2">
+               <div className="mb-3 p-3 bg-[#143d23]/5 text-[#143d23]">
+                <Users className="w-8 h-8" />
+              </div>
+              <p className="text-3xl md:text-4xl font-black text-[#143d23] mb-1 leading-none">10k+</p>
+              <p className="text-gray-500 text-xs font-bold uppercase tracking-widest mt-2">Thay đổi</p>
             </div>
           </div>
         </div>

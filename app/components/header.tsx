@@ -2,9 +2,36 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { ChevronDown, ChevronRight } from 'lucide-react';
+import { ChevronDown, ChevronRight, Menu, X } from 'lucide-react';
+import { useState } from 'react';
+
+const NavLink = ({ href, children, onClick }: { href: string; children: React.ReactNode; onClick: () => void }) => (
+  <Link href={href} onClick={onClick} className="block px-4 py-2 text-gray-700 hover:bg-green-50 hover:text-[#1a522e]">
+    {children}
+  </Link>
+);
+
+const Accordion = ({ title, children }: { title: string; children: React.ReactNode }) => {
+  const [isOpen, setIsOpen] = useState(false);
+  return (
+    <div className="border-b">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full flex justify-between items-center px-4 py-3 text-left font-bold text-gray-700"
+      >
+        {title}
+        <ChevronDown className={`w-5 h-5 transition-transform ${isOpen ? 'transform rotate-180' : ''}`} />
+      </button>
+      {isOpen && <div className="pl-4 pb-2">{children}</div>}
+    </div>
+  );
+};
 
 export default function Header() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const closeMenu = () => setIsMenuOpen(false);
+
   return (
     <header className="sticky top-0 z-50 bg-white shadow-sm py-4">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -18,10 +45,10 @@ export default function Header() {
                 className="object-contain"
               />
             </Link>
-            
           </div>
 
-          <nav className="hidden md:flex items-center space-x-10">
+          {/* Desktop Navigation */}
+          <nav className="hidden lg:flex items-center space-x-10">
             <div className="relative group">
               <button className="text-gray-700 font-bold hover:text-[#1a522e] transition flex items-center gap-1">
                 Về chúng tôi
@@ -118,13 +145,71 @@ export default function Header() {
             </div>
           </nav>
 
-          <Link
-            href="/donate"
-           className="bg-[#1a522e] text-white px-8 py-3 rounded-full font-bold hover:bg-[#133f24] hover:shadow-lg transition shadow-md"
->
-                Quyên góp ngay
-          </Link>
+          <div className="flex items-center">
+            <Link
+              href="/donate"
+              className="hidden sm:block bg-[#1a522e] text-white px-8 py-3 rounded-full font-bold hover:bg-[#133f24] hover:shadow-lg transition shadow-md"
+            >
+              Quyên góp ngay
+            </Link>
+            {/* Mobile Menu Button */}
+            <div className="lg:hidden ml-4">
+              <button onClick={() => setIsMenuOpen(!isMenuOpen)}>
+                {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+              </button>
+            </div>
+          </div>
         </div>
+      </div>
+
+      {/* Mobile Menu */}
+      {isMenuOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-40" onClick={closeMenu}></div>
+      )}
+      <div
+        className={`fixed top-0 right-0 h-full w-4/5 max-w-sm bg-white shadow-lg z-50 transform transition-transform duration-300 ease-in-out ${
+          isMenuOpen ? 'translate-x-0' : 'translate-x-full'
+        }`}
+      >
+        <div className="p-4">
+          <button onClick={closeMenu} className="float-right">
+            <X size={28} />
+          </button>
+        </div>
+        <nav className="mt-8">
+          <Accordion title="Về chúng tôi">
+            <NavLink href="/about" onClick={closeMenu}>Tầm nhìn - Sứ Mệnh - Giá trị cốt lõi</NavLink>
+            <NavLink href="/about/team" onClick={closeMenu}>Đội ngũ sáng lập</NavLink>
+          </Accordion>
+          <Accordion title="Dự án">
+            <NavLink href="/du-an/ho-tro-phat-trien-giao-duc" onClick={closeMenu}>Hỗ trợ phát triển giáo dục</NavLink>
+            <NavLink href="/du-an/ho-tro-y-te-va-suc-khoe" onClick={closeMenu}>Hỗ trợ y tế và sức khoẻ</NavLink>
+            <NavLink href="/du-an/bac-ai-xa-hoi" onClick={closeMenu}>Bác ái xã hội</NavLink>
+            <NavLink href="/project" onClick={closeMenu}>Gây quỹ</NavLink>
+          </Accordion>
+          <Accordion title="Tin tức & Tài liệu">
+            <NavLink href="/news" onClick={closeMenu}>Tin tức</NavLink>
+            <NavLink href="/impact" onClick={closeMenu}>Câu chuyện tác động</NavLink>
+            <NavLink href="/reports" onClick={closeMenu}>Báo cáo</NavLink>
+          </Accordion>
+          <Accordion title="Hướng dẫn">
+            <NavLink href="/guide" onClick={closeMenu}>Hướng dẫn tra cứu</NavLink>
+            <NavLink href="/donation-guide" onClick={closeMenu}>Hướng dẫn quyên góp</NavLink>
+          </Accordion>
+          <Accordion title="Liên hệ">
+            <NavLink href="/quyTrinh" onClick={closeMenu}>Liên hệ chung</NavLink>
+            <NavLink href="/voluteer" onClick={closeMenu}>Đăng kí tình nguyện viên</NavLink>
+          </Accordion>
+          <div className="p-4 mt-4">
+            <Link
+              href="/donate"
+              onClick={closeMenu}
+              className="block text-center bg-[#1a522e] text-white px-8 py-3 rounded-full font-bold hover:bg-[#133f24] hover:shadow-lg transition shadow-md"
+            >
+              Quyên góp ngay
+            </Link>
+          </div>
+        </nav>
       </div>
     </header>
   );

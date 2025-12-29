@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 
+// Danh sách đối tác
 const partners = [
   
   { name: 'VietHuong', logo: '/images/vietthuong.png' },
@@ -17,74 +18,63 @@ const partners = [
 ];
 
 export default function PartnersSection() {
+  const renderPartnerCard = (partner: any, index: number, prefix: string) => (
+    <div
+      key={`${prefix}-${index}`}
+      // Card
+      className="flex-shrink-0 w-[180px] sm:w-[220px] h-[110px] sm:h-[130px] mx-4 bg-white rounded-2xl shadow-sm border border-gray-100 flex items-center justify-center p-6 transition-all duration-300 hover:shadow-md hover:border-green-500 hover:-translate-y-1 group/card cursor-pointer relative overflow-hidden"
+    >
+       <div className="absolute inset-0 bg-green-50 opacity-0 group-hover/card:opacity-30 transition-opacity duration-300"></div>
+
+      <div className="relative w-full h-full transition-all duration-300 filter grayscale opacity-70 group-hover/card:grayscale-0 group-hover/card:opacity-100 group-hover/card:scale-105 z-10">
+        <Image
+          src={partner.logo}
+          alt={partner.name}
+          fill
+          sizes="(max-width: 768px) 180px, 220px"
+          className="object-contain"
+        />
+      </div>
+    </div>
+  );
+
   return (
-    <section className="py-16 bg-gray-50 overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl md:text-4xl font-bold text-center text-[#1a522e] mb-12">
-          Các đối tác & Nhà hảo tâm
+    <section className="py-20 bg-green-50/60 overflow-hidden font-sans">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10">
+        <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 tracking-tight">
+          Đơn vị <span className="text-green-700">đồng hành</span>
         </h2>
+        <p className="text-center text-gray-500 mt-3 max-w-2xl mx-auto">
+          Chúng tôi tự hào được hợp tác với các tổ chức hàng đầu, cùng nhau tạo nên những giá trị bền vững.
+        </p>
+      </div>
 
-        {/* Marquee tự động chạy ngang, vô tận */}
-        <div className="relative">
-          <div className="animate-marquee whitespace-nowrap flex items-center gap-16 pr-16 w-max">
-            {partners.map((partner, index) => (
-              <div
-                key={index}
-                className="flex-shrink-0"
-              >
-                <Image
-                  src={partner.logo}
-                  alt={`Logo ${partner.name}`}
-                  width={180}
-                  height={100}
-                  className="object-contain"
-                />
-              </div>
-            ))}
+      {/* Slider Container */}
+      <div className="relative w-full">
+        
+        {/* Gradient Fade 2 bên */}
+        <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-32 z-10 bg-gradient-to-r from-green-50 via-green-50/80 to-transparent"></div>
+        <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-32 z-10 bg-gradient-to-l from-green-50 via-green-50/80 to-transparent"></div>
+
+        {/* Track trượt ngang */}
+        {/* SỬA LỖI TẠI ĐÂY: Thêm 'py-4' vào thẻ div này để tạo khoảng trống trên dưới cho card nảy lên */}
+        <div className="flex w-full overflow-hidden py-4">
+          <div className="flex animate-infinite-scroll group hover:[animation-play-state:paused]">
+            {partners.map((partner, index) => renderPartnerCard(partner, index, 'original'))}
           </div>
-
-          {/* Duplicate cho hiệu ứng vô tận (nếu cần trên màn lớn) */}
-          <div className="absolute top-0 animate-marquee2 whitespace-nowrap flex items-center gap-16 pr-16 w-max">
-            {partners.map((partner, index) => (
-              <div
-                key={`dup-${index}`}
-                className="flex-shrink-0"
-              >
-                <Image
-                  src={partner.logo}
-                  alt={`Logo ${partner.name}`}
-                  width={180}
-                  height={100}
-                  className="object-contain"
-                />
-              </div>
-            ))}
+          <div className="flex animate-infinite-scroll group hover:[animation-play-state:paused]" aria-hidden="true">
+             {partners.map((partner, index) => renderPartnerCard(partner, index, 'duplicate'))}
           </div>
         </div>
       </div>
 
       <style jsx>{`
-        @keyframes marquee {
-          0% {
-            transform: translateX(0%);
-          }
-          100% {
-            transform: translateX(-100%);
-          }
+        @keyframes infinite-scroll {
+          from { transform: translateX(0); }
+          to { transform: translateX(-100%); }
         }
-        @keyframes marquee2 {
-          0% {
-            transform: translateX(100%);
-          }
-          100% {
-            transform: translateX(0%);
-          }
-        }
-        .animate-marquee {
-          animation: marquee 30s linear infinite;
-        }
-        .animate-marquee2 {
-          animation: marquee2 30s linear infinite;
+        .animate-infinite-scroll {
+          animation: infinite-scroll 40s linear infinite;
         }
       `}</style>
     </section>
