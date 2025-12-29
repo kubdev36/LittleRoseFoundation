@@ -158,7 +158,7 @@ export default function HeroBanner() {
               <div className="mb-3 p-3 bg-[#143d23]/5 text-[#143d23]">
                 <Heart className="w-8 h-8 fill-current" />
               </div>
-              <p className="text-3xl md:text-4xl font-black text-[#143d23] mb-1 leading-none">10 Tỷ+</p>
+              <p className="text-3xl md:text-4xl font-black text-[#143d23] mb-1 leading-none">10T+</p>
               <p className="text-gray-500 text-xs font-bold uppercase tracking-widest mt-2">Minh bạch</p>
             </div>
             {/* Stat 2 */}
