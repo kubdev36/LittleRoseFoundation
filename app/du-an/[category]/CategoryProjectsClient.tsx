@@ -75,7 +75,11 @@ const getCategoryColor = (category: string) => {
   }
 };
 
-export default function CategoryProjectsClient() {
+export interface CategoryProjectsClientProps {
+  category: string;
+}
+
+export default function CategoryProjectsClient({ category }: CategoryProjectsClientProps) {
   const params = useParams();
   const categorySlug = params.category as string;
 
@@ -84,12 +88,12 @@ export default function CategoryProjectsClient() {
   const [selectedStatus, setSelectedStatus] = useState('all');
   const [selectedProvince, setSelectedProvince] = useState('all');
 
-  const categoryName = categoryMap[categorySlug];
+  const categoryName = categoryMap[categorySlug] || category;
 
   const categoryProjects = useMemo(() => {
     if (!categorySlug || !categoryName) return [];
     return projects.filter(p => normalizeCategoryToSlug(p.category) === categorySlug);
-  }, [categorySlug]);
+  }, [categorySlug, categoryName]);
 
   const provinces = useMemo(() => {
     const allProvinces = categoryProjects.flatMap(p => 
@@ -222,7 +226,7 @@ export default function CategoryProjectsClient() {
                 className="bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-300 h-full flex flex-col"
               >
                 {/* Ảnh + Category badge */}
-                <div className="relative h-48 overflow-hidden group flex-shrink-0">
+                <div className="relative h-40 sm:h-48 overflow-hidden group flex-shrink-0">
                   <Link href={`/project/${project.id}`}>
                     <img
                       src={project.imageSrc}
@@ -234,7 +238,7 @@ export default function CategoryProjectsClient() {
                 </div>
 
                 {/* Nội dung */}
-                <div className="p-6 flex flex-col flex-1">
+                <div className="p-4 sm:p-6 flex flex-col flex-1">
                   <div className="mb-3">
                     <span
                       className={`text-white text-xs font-bold px-3 py-1 rounded-full ${getCategoryColor(
@@ -244,7 +248,7 @@ export default function CategoryProjectsClient() {
                       {project.category}
                     </span>
                   </div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-2 line-clamp-2">
+                  <h3 className="text-base sm:text-lg font-bold text-gray-900 mb-2 line-clamp-2">
                     <Link href={`/project/${project.id}`} className="hover:text-[#1a522e] transition-colors">
                       {project.title}
                     </Link>

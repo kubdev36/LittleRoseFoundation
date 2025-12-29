@@ -1,5 +1,9 @@
-import Image from "next/image";
-import Link from "next/link";
+'use client';
+
+import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useParams } from 'next/navigation'; // Thay thế async params
 import impactData from "../../data/impact.json";
 
 type ImpactPost = {
@@ -27,27 +31,25 @@ function getAllImpactPosts(): ImpactPost[] {
   return Array.from(map.values());
 }
 
-export default async function ImpactDetailPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
-  const { slug } = await params;
+export default function ImpactDetailPage() {
+  const { slug } = useParams() as { slug: string }; // Lấy slug từ URL
 
   const all = getAllImpactPosts();
   const post = all.find((p) => safe(p.slug) === safe(slug));
 
   if (!post) {
     return (
-      <main className="bg-white">
-        <div className="mx-auto max-w-3xl px-4 py-12">
-          <h1 className="text-2xl font-bold text-gray-900">Không tìm thấy câu chuyện</h1>
-          <p className="mt-2 text-gray-600">
+      <main className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
+        <div className="text-center py-16">
+          <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            Không tìm thấy câu chuyện
+          </h1>
+          <p className="text-lg text-gray-600 mb-8">
             Bài viết này không tồn tại hoặc đã bị xoá.
           </p>
           <Link
             href="/tac-dong"
-            className="mt-6 inline-block text-[#1a522e] hover:underline font-medium"
+            className="inline-flex items-center gap-2 text-[#1a522e] hover:underline font-semibold text-lg"
             scroll={false}
           >
             ← Quay lại trang Tác động
@@ -60,17 +62,18 @@ export default async function ImpactDetailPage({
   const coverSrc = post.cover ?? post.image;
 
   return (
-    <main className="bg-white text-gray-800 text-base leading-7">
-      {/* Ảnh bìa chính - full width */}
+    <main className="bg-gray-50 text-gray-800">
+      {/* Ảnh bìa chính - Responsive full width */}
       <div className="w-full">
-        <div className="mx-auto max-w-5xl px-4 pt-8 sm:pt-12">
-          <div className="overflow-hidden rounded-2xl border border-gray-200 shadow-lg">
+        <div className="mx-auto max-w-7xl px-4 pt-8 sm:pt-12 lg:pt-16">
+          <div className="overflow-hidden rounded-2xl lg:rounded-3xl shadow-2xl border border-gray-200">
             <Image
               src={coverSrc}
               alt={post.title}
               width={1400}
               height={780}
-              className="h-auto w-full object-cover"
+              sizes="100vw"
+              className="w-full h-auto object-cover aspect-[16/9] sm:aspect-[21/9] lg:aspect-[24/9]"
               priority
             />
           </div>
@@ -78,54 +81,72 @@ export default async function ImpactDetailPage({
       </div>
 
       {/* Nội dung bài viết */}
-      <div className="mx-auto max-w-3xl px-4 pb-16 pt-8 sm:pt-12">
+      <article className="mx-auto max-w-4xl px-4 pb-16 pt-8 sm:pt-12 lg:pt-16">
         {/* Meta information */}
         <div className="flex flex-wrap items-center gap-3 text-sm text-gray-600 mb-6">
-          <span>{post.date}</span>
+          <time dateTime={post.date}>{post.date}</time>
           <span className="h-1 w-1 rounded-full bg-gray-400" />
-          <span>{post.author ?? "LRF"}</span>
-          <span className="h-1 w-1 rounded-full bg-gray-400" />
-          <span className="font-semibold text-[#1a522e]">
-            {post.category ?? post.tag ?? "Câu chuyện tác động"}
-          </span>
+          <span>{post.author ?? "LRF Team"}</span>
+          {post.category && (
+            <>
+              <span className="h-1 w-1 rounded-full bg-gray-400" />
+              <span className="font-semibold text-[#1a522e]">
+                {post.category}
+              </span>
+            </>
+          )}
         </div>
 
         {/* Tiêu đề */}
-        <h1 className="mt-4 text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 leading-tight">
+        <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-gray-900 leading-tight mt-4 mb-8">
           {post.title}
         </h1>
 
-        {/* Excerpt */}
+        {/* Excerpt (Lead paragraph) */}
         {post.excerpt && (
-          <p className="mt-6 text-lg text-gray-700 leading-relaxed">
+          <p className="text-lg sm:text-xl text-gray-700 leading-relaxed mb-12 italic border-l-4 border-[#1a522e] pl-6">
             {post.excerpt}
           </p>
         )}
 
         {/* Nội dung chính */}
-        <article className="prose prose-lg max-w-none mt-12 text-gray-700">
+        <div className="prose prose-lg max-w-none text-gray-700 lg:prose-xl">
           {post.content?.length ? (
             post.content.map((paragraph, idx) => (
-              <p key={idx} className="mb-6 leading-8">{paragraph}</p>
+              <p key={idx} className="mb-8 leading-8">
+                {paragraph}
+              </p>
             ))
-          ) : (
-            <p className="mb-6 leading-8">{post.excerpt}</p>
-          )}
-        </article>
+          ) : post.excerpt ? (
+            <p className="mb-8 leading-8">{post.excerpt}</p>
+          ) : null}
+        </div>
 
         {/* Ảnh phụ nếu có cover riêng */}
         {post.cover && post.cover !== post.image && (
-          <div className="mt-12 overflow-hidden rounded-2xl border border-gray-200 shadow-lg">
+          <div className="mt-16 overflow-hidden rounded-2xl lg:rounded-3xl shadow-2xl border border-gray-200">
             <Image
               src={post.cover}
-              alt={post.title}
+              alt={`Hình ảnh bổ sung: ${post.title}`}
               width={1200}
               height={700}
-              className="h-auto w-full object-cover"
+              sizes="100vw"
+              className="w-full h-auto object-cover aspect-[16/9]"
             />
           </div>
         )}
-      </div>
+
+        {/* Back link */}
+        <div className="mt-16 pt-12 border-t border-gray-200">
+          <Link
+            href="/tac-dong"
+            className="inline-flex items-center gap-3 text-[#1a522e] hover:underline font-semibold text-lg"
+            scroll={false}
+          >
+            ← Quay lại danh sách câu chuyện tác động
+          </Link>
+        </div>
+      </article>
     </main>
   );
 }

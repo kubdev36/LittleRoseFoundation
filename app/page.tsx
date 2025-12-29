@@ -4,7 +4,7 @@ import MissionSection from "./components/MissionSection";
 import PartnersSection from "./components/PartnersSection";
 import TestimonialsSection from "./components/TestimonialsSection";
 import VolunteerCTASection from "./components/JoinCommunitySection";
-import CharityTransparencySection from "./components/transparent.tsx";
+import CharityTransparencySection from "./components/transparent";
 
 export default function Home() {
   return (

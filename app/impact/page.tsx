@@ -1,5 +1,3 @@
-'use client';
-
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -124,7 +122,8 @@ function StoryCard({ post }: { post: ImpactPost }) {
   );
 }
 
-export default function ImpactPage({ searchParams }: { searchParams?: { all?: string } }) {
+export default async function ImpactPage(props: { searchParams: Promise<{ all?: string }> }) {
+  const searchParams = await props.searchParams;
   const showAll = searchParams?.all === "1";
 
   const postsSorted = [...(data.posts ?? [])].sort((a, b) => {

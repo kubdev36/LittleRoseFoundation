@@ -75,8 +75,8 @@ export default function DonationGuidePage() {
   return (
     <>
       <div className="min-h-screen bg-gradient-to-b from-[#1a522e]/5 via-white to-gray-50">
-        {/* Hero Banner - Đã thêm chuẩn giống tất cả các trang khác */}
-        <div className="relative h-96 w-full">
+        {/* Hero Banner - Responsive height */}
+        <div className="relative h-64 sm:h-80 md:h-96 w-full overflow-hidden">
           <Image
             src="/images/banner4.jpg"
             alt="Hướng dẫn quyên góp - Quỹ Từ Thiện Bông Hồng Nhỏ"
@@ -84,19 +84,21 @@ export default function DonationGuidePage() {
             className="object-cover brightness-50"
             priority
           />
-          <div className="absolute inset-0 flex flex-col items-center justify-center text-white px-4">
-            <h1 className="text-5xl font-bold mb-4">Hướng dẫn Quyên góp</h1>
-            <p className="text-lg">
-              <Link href="/" className="hover:text-[#1a522e] transition-colors">
+          <div className="absolute inset-0 flex flex-col items-center justify-center text-white px-4 text-center">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 drop-shadow-2xl">
+              Hướng dẫn Quyên góp
+            </h1>
+            <p className="text-base sm:text-lg drop-shadow-md">
+              <Link href="/" className="hover:text-emerald-300 transition-colors">
                 Trang chủ
               </Link>{' '}
-              / <span className="text-[#1a522e]">Quyên góp</span>
+              / <span className="text-emerald-300">Quyên góp</span>
             </p>
           </div>
         </div>
 
         {/* Main Content */}
-        <main className="max-w-7xl mx-auto px-4 py-12">
+        <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16">
           {/* Badge */}
           <div className="inline-flex items-center gap-2 bg-[#1a522e]/10 text-[#1a522e] text-sm font-medium px-4 py-2 rounded-full mb-6">
             <HelpCircle className="w-4 h-4" />
@@ -104,58 +106,59 @@ export default function DonationGuidePage() {
           </div>
 
           {/* Title */}
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-            Hướng dẫn Quyên góp
-            <br className="hidden md:block" />
-            <span className="text-[#1a522e]">Nhanh chóng - An toàn</span>
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+          <span className="block mb-2 sm:mb-3">Hướng dẫn Quyên góp</span>
+          <span className="block text-[#1a522e]">Nhanh chóng - An toàn</span>
           </h1>
 
           {/* Description */}
-          <p className="text-xl text-gray-700 max-w-3xl mb-12 leading-relaxed">
+          <p className="text-lg sm:text-xl text-gray-700 max-w-3xl mb-10 md:mb-12 leading-relaxed">
             Quyên góp chỉ mất 30 giây với hệ thống thanh toán hiện đại nhất. 
             Mọi giao dịch đều minh bạch 100% và có biên nhận điện tử ngay lập tức.
           </p>
 
-          {/* Quick Search */}
-          <div className="flex flex-col sm:flex-row gap-4 max-w-2xl mb-16">
+          {/* Quick Search - Full width on mobile */}
+          <div className="flex flex-col sm:flex-row gap-4 max-w-3xl mx-auto mb-12 md:mb-16">
             <div className="relative flex-1">
               <input
                 type="text"
                 value={searchValue}
                 onChange={(e) => setSearchValue(e.target.value)}
-                placeholder="Tìm dự án: tim bẩm sinh, nước sạch, học bổng..."
-                className="w-full pl-12 pr-6 py-4 text-lg border border-gray-300 rounded-full focus:outline-none focus:ring-4 focus:ring-[#1a522e]/20 focus:border-[#1a522e] transition-all"
+                placeholder="Tìm dự án: tim bẩm sinh, nước sạch..."
+                className="w-full pl-12 pr-6 py-4 text-base sm:text-lg border border-gray-300 rounded-full focus:outline-none focus:ring-4 focus:ring-[#1a522e]/20 focus:border-[#1a522e] transition-all"
               />
               <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-6 h-6 text-gray-400" />
             </div>
-            <button className="px-8 py-4 bg-[#1a522e] text-white font-semibold text-lg rounded-full hover:bg-[#133f24] transition-all shadow-lg hover:shadow-xl flex items-center gap-2 whitespace-nowrap">
+            <button className="px-8 py-4 bg-[#1a522e] text-white font-medium text-base sm:text-lg rounded-full hover:bg-[#134429] transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2 whitespace-nowrap">
               Tìm dự án ngay
               <ChevronRight className="w-5 h-5" />
             </button>
           </div>
 
-          {/* 3 Steps Guide */}
-          <div className="grid lg:grid-cols-2 gap-12 mb-20">
-            <div className="space-y-8">
+          {/* 3 Steps Guide - Stack on mobile, 2 columns on lg+ */}
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 mb-12 md:mb-20 items-start">
+            {/* Steps */}
+            <div className="space-y-6 md:space-y-8">
               {steps.map((step) => (
                 <div
                   key={step.number}
-                  className={`flex gap-6 p-6 rounded-2xl transition-all duration-300 cursor-pointer ${
+                  className={`flex flex-col sm:flex-row gap-4 sm:gap-6 p-5 sm:p-6 rounded-2xl transition-all duration-300 cursor-pointer ${
                     activeStep === step.number
                       ? 'bg-white shadow-2xl ring-4 ring-[#1a522e]/10 border-2 border-[#1a522e]/30'
-                      : 'bg-white shadow-lg hover:shadow-xl hover:-translate-y-1'
+                      : 'bg-white shadow-lg hover:shadow-xl'
                   }`}
                   onMouseEnter={() => setActiveStep(step.number)}
+                  onClick={() => setActiveStep(step.number)} // Touch support
                 >
-                  <div className="flex-shrink-0 w-16 h-16 bg-[#1a522e] text-white rounded-2xl flex items-center justify-center text-2xl font-bold shadow-lg">
+                  <div className="flex-shrink-0 w-14 h-14 sm:w-16 sm:h-16 bg-[#1a522e] text-white rounded-2xl flex items-center justify-center text-xl sm:text-2xl font-bold shadow-lg">
                     {step.number}
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-3 mb-2">
-                      <step.icon className="w-6 h-6 text-[#1a522e]" />
-                      <h3 className="text-2xl font-bold text-gray-900">{step.title}</h3>
+                  <div className="flex-1">
+                    <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 mb-3">
+                      <step.icon className="w-5 h-5 sm:w-6 sm:h-6 text-[#1a522e] flex-shrink-0" />
+                      <h3 className="text-xl sm:text-2xl font-bold text-gray-900">{step.title}</h3>
                     </div>
-                    <p className="text-gray-700 mb-4 leading-relaxed">{step.description}</p>
+                    <p className="text-gray-700 mb-4 text-sm sm:text-base leading-relaxed">{step.description}</p>
                     <ul className="space-y-2 text-sm text-gray-600">
                       {step.details.map((detail, idx) => (
                         <li key={idx} className="flex items-start gap-2">
@@ -169,21 +172,25 @@ export default function DonationGuidePage() {
               ))}
             </div>
 
-            {/* Payment Methods Illustration */}
+            {/* Payment Methods & QR */}
             <div className="space-y-6">
-              <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
-                <h3 className="text-2xl font-bold mb-6 text-center">Phương thức thanh toán</h3>
-                <div className="grid grid-cols-2 gap-4">
-                  <div className="flex items-center gap-3 p-4 bg-[#1a522e]/5 rounded-xl border-2 border-dashed border-[#1a522e]/30">
+              {/* Payment Methods */}
+              <div className="bg-white rounded-2xl shadow-xl p-6 sm:p-8 border border-gray-100">
+                <h3 className="text-xl sm:text-2xl font-bold mb-6 text-center">Phương thức thanh toán</h3>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {/* Bank Transfer */}
+                  <div className="flex items-center gap-3 p-4 bg-[#1a522e]/5 rounded-xl">
                     <div className="w-12 h-12 bg-[#1a522e] rounded-xl flex items-center justify-center">
                       <Banknote className="w-6 h-6 text-white" />
                     </div>
                     <div>
                       <h4 className="font-semibold text-gray-900">Chuyển khoản NH</h4>
-                      <p className="text-sm text-gray-600">Vietcombank, BIDV, Vietinbank</p>
+                      <p className="text-sm text-gray-600">Vietcombank, BIDV, Vietinbank...</p>
                     </div>
                   </div>
-                  <div className="flex items-center gap-3 p-4 bg-[#1a522e]/5 rounded-xl border-2 border-dashed border-[#1a522e]/30">
+
+                  {/* E-Wallets */}
+                  <div className="flex items-center gap-3 p-4 bg-[#1a522e]/5 rounded-xl">
                     <div className="w-12 h-12 bg-gradient-to-r from-pink-500 to-purple-600 rounded-xl flex items-center justify-center">
                       <Smartphone className="w-6 h-6 text-white" />
                     </div>
@@ -193,6 +200,7 @@ export default function DonationGuidePage() {
                     </div>
                   </div>
                 </div>
+
                 <div className="mt-6 p-4 bg-[#1a522e]/10 rounded-xl border border-[#1a522e]/30">
                   <div className="flex items-center gap-3">
                     <ShieldCheck className="w-6 h-6 text-[#1a522e]" />
@@ -204,19 +212,19 @@ export default function DonationGuidePage() {
                 </div>
               </div>
 
-              {/* QR Code Mockup */}
+              {/* QR Code - Real example */}
               <div className="bg-white rounded-2xl shadow-xl p-6 text-center">
-                <div className="relative w-32 h-32 mx-auto mb-4">
+                <div className="relative w-48 h-48 sm:w-56 sm:h-56 mx-auto mb-4">
                   <Image
-                    src="https://fundraising-frontend-flame.vercel.app/assets/donatelrf-Cd2zm9J3.png"
-                    alt="QR Code quyên góp"
+                    src="https://vstatic.vietnam.vn/vietnam/resource/IMAGE/2025/1/18/7065cfb5313f4c059bc5dca48a9d9283"
+                    alt="Ví dụ mã QR VietQR cho quyên góp qua MoMo"
                     fill
-                    className="object-contain"
+                    className="object-contain rounded-lg"
                     unoptimized
                   />
                 </div>
                 <p className="text-gray-600 mb-2">Quét mã QR để quyên góp nhanh</p>
-                <button className="text-[#1a522e] hover:text-[#133f24] font-medium flex items-center justify-center gap-1 text-sm mx-auto">
+                <button className="text-[#1a522e] hover:text-[#134429] font-medium flex items-center justify-center gap-1 text-sm mx-auto">
                   <Download className="w-4 h-4" />
                   Tải hướng dẫn QR
                 </button>
@@ -224,17 +232,17 @@ export default function DonationGuidePage() {
             </div>
           </div>
 
-          {/* Info Boxes */}
-          <div className="grid md:grid-cols-2 gap-8 mb-16">
+          {/* Info Boxes - Stack on mobile */}
+          <div className="grid md:grid-cols-2 gap-6 lg:gap-8 mb-12 md:mb-16">
             {/* Cam kết minh bạch */}
-            <div className="bg-[#1a522e]/5 rounded-3xl p-8 shadow-xl border border-[#1a522e]/20">
+            <div className="bg-[#1a522e]/5 rounded-3xl p-6 sm:p-8 shadow-xl border border-[#1a522e]/20">
               <div className="flex items-start gap-4 mb-6">
                 <div className="w-12 h-12 bg-white rounded-2xl p-2 shadow-md">
                   <ShieldCheck className="w-8 h-8 text-[#1a522e]" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2">Cam kết minh bạch</h3>
-                  <p className="text-gray-700">100% khoản quyên góp đến đúng người nhận</p>
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">Cam kết minh bạch</h3>
+                  <p className="text-gray-700 text-sm sm:text-base">100% khoản quyên góp đến đúng người nhận</p>
                 </div>
               </div>
               <ul className="space-y-3 text-gray-700 text-sm">
@@ -254,8 +262,8 @@ export default function DonationGuidePage() {
             </div>
 
             {/* Hỗ trợ */}
-            <div className="bg-white rounded-3xl p-8 shadow-xl border border-gray-200">
-              <h3 className="text-2xl font-bold mb-6">Cần hỗ trợ?</h3>
+            <div className="bg-white rounded-3xl p-6 sm:p-8 shadow-xl border border-gray-200">
+              <h3 className="text-xl sm:text-2xl font-bold mb-6">Cần hỗ trợ?</h3>
               <div className="space-y-4">
                 <a href="tel:19001234" className="flex items-center gap-3 p-4 bg-[#1a522e]/5 rounded-xl hover:bg-[#1a522e]/10 transition-all group">
                   <div className="w-12 h-12 bg-[#1a522e] rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform">
@@ -263,7 +271,7 @@ export default function DonationGuidePage() {
                   </div>
                   <div>
                     <p className="font-semibold text-gray-900">Hotline miễn phí</p>
-                    <p className="text-2xl font-bold text-[#1a522e]">1900 1234</p>
+                    <p className="text-xl sm:text-2xl font-bold text-[#1a522e]">1900 1234</p>
                   </div>
                 </a>
                 <a href="mailto:hotro@bonghongnho.org.vn" className="flex items-center gap-3 p-4 bg-[#1a522e]/5 rounded-xl hover:bg-[#1a522e]/10 transition-all">
@@ -276,26 +284,24 @@ export default function DonationGuidePage() {
           </div>
 
           {/* CTA Section */}
-          <div className="text-center py-16 bg-white rounded-3xl shadow-2xl border border-gray-100">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
+          <div className="text-center py-12 md:py-16 bg-white rounded-3xl shadow-2xl border border-gray-100">
+            <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-6">
               Bắt đầu quyên góp ngay hôm nay
             </h2>
-            <p className="text-xl text-gray-700 mb-8 max-w-2xl mx-auto">
+            <p className="text-base sm:text-xl text-gray-700 mb-8 max-w-2xl mx-auto px-4">
               Mỗi 10.000đ của bạn có thể thay đổi cuộc đời một em bé. Hãy cùng chúng tôi lan tỏa yêu thương!
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-2xl mx-auto">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center px-4">
               <Link 
                 href="/du-an" 
-                className="px-10 py-5 bg-[#1a522e] text-white text-xl font-bold rounded-full hover:bg-[#133f24] transition-all shadow-xl hover:shadow-2xl transform hover:-translate-y-1 flex items-center gap-2"
-                scroll={false}
+                className="w-full sm:w-auto px-10 py-5 bg-[#1a522e] text-white text-lg sm:text-xl font-bold rounded-full hover:bg-[#134429] transition-all shadow-xl hover:shadow-2xl transform hover:-translate-y-1 flex items-center justify-center gap-2"
               >
                 Xem tất cả dự án
                 <ArrowRight className="w-6 h-6" />
               </Link>
               <Link 
                 href="/lien-he" 
-                className="px-10 py-5 border-2 border-[#1a522e] text-[#1a522e] text-xl font-bold rounded-full hover:bg-[#1a522e] hover:text-white transition-all shadow-lg hover:shadow-xl flex items-center gap-2"
-                scroll={false}
+                className="w-full sm:w-auto px-10 py-5 border-2 border-[#1a522e] text-[#1a522e] text-lg sm:text-xl font-bold rounded-full hover:bg-[#1a522e] hover:text-white transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
               >
                 Liên hệ tư vấn
                 <MessageCircle className="w-6 h-6" />

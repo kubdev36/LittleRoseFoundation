@@ -22,11 +22,11 @@ export default function PartnersSection() {
     <div
       key={`${prefix}-${index}`}
       // Card
-      className="flex-shrink-0 w-[180px] sm:w-[220px] h-[110px] sm:h-[130px] mx-4 bg-white rounded-2xl shadow-sm border border-gray-100 flex items-center justify-center p-6 transition-all duration-300 hover:shadow-md hover:border-green-500 hover:-translate-y-1 group/card cursor-pointer relative overflow-hidden"
+      className="flex-shrink-0 w-[150px] sm:w-[220px] h-[100px] sm:h-[130px] mx-2 sm:mx-4 bg-white rounded-2xl shadow-sm border border-gray-100 flex items-center justify-center p-4 sm:p-6 transition-all duration-300 hover:shadow-md hover:border-green-500 hover:-translate-y-1 group/card cursor-pointer relative overflow-hidden"
     >
        <div className="absolute inset-0 bg-green-50 opacity-0 group-hover/card:opacity-30 transition-opacity duration-300"></div>
 
-      <div className="relative w-full h-full transition-all duration-300 filter grayscale opacity-70 group-hover/card:grayscale-0 group-hover/card:opacity-100 group-hover/card:scale-105 z-10">
+      <div className="relative w-full h-full transition-all duration-300 group-hover/card:scale-105 z-10">
         <Image
           src={partner.logo}
           alt={partner.name}
@@ -41,7 +41,7 @@ export default function PartnersSection() {
   return (
     <section className="py-20 bg-green-50/60 overflow-hidden font-sans">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-10">
-        <h2 className="text-3xl md:text-4xl font-bold text-center text-gray-900 tracking-tight">
+        <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-6 tracking-tight text-center">
           Đơn vị <span className="text-green-700">đồng hành</span>
         </h2>
         <p className="text-center text-gray-500 mt-3 max-w-2xl mx-auto">

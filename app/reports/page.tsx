@@ -19,7 +19,6 @@ import {
   MoveHorizontal 
 } from "lucide-react";
 
-// --- TYPES (Giữ nguyên) ---
 type TxType = "IN" | "OUT";
 
 type Transaction = {
@@ -45,7 +44,6 @@ type Statement = {
 
 const data = statementData as Statement;
 
-// --- UTILS (Giữ nguyên) ---
 function formatVND(n: number) {
   return new Intl.NumberFormat("vi-VN", {
     style: "currency",
@@ -78,7 +76,6 @@ function toCSV(rows: Transaction[]) {
 }
 
 export default function ReportsPage() {
-  // --- STATE (Giữ nguyên) ---
   const [q, setQ] = useState("");
   const [txType, setTxType] = useState<"ALL" | TxType>("ALL");
   const [from, setFrom] = useState<string>("");
@@ -89,12 +86,10 @@ export default function ReportsPage() {
   const pageSize = 15;
   const [page, setPage] = useState(1);
 
-  // --- SCROLL STATE ---
   const tableContainerRef = useRef<HTMLDivElement>(null);
   const [scrollPercentage, setScrollPercentage] = useState(0);
   const [showFloatingScroll, setShowFloatingScroll] = useState(false);
 
-  // --- LOGIC (Giữ nguyên) ---
   const filtered = useMemo(() => {
     const qLower = q.trim().toLowerCase();
     const selectedProj = projects.find(p => p.id === selectedProject);
@@ -167,9 +162,7 @@ export default function ReportsPage() {
     URL.revokeObjectURL(url);
   }
   function printStatement() { window.print(); }
-  const getRangeLabel = () => { return summaryRange === "WEEK" ? "Tuần này" : summaryRange === "MONTH" ? "Tháng này" : "Năm nay"; };
 
-  // --- SCROLL LOGIC ---
   const handleTableScroll = () => {
     if (tableContainerRef.current) {
       const { scrollLeft, scrollWidth, clientWidth } = tableContainerRef.current;
@@ -200,116 +193,123 @@ export default function ReportsPage() {
   }, [paged]);
 
   return (
-    // Đã bỏ pb-20 vì không còn thanh cố định ở dưới
     <main className="min-h-screen bg-gradient-to-b from-[#1a522e]/5 via-white to-gray-50">
-      
-      {/* CSS Slider */}
+      {/* Custom Slider Styles */}
       <style jsx global>{`
         input[type=range] {
-          -webkit-appearance: none; 
-          background: transparent; 
+          -webkit-appearance: none;
+          background: transparent;
         }
         input[type=range]::-webkit-slider-thumb {
           -webkit-appearance: none;
-          height: 24px;
-          width: 40px;
-          border-radius: 20px;
+          height: 28px;
+          width: 48px;
+          border-radius: 9999px;
           background: #1a522e;
           cursor: pointer;
-          margin-top: -8px; 
-          box-shadow: 0 2px 6px rgba(0,0,0,0.3);
-          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m9 18 6-6-6-6'/%3E%3Cpath d='m15 18 6-6-6-6'/%3E%3C/svg%3E");
+          margin-top: -10px;
+          box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='28' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m9 18 6-6-6-6'/%3E%3Cpath d='m15 18 6-6-6-6'/%3E%3C/svg%3E");
           background-repeat: no-repeat;
           background-position: center;
-          background-size: 16px;
+          background-size: 20px;
         }
         input[type=range]::-webkit-slider-runnable-track {
-          width: 100%;
-          height: 8px;
-          cursor: pointer;
+          height: 10px;
           background: #e2e8f0;
-          border-radius: 4px;
+          border-radius: 9999px;
+        }
+        input[type=range]:focus::-webkit-slider-thumb {
+          box-shadow: 0 0 0 8px rgba(26, 82, 46, 0.2);
         }
       `}</style>
 
       {/* Hero Section */}
-      <section className="relative bg-gradient-to-br from-[#1a522e] via-[#134429] to-[#0f3820] py-16">
+      <section className="relative bg-gradient-to-br from-[#1a522e] via-[#134429] to-[#0f3820] py-12 md:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap items-center justify-between gap-6 mb-10">
+          {/* Buttons */}
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8 md:mb-12">
             <Link href="/" className="inline-flex items-center gap-3 rounded-full bg-white/10 px-6 py-3 text-white font-medium hover:bg-white/20 transition backdrop-blur-sm">
               <ArrowLeft className="w-5 h-5" /> Quay lại Trang chủ
             </Link>
             <div className="flex flex-wrap gap-4">
-              <button onClick={exportCSV} className="inline-flex items-center gap-2 rounded-xl bg-white px-8 py-4 text-[#1a522e] font-bold hover:bg-gray-100 transition shadow-xl">
+              <button onClick={exportCSV} className="inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3 md:px-8 md:py-4 text-[#1a522e] font-bold hover:bg-gray-100 transition shadow-xl text-sm md:text-base">
                 <Download className="w-5 h-5" /> Xuất Excel (.csv)
               </button>
-              <button onClick={printStatement} className="inline-flex items-center gap-2 rounded-xl bg-white/10 px-8 py-4 text-white font-bold hover:bg-white/20 transition backdrop-blur-sm">
+              <button onClick={printStatement} className="inline-flex items-center gap-2 rounded-xl bg-white/10 px-6 py-3 md:px-8 md:py-4 text-white font-bold hover:bg-white/20 transition backdrop-blur-sm text-sm md:text-base">
                 <Printer className="w-5 h-5" /> In sao kê
               </button>
             </div>
           </div>
-          <h1 className="text-5xl md:text-6xl font-extrabold text-white mb-6 drop-shadow-2xl">
+
+          <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white mb-6 drop-shadow-2xl">
             Báo cáo tài chính & Sao kê minh bạch
           </h1>
-          <p className="text-xl text-white/90 max-w-4xl leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-white/90 max-w-4xl leading-relaxed">
             Toàn bộ giao dịch được công khai trực tuyến, cập nhật tự động từ ngân hàng. Bạn có thể xem tổng quan hoặc chi tiết theo từng dự án.
           </p>
-          
+
           {/* Summary Cards */}
-          <div className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4 mb-6">
-            <h3 className="text-2xl font-bold text-white">Tổng quan tài chính</h3>
-            <div className="flex bg-white/10 p-1 rounded-xl backdrop-blur-sm border border-white/20">
-              <button onClick={() => setSummaryRange("WEEK")} className={`px-4 py-2 rounded-lg text-sm font-bold transition-all ${summaryRange === "WEEK" ? "bg-white text-[#1a522e] shadow-lg" : "text-white/70 hover:text-white"}`}>Tuần</button>
-              <button onClick={() => setSummaryRange("MONTH")} className={`px-4 py-2 rounded-lg text-sm font-bold transition-all ${summaryRange === "MONTH" ? "bg-white text-[#1a522e] shadow-lg" : "text-white/70 hover:text-white"}`}>Tháng</button>
-              <button onClick={() => setSummaryRange("YEAR")} className={`px-4 py-2 rounded-lg text-sm font-bold transition-all ${summaryRange === "YEAR" ? "bg-white text-[#1a522e] shadow-lg" : "text-white/70 hover:text-white"}`}>Năm</button>
-            </div>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="rounded-3xl bg-white/10 backdrop-blur-md p-8 shadow-2xl border border-white/20">
-              <div className="flex items-center justify-between mb-2">
-                <p className="text-white/80 uppercase text-sm font-bold tracking-wider">Số dư hiện tại</p>
-                <Wallet className="w-6 h-6 text-white/50" />
+          <div className="mt-10 md:mt-12">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
+              <h3 className="text-xl md:text-2xl font-bold text-white">Tổng quan tài chính</h3>
+              <div className="flex bg-white/10 p-1 rounded-xl backdrop-blur-sm border border-white/20">
+                <button onClick={() => setSummaryRange("WEEK")} className={`px-4 py-2 rounded-lg text-sm font-bold transition-all ${summaryRange === "WEEK" ? "bg-white text-[#1a522e] shadow-lg" : "text-white/70 hover:text-white"}`}>Tuần</button>
+                <button onClick={() => setSummaryRange("MONTH")} className={`px-4 py-2 rounded-lg text-sm font-bold transition-all ${summaryRange === "MONTH" ? "bg-white text-[#1a522e] shadow-lg" : "text-white/70 hover:text-white"}`}>Tháng</button>
+                <button onClick={() => setSummaryRange("YEAR")} className={`px-4 py-2 rounded-lg text-sm font-bold transition-all ${summaryRange === "YEAR" ? "bg-white text-[#1a522e] shadow-lg" : "text-white/70 hover:text-white"}`}>Năm</button>
               </div>
-              <p className="mt-4 text-2xl md:text-3xl font-extrabold text-white break-words">{formatVND(data.currentBalance)}</p>
             </div>
-            <div className="rounded-3xl bg-white/10 backdrop-blur-md p-8 shadow-2xl border border-white/20">
-              <div className="flex items-center justify-between mb-2">
-                <p className="text-white/80 uppercase text-sm font-bold tracking-wider">Tài khoản thụ hưởng</p>
-                <Landmark className="w-6 h-6 text-white/50" />
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="rounded-3xl bg-white/10 backdrop-blur-md p-6 md:p-8 shadow-2xl border border-white/20">
+                <div className="flex items-center justify-between mb-2">
+                  <p className="text-white/80 uppercase text-xs md:text-sm font-bold tracking-wider">Số dư hiện tại</p>
+                  <Wallet className="w-5 h-5 md:w-6 md:h-6 text-white/50" />
+                </div>
+                <p className="mt-4 text-2xl md:text-3xl font-extrabold text-white break-words">{formatVND(data.currentBalance)}</p>
               </div>
-              <p className="mt-4 text-xl md:text-2xl font-bold text-white break-words">{data.bankName}</p>
-              <p className="text-white/80">{data.accountName}</p>
-            </div>
-            <div className="rounded-3xl bg-white/10 backdrop-blur-md p-8 shadow-2xl border border-white/20">
-              <div className="flex items-center justify-between mb-2">
-                <p className="text-white/80 uppercase text-sm font-bold tracking-wider">Tổng thu {getRangeLabel()}</p>
-                <TrendingUp className="w-6 h-6 text-green-300" />
+              <div className="rounded-3xl bg-white/10 backdrop-blur-md p-6 md:p-8 shadow-2xl border border-white/20">
+                <div className="flex items-center justify-between mb-2">
+                  <p className="text-white/80 uppercase text-xs md:text-sm font-bold tracking-wider">Tài khoản thụ hưởng</p>
+                  <Landmark className="w-5 h-5 md:w-6 md:h-6 text-white/50" />
+                </div>
+                <p className="mt-4 text-lg md:text-xl font-bold text-white break-words">{data.bankName}</p>
+                <p className="text-white/80 text-sm md:text-base">{data.accountName}</p>
               </div>
-              <p className="mt-4 text-2xl md:text-3xl font-extrabold text-green-300 break-words">+{formatVND(summaryTotals.inTotal)}</p>
-            </div>
-            <div className="rounded-3xl bg-white/10 backdrop-blur-md p-8 shadow-2xl border border-white/20">
-              <div className="flex items-center justify-between mb-2">
-                <p className="text-white/80 uppercase text-sm font-bold tracking-wider">Tổng chi {getRangeLabel()}</p>
-                <TrendingDown className="w-6 h-6 text-red-300" />
+              <div className="rounded-3xl bg-white/10 backdrop-blur-md p-6 md:p-8 shadow-2xl border border-white/20">
+                <div className="flex items-center justify-between mb-2">
+                  <p className="text-white/80 uppercase text-xs md:text-sm font-bold tracking-wider">Tổng thu {summaryTotals.label}</p>
+                  <TrendingUp className="w-5 h-5 md:w-6 md:h-6 text-green-300" />
+                </div>
+                <p className="mt-4 text-2xl md:text-3xl font-extrabold text-green-300 break-words">+{formatVND(summaryTotals.inTotal)}</p>
               </div>
-              <p className="mt-4 text-2xl md:text-3xl font-extrabold text-red-300 break-words">-{formatVND(summaryTotals.outTotal)}</p>
+              <div className="rounded-3xl bg-white/10 backdrop-blur-md p-6 md:p-8 shadow-2xl border border-white/20">
+                <div className="flex items-center justify-between mb-2">
+                  <p className="text-white/80 uppercase text-xs md:text-sm font-bold tracking-wider">Tổng chi {summaryTotals.label}</p>
+                  <TrendingDown className="w-5 h-5 md:w-6 md:h-6 text-red-300" />
+                </div>
+                <p className="mt-4 text-2xl md:text-3xl font-extrabold text-red-300 break-words">-{formatVND(summaryTotals.outTotal)}</p>
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Main Content */}
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      {/* Main Content - Filters & Table */}
+      <section className="mx-auto max-w-7xl px-4 py-12 md:py-16 lg:py-20">
         <div className="rounded-3xl bg-white shadow-2xl overflow-hidden border border-gray-100">
-          
-          {/* Filters Area */}
-          <div className="p-8 border-b border-gray-200 bg-gradient-to-r from-gray-50 to-gray-100">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div className="lg:col-span-1">
+          {/* Filters */}
+          <div className="p-6 md:p-8 border-b border-gray-200 bg-gradient-to-r from-gray-50 to-gray-100">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
+              <div>
                 <label className="block text-sm font-bold text-gray-700 mb-2 flex items-center gap-2">
                   <FolderOpen className="w-4 h-4" /> Xem theo dự án
                 </label>
-                <select value={selectedProject} onChange={(e) => setSelectedProject(e.target.value === "ALL" ? "ALL" : Number(e.target.value))} className="w-full h-12 rounded-xl border-2 border-gray-300 bg-white px-5 text-base font-medium focus:border-[#1a522e] focus:ring-4 focus:ring-[#1a522e]/20 transition">
+                <select 
+                  value={selectedProject} 
+                  onChange={(e) => setSelectedProject(e.target.value === "ALL" ? "ALL" : Number(e.target.value))} 
+                  className="w-full h-12 rounded-xl border-2 border-gray-300 bg-white px-4 text-base focus:border-[#1a522e] focus:ring-4 focus:ring-[#1a522e]/20 transition"
+                >
                   <option value="ALL">Tất cả dự án</option>
                   {projects.map((proj) => (
                     <option key={proj.id} value={proj.id}>{proj.title} ({proj.province})</option>
@@ -317,31 +317,64 @@ export default function ReportsPage() {
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-bold text-gray-700 mb-2 flex items-center gap-2"><Filter className="w-4 h-4" /> Loại giao dịch</label>
-                <select value={txType} onChange={(e) => setTxType(e.target.value as any)} className="w-full h-12 rounded-xl border-2 border-gray-300 bg-white px-5 text-base focus:border-[#1a522e] focus:ring-4 focus:ring-[#1a522e]/20 transition">
+                <label className="block text-sm font-bold text-gray-700 mb-2 flex items-center gap-2">
+                  <Filter className="w-4 h-4" /> Loại giao dịch
+                </label>
+                <select 
+                  value={txType} 
+                  onChange={(e) => setTxType(e.target.value as any)} 
+                  className="w-full h-12 rounded-xl border-2 border-gray-300 bg-white px-4 text-base focus:border-[#1a522e] focus:ring-4 focus:ring-[#1a522e]/20 transition"
+                >
                   <option value="ALL">Tất cả</option>
                   <option value="IN">Chỉ thu vào</option>
                   <option value="OUT">Chỉ chi ra</option>
                 </select>
               </div>
               <div>
-                <label className="block text-sm font-bold text-gray-700 mb-2 flex items-center gap-2"><Search className="w-4 h-4" /> Tìm kiếm</label>
-                <input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Mã GD, nội dung..." className="w-full h-12 rounded-xl border-2 border-gray-300 bg-white px-5 text-base focus:border-[#1a522e] focus:ring-4 focus:ring-[#1a522e]/20 transition" />
+                <label className="block text-sm font-bold text-gray-700 mb-2 flex items-center gap-2">
+                  <Search className="w-4 h-4" /> Tìm kiếm
+                </label>
+                <input 
+                  value={q} 
+                  onChange={(e) => setQ(e.target.value)} 
+                  placeholder="Mã GD, nội dung..." 
+                  className="w-full h-12 rounded-xl border-2 border-gray-300 bg-white px-4 text-base focus:border-[#1a522e] focus:ring-4 focus:ring-[#1a522e]/20 transition" 
+                />
               </div>
               <div>
-                <label className="block text-sm font-bold text-gray-700 mb-2 flex items-center gap-2"><Calendar className="w-4 h-4" /> Từ ngày</label>
-                <input type="date" value={from} onChange={(e) => setFrom(e.target.value)} className="w-full h-12 rounded-xl border-2 border-gray-300 bg-white px-5 text-base focus:border-[#1a522e] focus:ring-4 focus:ring-[#1a522e]/20 transition" />
+                <label className="block text-sm font-bold text-gray-700 mb-2 flex items-center gap-2">
+                  <Calendar className="w-4 h-4" /> Từ ngày
+                </label>
+                <input 
+                  type="date" 
+                  value={from} 
+                  onChange={(e) => setFrom(e.target.value)} 
+                  className="w-full h-12 rounded-xl border-2 border-gray-300 bg-white px-4 text-base focus:border-[#1a522e] focus:ring-4 focus:ring-[#1a522e]/20 transition" 
+                />
               </div>
               <div>
-                <label className="block text-sm font-bold text-gray-700 mb-2 flex items-center gap-2"><Calendar className="w-4 h-4" /> Đến ngày</label>
-                <input type="date" value={to} onChange={(e) => setTo(e.target.value)} className="w-full h-12 rounded-xl border-2 border-gray-300 bg-white px-5 text-base focus:border-[#1a522e] focus:ring-4 focus:ring-[#1a522e]/20 transition" />
+                <label className="block text-sm font-bold text-gray-700 mb-2 flex items-center gap-2">
+                  <Calendar className="w-4 h-4" /> Đến ngày
+                </label>
+                <input 
+                  type="date" 
+                  value={to} 
+                  onChange={(e) => setTo(e.target.value)} 
+                  className="w-full h-12 rounded-xl border-2 border-gray-300 bg-white px-4 text-base focus:border-[#1a522e] focus:ring-4 focus:ring-[#1a522e]/20 transition" 
+                />
               </div>
               <div className="flex items-end">
-                <button onClick={applyFilters} className="w-full h-12 rounded-xl bg-[#1a522e] text-white font-bold hover:bg-[#133f24] transition shadow-lg">Áp dụng bộ lọc</button>
+                <button 
+                  onClick={applyFilters} 
+                  className="w-full h-12 rounded-xl bg-[#1a522e] text-white font-bold hover:bg-[#134429] transition shadow-lg"
+                >
+                  Áp dụng bộ lọc
+                </button>
               </div>
             </div>
-            <div className="mt-6 flex flex-wrap items-center justify-between gap-4">
-              <p className="text-lg font-medium text-gray-700">
+
+            <div className="mt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+              <p className="text-base md:text-lg font-medium text-gray-700">
                 Đang hiển thị <strong className="text-[#1a522e]">{filtered.length}</strong> giao dịch
                 {selectedProject !== "ALL" && (
                   <span className="ml-2 text-[#1a522e]">cho dự án <strong>{projects.find(p => p.id === selectedProject)?.title}</strong></span>
@@ -353,20 +386,20 @@ export default function ReportsPage() {
             </div>
           </div>
 
-          {/* Table Container */}
+          {/* Table */}
           <div 
             ref={tableContainerRef}
             onScroll={handleTableScroll}
-            className="overflow-x-auto w-full"
+            className="overflow-x-auto"
           >
-            <table className="w-full text-left">
+            <table className="w-full min-w-[800px] text-left">
               <thead className="bg-gray-50 border-b-2 border-gray-200">
                 <tr>
-                  <th className="px-6 py-5 text-sm font-bold text-gray-700 whitespace-nowrap sticky left-0 bg-gray-50 z-10">Thời gian</th>
-                  <th className="px-6 py-5 text-sm font-bold text-gray-700 whitespace-nowrap">Mã giao dịch</th>
-                  <th className="px-6 py-5 text-sm font-bold text-gray-700 min-w-[350px]">Nội dung</th>
-                  <th className="px-6 py-5 text-sm font-bold text-gray-700 text-right whitespace-nowrap">Số tiền</th>
-                  <th className="px-6 py-5 text-sm font-bold text-gray-700 text-right whitespace-nowrap">Số dư</th>
+                  <th className="px-4 py-4 md:px-6 md:py-5 text-sm font-bold text-gray-700 whitespace-nowrap">Thời gian</th>
+                  <th className="px-4 py-4 md:px-6 md:py-5 text-sm font-bold text-gray-700 whitespace-nowrap">Mã giao dịch</th>
+                  <th className="px-4 py-4 md:px-6 md:py-5 text-sm font-bold text-gray-700">Nội dung</th>
+                  <th className="px-4 py-4 md:px-6 md:py-5 text-sm font-bold text-gray-700 text-right whitespace-nowrap">Số tiền</th>
+                  <th className="px-4 py-4 md:px-6 md:py-5 text-sm font-bold text-gray-700 text-right whitespace-nowrap">Số dư</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-gray-100">
@@ -374,49 +407,68 @@ export default function ReportsPage() {
                   const isIn = t.type === "IN";
                   return (
                     <tr key={t.id} className="hover:bg-gray-50 transition">
-                      <td className="px-6 py-5 text-sm text-gray-600 whitespace-nowrap sticky left-0 bg-white z-10">{formatTime(t.time)}</td>
-                      <td className="px-6 py-5 text-sm font-medium text-gray-900 whitespace-nowrap">{t.id}</td>
-                      <td className="px-6 py-5 text-sm text-gray-800 min-w-[350px]"><div className="line-clamp-2 md:line-clamp-none">{t.detail}</div></td>
-                      <td className={`px-6 py-5 text-sm font-bold text-right whitespace-nowrap ${isIn ? "text-[#1a522e]" : "text-red-600"}`}>{isIn ? "+" : "-"} {formatVND(t.amount)}</td>
-                      <td className="px-6 py-5 text-sm text-gray-600 text-right whitespace-nowrap">{formatVND(t.balanceAfter)}</td>
+                      <td className="px-4 py-4 md:px-6 md:py-5 text-sm text-gray-600 whitespace-nowrap">{formatTime(t.time)}</td>
+                      <td className="px-4 py-4 md:px-6 md:py-5 text-sm font-medium text-gray-900 whitespace-nowrap">{t.id}</td>
+                      <td className="px-4 py-4 md:px-6 md:py-5 text-sm text-gray-800">{t.detail}</td>
+                      <td className={`px-4 py-4 md:px-6 md:py-5 text-sm font-bold text-right whitespace-nowrap ${isIn ? "text-[#1a522e]" : "text-red-600"}`}>
+                        {isIn ? "+" : "-"} {formatVND(t.amount)}
+                      </td>
+                      <td className="px-4 py-4 md:px-6 md:py-5 text-sm text-gray-600 text-right whitespace-nowrap">{formatVND(t.balanceAfter)}</td>
                     </tr>
                   );
                 })}
                 {paged.length === 0 && (
-                  <tr><td colSpan={5} className="px-6 py-20 text-center text-gray-500 text-lg">Không tìm thấy giao dịch nào phù hợp với bộ lọc hiện tại.</td></tr>
+                  <tr>
+                    <td colSpan={5} className="px-6 py-16 md:py-20 text-center text-gray-500 text-base md:text-lg">
+                      Không tìm thấy giao dịch nào phù hợp với bộ lọc hiện tại.
+                    </td>
+                  </tr>
                 )}
               </tbody>
             </table>
           </div>
 
-          {/* --- THANH CUỘN (SLIDER) - NẰM NGAY DƯỚI BẢNG --- */}
-          {/* Chỉ hiển thị trên thiết bị nhỏ (lg:hidden) và khi bảng cần cuộn */}
+          {/* Mobile Horizontal Scroll Indicator */}
           {showFloatingScroll && (
-            <div className="px-6 py-4 border-t border-gray-100 bg-gray-50 lg:hidden">
-               <div className="flex items-center gap-3">
+            <div className="px-4 py-4 border-t border-gray-100 bg-gray-50 lg:hidden">
+              <div className="flex items-center gap-3">
                 <MoveHorizontal className="w-5 h-5 text-[#1a522e] animate-pulse" />
                 <div className="flex-1">
-                   <input
+                  <input
                     type="range"
                     min="0"
                     max="100"
                     value={scrollPercentage}
                     onChange={handleSliderChange}
-                    className="w-full h-8 appearance-none bg-transparent focus:outline-none"
+                    className="w-full"
                   />
                 </div>
-                <span className="text-xs font-bold text-gray-500 w-8 text-right">{Math.round(scrollPercentage)}%</span>
+                <span className="text-xs font-bold text-gray-500 w-10 text-right">{Math.round(scrollPercentage)}%</span>
               </div>
             </div>
           )}
 
           {/* Pagination */}
           {totalPages > 1 && (
-            <div className="border-t border-gray-200 px-6 py-6 flex items-center justify-between bg-white">
-              <p className="text-sm text-gray-600">Trang <strong>{page}</strong> / <strong>{totalPages}</strong></p>
+            <div className="border-t border-gray-200 px-4 md:px-6 py-5 md:py-6 flex flex-col sm:flex-row items-center justify-between gap-4 bg-white">
+              <p className="text-sm md:text-base text-gray-600">
+                Trang <strong>{page}</strong> / <strong>{totalPages}</strong>
+              </p>
               <div className="flex gap-3">
-                <button onClick={() => setPage(p => Math.max(1, p - 1))} disabled={page === 1} className="px-5 py-3 rounded-xl border border-gray-300 hover:bg-gray-100 disabled:opacity-50 transition font-medium">Trước</button>
-                <button onClick={() => setPage(p => Math.min(totalPages, p + 1))} disabled={page === totalPages} className="px-5 py-3 rounded-xl border border-gray-300 hover:bg-gray-100 disabled:opacity-50 transition font-medium">Sau</button>
+                <button 
+                  onClick={() => setPage(p => Math.max(1, p - 1))} 
+                  disabled={page === 1} 
+                  className="px-5 py-3 rounded-xl border border-gray-300 hover:bg-gray-100 disabled:opacity-50 transition font-medium text-sm md:text-base"
+                >
+                  Trước
+                </button>
+                <button 
+                  onClick={() => setPage(p => Math.min(totalPages, p + 1))} 
+                  disabled={page === totalPages} 
+                  className="px-5 py-3 rounded-xl border border-gray-300 hover:bg-gray-100 disabled:opacity-50 transition font-medium text-sm md:text-base"
+                >
+                  Sau
+                </button>
               </div>
             </div>
           )}
