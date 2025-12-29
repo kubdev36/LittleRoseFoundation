@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { Suspense } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation'; // Thêm hook này
@@ -75,7 +75,7 @@ function PostCard({ post }: { post: NewsPost }) {
   );
 }
 
-export default function NewsPage() {
+function NewsContent() {
   const searchParams = useSearchParams();
   const showAll = searchParams.get('all') === '1';
 
@@ -192,5 +192,13 @@ export default function NewsPage() {
         </div>
       </section>
     </main>
+  );
+}
+
+export default function NewsPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-gray-50" />}>
+      <NewsContent />
+    </Suspense>
   );
 }
