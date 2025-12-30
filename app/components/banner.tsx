@@ -138,7 +138,7 @@ export default function HeroBanner() {
           <span className="absolute inset-0 rounded-full bg-[#143d23] animate-ripple delay-1000"></span>
           
           <a
-             href="/quyen-gop"
+             href="/donate"
                 className="relative z-10 flex items-center justify-center bg-[#143d23] text-white font-extrabold text-xl px-12 py-5 rounded-full shadow-[0_6px_15px_rgba(0,0,0,0.3)] hover:bg-[#0f2e1b] hover:shadow-[0_8px_20px_rgba(0,0,0,0.4)] transition-all duration-300 transform hover:-translate-y-0.5"
              >
               Quyên góp ngay

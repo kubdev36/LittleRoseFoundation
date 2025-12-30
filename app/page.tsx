@@ -5,6 +5,7 @@ import PartnersSection from "./components/PartnersSection";
 import TestimonialsSection from "./components/TestimonialsSection";
 import VolunteerCTASection from "./components/JoinCommunitySection";
 import CharityTransparencySection from "./components/transparent";
+import Chatbot from "./components/Chatbot";
 
 export default function Home() {
   return (
@@ -24,7 +25,10 @@ export default function Home() {
         <section className="w-full bg-green-50/60">
           <CharityTransparencySection />
         </section>
-
+        <section className="w-full bg-white">
+          <Chatbot />
+        </section>
+        
         {/* 4. Sứ mệnh: NỀN TRẮNG */}
         <section className="w-full bg-white">
           <MissionSection />

@@ -105,7 +105,7 @@ export default function FeaturedProjects() {
           {/* Carousel wrapper */}
           <div className="overflow-hidden">
             <div
-              className="flex gap-6 lg:gap-8 transition-transform duration-700 ease-in-out"
+              className="flex gap-0 md:gap-6 lg:gap-8 transition-transform duration-700 ease-in-out"
               style={{ transform: `translateX(${translateX}%)` }}
             >
               {projects.map((project) => (
@@ -199,21 +199,23 @@ export default function FeaturedProjects() {
             </div>
           </div>
 
-          {/* Dot indicators cho mobile */}
-          {visibleCount === 1 && projects.length > 1 && (
-            <div className="flex justify-center gap-2 mt-12">
-              {Array.from({ length: projects.length }).map((_, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => setCurrentIndex(idx)}
-                  className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                    idx === currentIndex ? 'bg-[#1a522e] w-8' : 'bg-gray-400'
-                  }`}
-                  aria-label={`Go to slide ${idx + 1}`}
-                />
-              ))}
-            </div>
-          )}
+          {/* Mobile Navigation Arrows (Bottom) */}
+          <div className="flex md:hidden justify-center gap-6 mt-8">
+            <button
+              onClick={prevSlide}
+              className="bg-white rounded-full p-4 shadow-lg border border-gray-200 active:scale-95 transition-transform text-gray-800 hover:text-[#1a522e] hover:border-[#1a522e]"
+              aria-label="Dự án trước"
+            >
+              <ChevronLeft className="w-6 h-6" />
+            </button>
+            <button
+              onClick={nextSlide}
+              className="bg-white rounded-full p-4 shadow-lg border border-gray-200 active:scale-95 transition-transform text-gray-800 hover:text-[#1a522e] hover:border-[#1a522e]"
+              aria-label="Dự án tiếp theo"
+            >
+              <ChevronRight className="w-6 h-6" />
+            </button>
+          </div>
         </div>
       </div>
     </section>

@@ -33,7 +33,7 @@ export default function MissionSection() {
 
             {/* Nút Tìm hiểu thêm: Green-600 */}
             <Link
-              href="/ve-chung-toi"
+              href="/about"
               className="inline-flex items-center bg-[#143d23] text-white px-8 py-4 rounded-full font-bold text-base md:text-lg hover:bg-[#0f2e1b] hover:shadow-lg hover:shadow-green-900/20 hover:-translate-y-0.5 transition-all duration-300 group"
             >
               Tìm hiểu thêm
