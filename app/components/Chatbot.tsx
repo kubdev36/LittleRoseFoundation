@@ -113,12 +113,15 @@ export default function Chatbot() {
   return (
     <>
       {!isOpen && (
-        <button
-          onClick={() => setIsOpen(true)}
-          className="fixed bottom-4 right-4 bg-[#1a522e] text-white p-4 rounded-full shadow-2xl hover:bg-[#143d23] transition-all z-50 hover:scale-110"
-        >
-          <MessageCircle size={32} />
-        </button>
+        <div className="fixed bottom-4 right-4 z-50 flex items-center justify-center">
+          <span className="absolute inline-flex h-full w-full rounded-full bg-[#1a522e] opacity-75 animate-ping"></span>
+          <button
+            onClick={() => setIsOpen(true)}
+            className="relative bg-[#1a522e] text-white p-4 rounded-full shadow-2xl hover:bg-[#143d23] transition-all hover:scale-110"
+          >
+            <MessageCircle size={32} />
+          </button>
+        </div>
       )}
 
       {isOpen && (

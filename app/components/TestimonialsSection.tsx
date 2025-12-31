@@ -6,14 +6,14 @@ import { Quote, Star } from 'lucide-react';
 export default function TestimonialsSection() {
   const testimonials = [
     {
-      name: 'Đặng Trung Hải',
+      name: 'Nguyễn Văn A',
       role: 'Tình nguyện viên 3 năm',
       avatar: '/images/avatar1.jpg', // Bạn nhớ thay ảnh thật hoặc dùng ảnh placeholder online để test
       content:
         'Tham gia tình nguyện cùng Quỹ Bông Hồng Nhỏ là trải nghiệm ý nghĩa nhất của tôi. Hệ thống minh bạch giúp tôi tự tin rằng công sức nhỏ bé của mình đang được đặt đúng chỗ và tạo ra thay đổi thực sự.',
     },
     {
-      name: 'Lê Nguyễn Thái Dũng',
+      name: 'Lê Văn B',
       role: 'Nhà tài trợ thường niên',
       avatar: '/images/avatar2.jpg',
       content:

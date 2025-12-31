@@ -11,15 +11,14 @@ export default function FeaturedProjects() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [visibleCount, setVisibleCount] = useState(1);
 
-  // Cập nhật số card hiển thị theo kích thước màn hình
   useEffect(() => {
     const updateVisibleCount = () => {
       if (window.innerWidth >= 1024) {
-        setVisibleCount(4); // lg: 4 cards
+        setVisibleCount(4);
       } else if (window.innerWidth >= 768) {
-        setVisibleCount(2); // md: 2 cards
+        setVisibleCount(2);
       } else {
-        setVisibleCount(1); // mobile: 1 card
+        setVisibleCount(1);
       }
     };
 
@@ -72,20 +71,18 @@ export default function FeaturedProjects() {
   const translateX = -(currentIndex * (100 / visibleCount));
 
   return (
-    <section className="py-20 md:py-24 lg:py-32 bg-gray-50"> {/* Tăng padding top lớn để đẩy xuống, tránh chồng Hero */}
+    <section className="py-20 md:py-24 lg:py-32 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-       <div className="text-center mb-12 md:mb-16 lg:mb-20 pt-4 md:pt-6 lg:pt-8">
-  <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-6 tracking-tight">
-    Các dự án <span className="text-green-700">trọng điểm</span>
-  </h2>
-  <p className="text-gray-600 text-base sm:text-lg max-w-3xl mx-auto px-4 leading-relaxed">
-    Mỗi đồng góp dù nhỏ nhất đều tạo nên sự thay đổi to lớn cho cộng đồng. Hãy chọn một dự án bạn quan tâm
-  </p>
-</div>
+        <div className="text-center mb-12 md:mb-16 lg:mb-20 pt-4 md:pt-6 lg:pt-8">
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-gray-900 mb-6 tracking-tight">
+            Các dự án <span className="text-green-700">trọng điểm</span>
+          </h2>
+          <p className="text-gray-600 text-base sm:text-lg max-w-3xl mx-auto px-4 leading-relaxed">
+            Mỗi đồng góp dù nhỏ nhất đều tạo nên sự thay đổi to lớn cho cộng đồng. Hãy chọn một dự án bạn quan tâm
+          </p>
+        </div>
 
-        {/* Carousel */}
         <div className="relative">
-          {/* Nút điều hướng */}
           <button
             onClick={prevSlide}
             className="absolute left-0 lg:-left-12 top-1/2 -translate-y-1/2 z-10 bg-white rounded-full p-2 sm:p-3 shadow-xl hover:shadow-2xl transition-all hidden md:flex items-center justify-center border border-gray-200"
@@ -102,7 +99,6 @@ export default function FeaturedProjects() {
             <ChevronRight className="w-6 h-6 sm:w-8 sm:h-8 text-gray-800" />
           </button>
 
-          {/* Carousel wrapper */}
           <div className="overflow-hidden">
             <div
               className="flex gap-0 md:gap-6 lg:gap-8 transition-transform duration-700 ease-in-out"
@@ -120,7 +116,6 @@ export default function FeaturedProjects() {
                   }`}
                 >
                   <div className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 h-full flex flex-col">
-                    {/* Hình ảnh */}
                     <div className="relative h-48 sm:h-56 lg:h-64 overflow-hidden group">
                       <Image
                         src={project.imageSrc}
@@ -132,7 +127,6 @@ export default function FeaturedProjects() {
                       <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
                     </div>
 
-                    {/* Nội dung */}
                     <div className="p-5 sm:p-6 flex flex-col flex-1">
                       <div className="mb-3">
                         <span
@@ -150,27 +144,43 @@ export default function FeaturedProjects() {
                         {truncateDescription(project.description, 20)}
                       </p>
 
-                      {/* Progress */}
-                      <div className="mb-6 space-y-3">
-                        <div className="flex justify-between text-sm">
-                          <span className="font-bold text-[#1a522e]">
+                      {/* PHẦN TIẾN ĐỘ - ĐÃ SỬA ĐỂ KHÔNG BỊ DÍNH CHỮ */}
+                      <div className="mb-6 space-y-4">
+                        {/* Đã góp - to, đậm, nổi bật */}
+                        <div className="text-left">
+                          <span className="text-xl md:text-2xl font-extrabold text-[#1a522e]">
                             {formatCurrency(project.raised)}
                           </span>
-                          <span className="text-gray-500">Mục tiêu: {formatCurrency(project.goal)}</span>
+                          <span className="block text-sm font-medium text-gray-700 mt-1">
+                            Đã góp
+                          </span>
                         </div>
-                        <div className="w-full bg-gray-200 rounded-full h-3 overflow-hidden">
+
+                        {/* Thanh progress */}
+                        <div className="w-full bg-gray-200 rounded-full h-4 overflow-hidden">
                           <div
                             className="bg-[#1a522e] h-full rounded-full transition-all duration-1000"
                             style={{ width: `${progressPercentage(project.raised, project.goal)}%` }}
                           />
                         </div>
-                        <div className="flex justify-between text-xs text-gray-500">
-                          <span>{project.donors} nhà tài trợ</span>
-                          <span>{Math.round(progressPercentage(project.raised, project.goal))}%</span>
+
+                        {/* Dòng dưới: Mục tiêu + Số nhà tài trợ + Phần trăm */}
+                        <div className="flex justify-between items-end text-sm">
+                          <div>
+                            <span className="text-gray-600">Mục tiêu:</span>{' '}
+                            <span className="font-semibold text-gray-800">
+                              {formatCurrency(project.goal)}
+                            </span>
+                          </div>
+                          <div className="text-right">
+                            <span className="text-gray-600">{project.donors} nhà tài trợ</span>
+                            <span className="block font-bold text-[#1a522e]">
+                              {Math.round(progressPercentage(project.raised, project.goal))}%
+                            </span>
+                          </div>
                         </div>
                       </div>
 
-                      {/* Buttons */}
                       <div className="flex flex-col sm:flex-row gap-3 mt-auto">
                         <Link
                           href={`/project/${project.id}`}
@@ -199,7 +209,6 @@ export default function FeaturedProjects() {
             </div>
           </div>
 
-          {/* Mobile Navigation Arrows (Bottom) */}
           <div className="flex md:hidden justify-center gap-6 mt-8">
             <button
               onClick={prevSlide}
