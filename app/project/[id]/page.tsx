@@ -3,6 +3,7 @@ import { notFound } from 'next/navigation';
 import projectsData from '@/app/data/projects.json';
 import ProjectDetailClient from './ProjectDetailClient';
 
+
 interface Project {
   id: number;
   title: string;
