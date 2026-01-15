@@ -5,7 +5,21 @@ import {
   Trophy, Search, Crown, 
   TrendingUp, Heart, Flower2, ChevronLeft, ChevronRight, LogIn 
 } from "lucide-react";
-import Link from "next/link"; // Import Link để dẫn tới trang login
+import Link from "next/link"; 
+
+// --- 1. ĐỊNH NGHĨA KIỂU DỮ LIỆU (INTERFACE) ---
+interface LeaderboardItem {
+  id: number;
+  name: string;
+  title: string;
+  flowerLevel: string;
+  flowerColor: string;
+  badge: string;
+  badgeColor: string;
+  amount: string;
+  avatar: string;
+  isMe?: boolean; // Dấu ? nghĩa là thuộc tính này có thể có hoặc không
+}
 
 // --- MOCK DATA ---
 const TOP_GIVERS = [
@@ -14,17 +28,17 @@ const TOP_GIVERS = [
   { id: 3, name: "Phạm Thị D", title: "Đại Sứ Bạc", amount: "28.000.000đ", rank: 3, avatarColor: "bg-orange-100 text-orange-600" },
 ];
 
-const LEADERBOARD_DATA = [
+// Áp dụng Interface vào mảng dữ liệu
+const LEADERBOARD_DATA: LeaderboardItem[] = [
   { id: 1, name: "Trần Thị B", title: "Đại Sứ Kim Cương", flowerLevel: "Nở rực rỡ", flowerColor: "text-red-500", badge: "Kim cương", badgeColor: "bg-purple-100 text-purple-600", amount: "50.000.000đ", avatar: "B" },
   { id: 2, name: "Lê Văn C", title: "Đại Sứ Vàng", flowerLevel: "Đang nở", flowerColor: "text-pink-500", badge: "Vàng", badgeColor: "bg-yellow-100 text-yellow-600", amount: "35.000.000đ", avatar: "C" },
   { id: 3, name: "Phạm Thị D", title: "Đại Sứ Bạc", flowerLevel: "Chớm nở", flowerColor: "text-emerald-500", badge: "Bạc", badgeColor: "bg-gray-100 text-gray-600", amount: "28.000.000đ", avatar: "D" },
   { id: 4, name: "Nguyễn Văn E", title: "Thành viên Tích cực", flowerLevel: "Nụ xanh", flowerColor: "text-green-500", badge: "Thân thiết", badgeColor: "bg-green-100 text-green-600", amount: "15.000.000đ", avatar: "E" },
-  // Dòng của User hiện tại sẽ được thêm vào nếu đã login và tìm thấy trong list
 ];
 
 export default function HallOfFamePage() {
   const [activeTab, setActiveTab] = useState("month");
-  const [user, setUser] = useState<any>(null); // State lưu thông tin user
+  const [user, setUser] = useState<any>(null); 
 
   // Kiểm tra đăng nhập
   useEffect(() => {
@@ -36,10 +50,23 @@ export default function HallOfFamePage() {
     }
   }, []);
 
-  // Giả lập dữ liệu bảng xếp hạng có chứa user (hoặc không)
-  // Trong thực tế, bạn sẽ fetch API và trả về list có user nếu user nằm trong top hoặc user đã login
-  const displayData = user 
-    ? [...LEADERBOARD_DATA, { id: 42, name: `${user.fullName} (Bạn)`, title: "Đại Sứ Nhân Ái", flowerLevel: "Hoa nở rộ", flowerColor: "text-emerald-600", badge: "Verified", badgeColor: "bg-blue-100 text-blue-600", amount: "12.500.000đ", avatar: user.fullName?.charAt(0) || "U", isMe: true }] 
+  // Tạo dòng dữ liệu của User hiện tại (nếu có)
+  const currentUserItem: LeaderboardItem | null = user ? {
+      id: 42, 
+      name: `${user.fullName} (Bạn)`, 
+      title: "Đại Sứ Nhân Ái", 
+      flowerLevel: "Hoa nở rộ", 
+      flowerColor: "text-emerald-600", 
+      badge: "Verified", 
+      badgeColor: "bg-blue-100 text-blue-600", 
+      amount: "12.500.000đ", 
+      avatar: user.fullName?.charAt(0) || "U", 
+      isMe: true 
+  } : null;
+
+  // Gộp mảng: Nếu có user thì thêm vào cuối mảng, nếu không thì giữ nguyên
+  const displayData: LeaderboardItem[] = currentUserItem 
+    ? [...LEADERBOARD_DATA, currentUserItem] 
     : LEADERBOARD_DATA;
 
   return (
