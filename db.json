@@ -1,0 +1,20 @@
+{
+  "users": [
+    {
+      "id": "1768474790020",
+      "fullName": "Nguyễn Trần Đăng Khoa",
+      "email": "kub336655@gmail.com",
+      "phone": "05222403062",
+      "password": "Khoa123",
+      "createdAt": "2026-01-15T10:59:50.020Z"
+    },
+    {
+      "id": "1768495211964",
+      "fullName": "khoa",
+      "email": "khoa@123",
+      "phone": "03062005",
+      "password": "khoa123",
+      "createdAt": "2026-01-15T16:40:11.964Z"
+    }
+  ]
+}

@@ -135,7 +135,7 @@ export default function BankTransferInfoPage() {
               <div className="flex justify-center mb-8">
                 <div className="relative w-64 h-64 bg-white rounded-2xl shadow-inner flex items-center justify-center overflow-hidden">
                   <Image
-                    src="https://fundraising-frontend-flame.vercel.app/assets/donatelrf-Cd2zm9J3.png"
+                    src="/images/qrcode.png"
                     alt="Mã QR chuyển khoản"
                     fill
                     className="object-contain"
