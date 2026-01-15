@@ -500,15 +500,23 @@ export default function ProjectDetailClient({ project, allProjects }: ProjectDet
         </div>
       </div>
 
-      {/* MODAL QUYÊN GÓP */}
       <DonateModal
-        isOpen={showDonateModal}
-        onClose={() => setShowDonateModal(false)}
-        amount={selectedAmount}
-        // Đảm bảo DonateModal chấp nhận kiểu String, nếu không hãy bỏ .toString()
-        projectId={project.id.toString()}
-        projectTitle={project.title}
-      />
+  isOpen={showDonateModal}
+  onClose={() => setShowDonateModal(false)}
+  // 1. Sửa 'amount' thành 'initialAmount'
+  initialAmount={selectedAmount} 
+  
+  // 2. DonateModal mình cung cấp không có prop 'projectId', hãy xóa hoặc comment dòng này đi
+  // projectId={project.id.toString()} 
+
+  projectTitle={project.title}
+  
+  // 3. Thêm hàm xử lý khi thành công (nếu cần)
+  onSuccess={() => {
+    setShowDonateModal(false);
+    // Có thể thêm logic reload data hoặc hiện thông báo tại đây
+  }}
+/>
     </div>
   );
 }
