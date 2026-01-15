@@ -1,5 +1,8 @@
 "use client";
 
+/* eslint-disable @next/next/no-img-element */
+// ^^^ Dòng này giúp bỏ qua lỗi warning của Next.js khi dùng thẻ img thường
+
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { 
@@ -9,11 +12,11 @@ import {
 } from "lucide-react";
 import { motion } from "framer-motion";
 
-// Import DonateModal (giữ nguyên đường dẫn của bạn)
-import DonateModal from "../DonateModal";
+// Đảm bảo đường dẫn này CHÍNH XÁC với cấu trúc thư mục của bạn
+import DonateModal from "../DonateModal"; 
 import Comment from "../Comment";
 
-// --- DỮ LIỆU CÁC GIAI ĐOẠN PHÁT TRIỂN (SVG MỚI) ---
+// --- DỮ LIỆU CÁC GIAI ĐOẠN PHÁT TRIỂN (SVG) ---
 const ROSE_STAGES = [
   {
     id: 1,
@@ -73,13 +76,18 @@ const DONATION_AMOUNTS = [50000, 100000, 200000, 500000];
 export default function ProjectDetailClient({ project, allProjects }: ProjectDetailClientProps) {
   const [selectedAmount, setSelectedAmount] = useState<number>(100000);
   const [showDonateModal, setShowDonateModal] = useState(false);
+  
+  // State để tránh lỗi hydration mismatch cho Date
+  const [currentMonth, setCurrentMonth] = useState<number>(1); 
 
   // --- STATE CHO VƯỜN CHIBI ---
   const [waterPoints, setWaterPoints] = useState(0);
   const [currentStageIndex, setCurrentStageIndex] = useState(0);
 
-  // Load điểm từ localStorage khi vào trang (Đồng bộ với trang Rose Gallery)
   useEffect(() => {
+    // Set tháng hiện tại ở client side
+    setCurrentMonth(new Date().getMonth() + 1);
+
     if (typeof window !== "undefined") {
       const savedPoints = localStorage.getItem("rose_water_points");
       if (savedPoints) {
@@ -265,7 +273,7 @@ export default function ProjectDetailClient({ project, allProjects }: ProjectDet
                     </div>
                 </div>
 
-                {/* --- BẢNG CHI TIẾT MUA SẮM (MỚI THÊM) --- */}
+                {/* --- BẢNG CHI TIẾT MUA SẮM --- */}
                 <div className="mt-8">
                     <div className="flex justify-between items-end mb-4 border-b border-gray-100 pb-2">
                         <h4 className="font-bold text-sm text-gray-800">Chi tiết mua sắm</h4>
@@ -341,7 +349,7 @@ export default function ProjectDetailClient({ project, allProjects }: ProjectDet
                     })}
                  </div>
                  <Link href="/campaigns" className="block w-full mt-6 text-center text-xs text-emerald-600 font-bold uppercase py-3 border border-dashed border-emerald-200 rounded-lg hover:bg-emerald-50 transition-colors">
-                     Xem tất cả chiến dịch
+                    Xem tất cả chiến dịch
                  </Link>
             </div>
 
@@ -353,10 +361,10 @@ export default function ProjectDetailClient({ project, allProjects }: ProjectDet
             {/* A. VƯỜN CHIBI (ĐÃ CẬP NHẬT SVG MỚI) */}
             <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 relative overflow-hidden">
                 <div className="flex justify-between items-start mb-4">
-                     <h4 className="font-bold text-[#1A4D2E] flex items-center gap-2">
-                        <Sparkles size={18} className="text-yellow-500 fill-current" /> Vườn Chibi Nhân ái
-                     </h4>
-                     <Link href="/rose-gallery" className="text-gray-400 hover:text-emerald-600 transition-colors"><Eye size={18} /></Link>
+                      <h4 className="font-bold text-[#1A4D2E] flex items-center gap-2">
+                         <Sparkles size={18} className="text-yellow-500 fill-current" /> Vườn Chibi Nhân ái
+                      </h4>
+                      <Link href="/rose-gallery" className="text-gray-400 hover:text-emerald-600 transition-colors"><Eye size={18} /></Link>
                 </div>
                 
                 {/* Visualization Area */}
@@ -459,10 +467,11 @@ export default function ProjectDetailClient({ project, allProjects }: ProjectDet
             {/* C. LEADERBOARD (MOCK) */}
             <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
                 <div className="flex justify-between items-center mb-6">
-                     <h3 className="font-bold text-gray-800 text-sm flex items-center gap-2">
-                        <span className="text-yellow-500">🏆</span> Bảng vinh danh
-                     </h3>
-                     <span className="text-[10px] font-bold text-gray-300">T{new Date().getMonth() + 1}</span>
+                      <h3 className="font-bold text-gray-800 text-sm flex items-center gap-2">
+                         <span className="text-yellow-500">🏆</span> Bảng vinh danh
+                      </h3>
+                      {/* Fix lỗi Hydration Mismatch bằng cách dùng state currentMonth */}
+                      <span className="text-[10px] font-bold text-gray-300">T{currentMonth}</span>
                 </div>
 
                 <div className="space-y-5">
@@ -491,11 +500,12 @@ export default function ProjectDetailClient({ project, allProjects }: ProjectDet
         </div>
       </div>
 
-      {/* MODAL QUYÊN GÓP - Đặt ở cuối */}
+      {/* MODAL QUYÊN GÓP */}
       <DonateModal
         isOpen={showDonateModal}
         onClose={() => setShowDonateModal(false)}
         amount={selectedAmount}
+        // Đảm bảo DonateModal chấp nhận kiểu String, nếu không hãy bỏ .toString()
         projectId={project.id.toString()}
         projectTitle={project.title}
       />

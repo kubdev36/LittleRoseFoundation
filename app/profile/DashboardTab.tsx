@@ -1,8 +1,27 @@
 import React from "react";
-import { Wallet, FolderOpen, Heart, Award, Download, ArrowRight } from "lucide-react";
-import StatCard from "./components/StatCard";      
-import FlowerGarden from "./components/FlowerGarden";
-import Image from "next/image"; // Cần import Image nếu dùng next/image, hoặc dùng thẻ img thường
+import { Wallet, FolderOpen, Heart, Award, Download, ArrowRight, LucideIcon } from "lucide-react";
+import Image from "next/image"; 
+
+// --- CÁC COMPONENT CON (Đảm bảo đường dẫn import đúng) ---
+// import FlowerGarden from "./components/FlowerGarden"; 
+// Nếu chưa có file riêng, bạn có thể comment dòng import trên và dùng tạm placeholder bên dưới
+import FlowerGarden from "./components/FlowerGarden"; // Ví dụ: Lấy từ file ở bước trước
+
+// Component StatCard (Nếu bạn chưa tách file thì dùng cái này)
+const StatCard = ({ label, value, unit, icon: Icon, color, bg }: any) => (
+  <div className="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 flex items-center gap-4 hover:shadow-md transition-shadow">
+    <div className={`w-12 h-12 rounded-xl flex items-center justify-center ${bg} ${color}`}>
+      <Icon size={24} />
+    </div>
+    <div>
+      <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider">{label}</p>
+      <div className="flex items-baseline gap-1">
+        <h4 className="text-xl font-bold text-gray-800">{value}</h4>
+        <span className="text-xs font-medium text-gray-500">{unit}</span>
+      </div>
+    </div>
+  </div>
+);
 
 export default function DashboardTab({ user }: { user: any }) {
   const stats = [
@@ -19,7 +38,7 @@ export default function DashboardTab({ user }: { user: any }) {
       title: "Tiếp sức đến trường cho trẻ em nghèo",
       progress: 75,
       raised: "150.000.000đ",
-      image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=500&auto=format&fit=crop&q=60", // Ảnh demo
+      image: "https://images.unsplash.com/photo-1503676260728-1c00da094a0b?w=500&auto=format&fit=crop&q=60", 
     },
     {
       id: 2,
@@ -27,7 +46,7 @@ export default function DashboardTab({ user }: { user: any }) {
       title: "Ánh sáng cho người cao tuổi",
       progress: 40,
       raised: "60.000.000đ",
-      image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=500&auto=format&fit=crop&q=60", // Ảnh demo
+      image: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=500&auto=format&fit=crop&q=60",
     },
   ];
 
@@ -41,8 +60,10 @@ export default function DashboardTab({ user }: { user: any }) {
         ))}
       </div>
 
-      {/* 2. Vườn hồng */}
-      <FlowerGarden />
+      {/* 2. Vườn hồng (Import từ RoseEvolutionGallery ở bước trước) */}
+      <div className="overflow-hidden rounded-3xl border border-emerald-100 shadow-sm">
+         <FlowerGarden /> 
+      </div>
 
       {/* 3. Lịch sử quyên góp */}
       <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
@@ -51,7 +72,7 @@ export default function DashboardTab({ user }: { user: any }) {
                <span className="text-emerald-500 text-lg">↺</span> Lịch sử quyên góp
             </h3>
             <button className="text-xs font-bold text-emerald-600 hover:underline flex items-center gap-1">
-                Xuất sao kê
+               Xuất sao kê
             </button>
          </div>
 
@@ -90,28 +111,30 @@ export default function DashboardTab({ user }: { user: any }) {
          </div>
       </div>
 
-      {/* 4. DỰ ÁN ĐANG CẦN HỖ TRỢ (Mới thêm) */}
+      {/* 4. DỰ ÁN ĐANG CẦN HỖ TRỢ */}
       <div>
         <div className="flex justify-between items-center mb-4">
             <h3 className="font-bold text-[#1A4D2E] flex items-center gap-2">
                <span className="text-emerald-500">📢</span> Dự án đang cần hỗ trợ
             </h3>
             <a href="/projects" className="text-xs font-bold text-emerald-600 hover:underline flex items-center gap-1">
-                Tất cả <ArrowRight size={12} />
+               Tất cả <ArrowRight size={12} />
             </a>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {suggestedProjects.map((project) => (
                 <div key={project.id} className="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden group hover:shadow-md transition-all">
-                    {/* Image Area */}
-                    <div className="h-40 relative overflow-hidden">
-                        <img 
+                    {/* Image Area - FIX: Dùng next/image */}
+                    <div className="h-40 relative overflow-hidden bg-gray-100">
+                        <Image 
                             src={project.image} 
                             alt={project.title} 
-                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                            fill
+                            className="object-cover group-hover:scale-105 transition-transform duration-500"
+                            sizes="(max-width: 768px) 100vw, 50vw"
                         />
-                        <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded text-[10px] font-bold text-emerald-600 uppercase border border-emerald-100 shadow-sm">
+                        <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm px-2 py-1 rounded text-[10px] font-bold text-emerald-600 uppercase border border-emerald-100 shadow-sm z-10">
                             {project.category}
                         </div>
                     </div>

@@ -22,11 +22,14 @@ export default function SecurityTab() {
              </div>
           </div>
 
-          <div className="space-y-6 max-w-3xl">
+          <form className="space-y-6 max-w-3xl" onSubmit={(e) => e.preventDefault()}>
              <div className="space-y-2">
-                <label className="text-xs font-bold text-gray-400 uppercase tracking-wider">Mật khẩu hiện tại</label>
+                {/* FIX LỖI 1: Thêm htmlFor */}
+                <label htmlFor="current-pass" className="text-xs font-bold text-gray-400 uppercase tracking-wider">Mật khẩu hiện tại</label>
                 <div className="relative group">
+                   {/* FIX LỖI 1: Thêm id tương ứng */}
                    <input 
+                     id="current-pass"
                      type="password" 
                      placeholder="Nhập mật khẩu hiện tại" 
                      className="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl text-sm font-medium text-gray-800 focus:outline-none focus:border-emerald-500 focus:bg-white focus:ring-4 focus:ring-emerald-500/10 transition-all placeholder:text-gray-400 placeholder:font-normal" 
@@ -37,16 +40,18 @@ export default function SecurityTab() {
              
              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                   <label className="text-xs font-bold text-gray-400 uppercase tracking-wider">Mật khẩu mới</label>
+                   <label htmlFor="new-pass" className="text-xs font-bold text-gray-400 uppercase tracking-wider">Mật khẩu mới</label>
                    <input 
+                     id="new-pass"
                      type="password" 
                      placeholder="Nhập mật khẩu mới" 
                      className="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl text-sm font-medium text-gray-800 focus:outline-none focus:border-emerald-500 focus:bg-white focus:ring-4 focus:ring-emerald-500/10 transition-all placeholder:text-gray-400 placeholder:font-normal" 
                    />
                 </div>
                 <div className="space-y-2">
-                   <label className="text-xs font-bold text-gray-400 uppercase tracking-wider">Xác nhận mật khẩu</label>
+                   <label htmlFor="confirm-pass" className="text-xs font-bold text-gray-400 uppercase tracking-wider">Xác nhận mật khẩu</label>
                    <input 
+                     id="confirm-pass"
                      type="password" 
                      placeholder="Nhập lại mật khẩu mới" 
                      className="w-full p-4 bg-gray-50 border border-gray-200 rounded-xl text-sm font-medium text-gray-800 focus:outline-none focus:border-emerald-500 focus:bg-white focus:ring-4 focus:ring-emerald-500/10 transition-all placeholder:text-gray-400 placeholder:font-normal" 
@@ -55,11 +60,11 @@ export default function SecurityTab() {
              </div>
 
              <div className="flex justify-end pt-4">
-                <button className="bg-emerald-600 text-white px-8 py-3 rounded-xl font-bold text-sm shadow-lg shadow-emerald-600/20 hover:bg-emerald-700 hover:shadow-emerald-600/30 transition-all flex items-center gap-2 transform active:scale-95">
+                <button type="submit" className="bg-emerald-600 text-white px-8 py-3 rounded-xl font-bold text-sm shadow-lg shadow-emerald-600/20 hover:bg-emerald-700 hover:shadow-emerald-600/30 transition-all flex items-center gap-2 transform active:scale-95">
                    <Shield size={18} /> Cập nhật mật khẩu
                 </button>
              </div>
-          </div>
+          </form>
        </div>
 
        {/* 2FA & Privacy Settings */}
@@ -145,7 +150,7 @@ export default function SecurityTab() {
                    <p className="text-base font-bold text-gray-700 group-hover:text-gray-900 transition-colors">iPhone 14 Pro - Safari</p>
                    <p className="text-xs text-gray-400 mt-1 font-medium group-hover:text-gray-500">TP. Hồ Chí Minh • 2 giờ trước</p>
                 </div>
-                <button className="p-2.5 text-gray-300 hover:text-red-500 hover:bg-red-50 rounded-full transition-all opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0">
+                <button className="p-2.5 text-gray-300 hover:text-red-500 hover:bg-red-50 rounded-full transition-all opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0" aria-label="Đăng xuất thiết bị này">
                    <LogOut size={18} strokeWidth={2.5} />
                 </button>
              </div>
@@ -159,7 +164,7 @@ export default function SecurityTab() {
                    <p className="text-base font-bold text-gray-700 group-hover:text-gray-900 transition-colors">MacBook Pro - Safari</p>
                    <p className="text-xs text-gray-400 mt-1 font-medium group-hover:text-gray-500">Đà Nẵng, Việt Nam • 1 ngày trước</p>
                 </div>
-                <button className="p-2.5 text-gray-300 hover:text-red-500 hover:bg-red-50 rounded-full transition-all opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0">
+                <button className="p-2.5 text-gray-300 hover:text-red-500 hover:bg-red-50 rounded-full transition-all opacity-0 group-hover:opacity-100 transform translate-x-2 group-hover:translate-x-0" aria-label="Đăng xuất thiết bị này">
                    <LogOut size={18} strokeWidth={2.5} />
                 </button>
              </div>

@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import Image from "next/image"; // FIX 1: Import Image component
 import { X, Sprout, Leaf, Heart, Flower2, ArrowLeft } from "lucide-react";
 import { motion } from "framer-motion";
 
@@ -9,7 +10,7 @@ export default function StoryPage() {
   return (
     <div className="min-h-screen bg-[#FDFBF7] flex items-center justify-center p-4 md:p-8 font-sans">
       
-      {/* Container chính (giống Modal cũ nhưng giờ là main content) */}
+      {/* Container chính */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -17,7 +18,7 @@ export default function StoryPage() {
         className="relative bg-white rounded-3xl overflow-hidden shadow-2xl w-full max-w-5xl flex flex-col md:flex-row min-h-[600px] border border-[#1A4D2E]/5"
       >
         
-        {/* Nút Quay lại (Mobile - Góc trên trái) */}
+        {/* Nút Quay lại (Mobile) */}
         <Link 
           href="/campaigns" 
           className="absolute top-4 left-4 z-20 p-2 bg-white/80 backdrop-blur-sm rounded-full md:hidden shadow-sm"
@@ -27,24 +28,31 @@ export default function StoryPage() {
 
         {/* --- CỘT TRÁI: ẢNH MINH HỌA --- */}
         <div className="w-full md:w-5/12 relative h-64 md:h-auto">
-          <img
-    src="/images/story.jpg"
-    alt="Plant growing"
-    className="w-full h-full object-contain grayscale-[10%]"
-  />
+          {/* FIX 2: Sử dụng next/image thay cho img */}
+          <div className="relative w-full h-full">
+            <Image
+                src="/images/story.jpg"
+                alt="Plant growing"
+                fill // Tự động fill container cha
+                className="object-cover grayscale-[10%]" // object-contain -> object-cover để đẹp hơn khi fill
+                sizes="(max-width: 768px) 100vw, 50vw"
+            />
+          </div>
+
           {/* Overlay gradient */}
           <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent md:hidden" />
           
-          {/* Decorative text trên ảnh (chỉ hiện desktop) */}
+          {/* Decorative text */}
           <div className="absolute bottom-8 left-8 hidden md:block text-white/90 drop-shadow-md">
-             <p className="text-sm font-light italic">"Gieo hạt giống thiện lành..."</p>
+             {/* FIX 3: Escape dấu ngoặc kép bằng &quot; */}
+             <p className="text-sm font-light italic">&quot;Gieo hạt giống thiện lành...&quot;</p>
           </div>
         </div>
 
         {/* --- CỘT PHẢI: NỘI DUNG --- */}
         <div className="w-full md:w-7/12 p-8 md:p-16 flex flex-col justify-center relative bg-white">
           
-          {/* Nút Đóng / Quay lại (Desktop - Góc trên phải) */}
+          {/* Nút Đóng */}
           <Link 
             href="/campaigns" 
             className="absolute top-8 right-8 p-2 hover:bg-gray-100 rounded-full transition-colors hidden md:block group"
@@ -77,7 +85,8 @@ export default function StoryPage() {
             className="space-y-6 text-gray-600 text-sm md:text-base leading-relaxed font-light"
           >
             <p>
-              Mỗi sự đóng góp từ bạn không chỉ là con số, mà là những tia nắng ấm áp tưới tẩm cho những <strong className="text-emerald-700 font-medium">"nụ hồng"</strong> tri thức còn dang dở.
+              {/* FIX 4: Escape dấu ngoặc kép */}
+              Mỗi sự đóng góp từ bạn không chỉ là con số, mà là những tia nắng ấm áp tưới tẩm cho những <strong className="text-emerald-700 font-medium">&quot;nụ hồng&quot;</strong> tri thức còn dang dở.
             </p>
             <p>
               Tại Quỹ Hoa Hồng Nhỏ, chúng tôi tin rằng khi cùng nhau vun đắp, chúng ta sẽ tạo nên một vườn hoa rực rỡ cho tương lai của các em.
@@ -85,8 +94,9 @@ export default function StoryPage() {
 
             {/* Quote nổi bật */}
             <div className="relative pl-6 py-4 border-l-4 border-[#1A4D2E]/20 my-8 bg-[#F9F7F2]/50 rounded-r-xl">
+              {/* FIX 5: Escape dấu ngoặc kép */}
               <p className="italic text-[#1A4D2E] font-medium text-base md:text-lg">
-                "Như loài hoa hồng kiên cường vươn lên từ đại ngàn, sự hỗ trợ của cộng đồng chính là nguồn sống để những ước mơ bé nhỏ được nở rộ thành hiện thực."
+                &quot;Như loài hoa hồng kiên cường vươn lên từ đại ngàn, sự hỗ trợ của cộng đồng chính là nguồn sống để những ước mơ bé nhỏ được nở rộ thành hiện thực.&quot;
               </p>
             </div>
           </motion.div>

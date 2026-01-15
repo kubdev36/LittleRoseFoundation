@@ -2,6 +2,17 @@
 const nextConfig = {
   images: {
     remotePatterns: [
+      // Domain gây lỗi của bạn (Đã thêm vào đây)
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+      },
+      // Domain cho Avatar (Thường dùng trong code mẫu)
+      {
+        protocol: 'https',
+        hostname: 'i.pravatar.cc',
+      },
+      // --- Các domain cũ của bạn ---
       {
         protocol: 'https',
         hostname: 'uxwing.com',

@@ -3,50 +3,50 @@
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Share2, Droplets, Heart, QrCode, CreditCard, Wallet, Crown, ArrowRight, Facebook, Link as LinkIcon, X, CheckCircle2 } from "lucide-react";
-// Đảm bảo đường dẫn import đúng với cấu trúc thư mục của bạn
+
 import DonateModal from "../project/DonateModal";
 import ThankYouModal from "../components/ThankYouModal";
-
 // --- DỮ LIỆU CÁC GIAI ĐOẠN PHÁT TRIỂN ---
 const ROSE_STAGES = [
   {
     id: 1,
     name: "Hạt Mầm Hy Vọng",
     threshold: 0,
-    svg: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="#8B4513" fill-opacity="0.1"/><path d="M12 17C13.6569 17 15 15.6569 15 14C15 12.3431 13.6569 10 12 10C10.3431 10 9 12.3431 9 14C9 15.6569 10.3431 17 12 17Z" fill="#5D2906"/><path d="M11 10L11 7" stroke="#4ADE80" stroke-width="1.5" stroke-linecap="round"/><path d="M13 11L13 8" stroke="#4ADE80" stroke-width="1.5" stroke-linecap="round"/></svg>`,
+    // Đã thêm style overflow:visible để tránh bị cắt hình
+    svg: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="overflow: visible"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="#8B4513" fill-opacity="0.1"/><path d="M12 17C13.6569 17 15 15.6569 15 14C15 12.3431 13.6569 10 12 10C10.3431 10 9 12.3431 9 14C9 15.6569 10.3431 17 12 17Z" fill="#5D2906"/><path d="M11 10L11 7" stroke="#4ADE80" stroke-width="1.5" stroke-linecap="round"/><path d="M13 11L13 8" stroke="#4ADE80" stroke-width="1.5" stroke-linecap="round"/></svg>`,
     quote: "Hạt giống nhỏ mang trong mình cả một khu vườn tương lai."
   },
   {
     id: 2,
     name: "Mầm Nụ Trí Tuệ",
     threshold: 100,
-    svg: `<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M50 90 L50 60" stroke="#059669" stroke-linecap="round" stroke-width="5"></path><path d="M50 60 C70 45, 80 60, 50 80" fill="#10B981" fill-opacity="0.9"></path><path d="M50 65 C30 50, 20 65, 50 85" fill="#059669" fill-opacity="0.8"></path><circle cx="50" cy="55" fill="#E11D48" r="8"></circle></svg>`,
+    svg: `<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="overflow: visible"><path d="M50 90 L50 60" stroke="#059669" stroke-linecap="round" stroke-width="5"></path><path d="M50 60 C70 45, 80 60, 50 80" fill="#10B981" fill-opacity="0.9"></path><path d="M50 65 C30 50, 20 65, 50 85" fill="#059669" fill-opacity="0.8"></path><circle cx="50" cy="55" fill="#E11D48" r="8"></circle></svg>`,
     quote: "Sức mạnh của trí tuệ bắt đầu từ những khát khao nhỏ nhất."
   },
   {
     id: 3,
     name: "Nụ Hoa Nhân Ái",
     threshold: 300,
-    svg: `<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M50 90 L50 50" stroke="#059669" stroke-linecap="round" stroke-width="5"></path><path d="M50 50 C30 30, 70 30, 50 50" fill="#FB7185" stroke="#E11D48" stroke-width="2"></path><path d="M50 50 C40 35, 60 35, 50 50" fill="#E11D48"></path><path d="M30 70 C40 60, 50 70, 50 80" fill="#059669"></path></svg>`,
+    svg: `<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="overflow: visible"><path d="M50 90 L50 50" stroke="#059669" stroke-linecap="round" stroke-width="5"></path><path d="M50 50 C30 30, 70 30, 50 50" fill="#FB7185" stroke="#E11D48" stroke-width="2"></path><path d="M50 50 C40 35, 60 35, 50 50" fill="#E11D48"></path><path d="M30 70 C40 60, 50 70, 50 80" fill="#059669"></path></svg>`,
     quote: "Lòng nhân ái chớm nở, lan tỏa hương thơm dịu dàng."
   },
   {
     id: 4,
     name: "Cành Hoa Nâng Đỡ",
     threshold: 600,
-    svg: `<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M50 90 L50 40" stroke="#059669" stroke-linecap="round" stroke-width="6"></path><path d="M50 40 C20 10, 80 10, 50 40" fill="#FB7185" stroke="#E11D48" stroke-width="2"></path><path d="M50 40 C35 25, 65 25, 50 40" fill="#E11D48"></path><path d="M50 60 L75 45" stroke="#059669" stroke-linecap="round" stroke-width="3"></path><path d="M75 45 C85 35, 90 45, 75 55" fill="#10B981"></path></svg>`,
+    svg: `<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="overflow: visible"><path d="M50 90 L50 40" stroke="#059669" stroke-linecap="round" stroke-width="6"></path><path d="M50 40 C20 10, 80 10, 50 40" fill="#FB7185" stroke="#E11D48" stroke-width="2"></path><path d="M50 40 C35 25, 65 25, 50 40" fill="#E11D48"></path><path d="M50 60 L75 45" stroke="#059669" stroke-linecap="round" stroke-width="3"></path><path d="M75 45 C85 35, 90 45, 75 55" fill="#10B981"></path></svg>`,
     quote: "Vẻ đẹp kiên cường vươn lên giữa muôn vàn thử thách."
   },
   {
     id: 5,
     name: "Đóa Hồng Ước Mơ",
     threshold: 1000,
-    svg: `<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M50 95 L50 50" stroke="#059669" stroke-linecap="round" stroke-width="7"></path><circle cx="50" cy="40" fill="#E11D48" r="25"></circle><circle cx="50" cy="40" fill="#FB7185" opacity="0.6" r="30"></circle><circle cx="50" cy="40" fill="#FFF1F2" opacity="0.3" r="35"></circle><path d="M35 70 C20 60, 20 80, 50 85" fill="#059669"></path><path d="M65 70 C80 60, 80 80, 50 85" fill="#059669"></path></svg>`,
+    svg: `<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="overflow: visible"><path d="M50 95 L50 50" stroke="#059669" stroke-linecap="round" stroke-width="7"></path><circle cx="50" cy="40" fill="#E11D48" r="25"></circle><circle cx="50" cy="40" fill="#FB7185" opacity="0.6" r="30"></circle><circle cx="50" cy="40" fill="#FFF1F2" opacity="0.3" r="35"></circle><path d="M35 70 C20 60, 20 80, 50 85" fill="#059669"></path><path d="M65 70 C80 60, 80 80, 50 85" fill="#059669"></path></svg>`,
     quote: "Ước mơ nở rộ, tỏa sáng rực rỡ và trọn vẹn nhất."
   }
 ];
 
-const MAIN_FLOWER_SVG = `<svg width="100%" height="100%" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="stemGrad" x1="0%" x2="0%" y1="0%" y2="100%"><stop offset="0%" style="stop-color:#34D399;stop-opacity:1"></stop><stop offset="100%" style="stop-color:#065F46;stop-opacity:1"></stop></linearGradient><linearGradient id="leafGrad" x1="0%" x2="100%" y1="0%" y2="100%"><stop offset="0%" style="stop-color:#6EE7B7;stop-opacity:1"></stop><stop offset="100%" style="stop-color:#047857;stop-opacity:1"></stop></linearGradient><radialGradient id="budGrad" cx="50%" cy="50%" r="50%"><stop offset="0%" style="stop-color:#FDA4AF;stop-opacity:1"></stop><stop offset="100%" style="stop-color:#E11D48;stop-opacity:1"></stop></radialGradient></defs><path d="M50 90 Q48 70, 50 50" fill="none" stroke="url(#stemGrad)" stroke-linecap="round" stroke-width="6"></path><path d="M50 75 Q70 65, 85 75 Q70 85, 50 75" fill="url(#leafGrad)"></path><path d="M50 80 Q30 70, 15 80 Q30 90, 50 80" fill="url(#leafGrad)"></path><path d="M50 50 C35 30, 65 30, 50 50" fill="url(#budGrad)" stroke="#BE123C" stroke-width="1.5"></path><path d="M50 50 C42 40, 58 40, 50 50" fill="#9F1239" opacity="0.6"></path></svg>`;
+const MAIN_FLOWER_SVG = `<svg width="100%" height="100%" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style="overflow: visible"><defs><linearGradient id="stemGrad" x1="0%" x2="0%" y1="0%" y2="100%"><stop offset="0%" style="stop-color:#34D399;stop-opacity:1"></stop><stop offset="100%" style="stop-color:#065F46;stop-opacity:1"></stop></linearGradient><linearGradient id="leafGrad" x1="0%" x2="100%" y1="0%" y2="100%"><stop offset="0%" style="stop-color:#6EE7B7;stop-opacity:1"></stop><stop offset="100%" style="stop-color:#047857;stop-opacity:1"></stop></linearGradient><radialGradient id="budGrad" cx="50%" cy="50%" r="50%"><stop offset="0%" style="stop-color:#FDA4AF;stop-opacity:1"></stop><stop offset="100%" style="stop-color:#E11D48;stop-opacity:1"></stop></radialGradient></defs><path d="M50 90 Q48 70, 50 50" fill="none" stroke="url(#stemGrad)" stroke-linecap="round" stroke-width="6"></path><path d="M50 75 Q70 65, 85 75 Q70 85, 50 75" fill="url(#leafGrad)"></path><path d="M50 80 Q30 70, 15 80 Q30 90, 50 80" fill="url(#leafGrad)"></path><path d="M50 50 C35 30, 65 30, 50 50" fill="url(#budGrad)" stroke="#BE123C" stroke-width="1.5"></path><path d="M50 50 C42 40, 58 40, 50 50" fill="#9F1239" opacity="0.6"></path></svg>`;
 
 const DONATION_AMOUNTS = [50000, 200000, 500000];
 
@@ -62,17 +62,24 @@ export default function RoseEvolutionGallery() {
   const [showDonateModal, setShowDonateModal] = useState(false);
   const [showThankYou, setShowThankYou] = useState(false);
   const [lastDonationAmount, setLastDonationAmount] = useState(0);
+  
+  // -- QUAN TRỌNG: Thêm state check xem đã load dữ liệu xong chưa --
+  const [isLoaded, setIsLoaded] = useState(false);
 
-  // Load điểm từ LocalStorage
+  // 1. Load điểm từ LocalStorage (Chạy 1 lần khi mount)
   useEffect(() => {
     if (typeof window !== "undefined") {
       const savedPoints = localStorage.getItem("rose_water_points");
-      if (savedPoints) setWaterPoints(parseInt(savedPoints));
+      if (savedPoints) {
+          setWaterPoints(parseInt(savedPoints));
+      }
+      setIsLoaded(true); // Đánh dấu là đã load xong
     }
   }, []);
 
-  // Tính toán giai đoạn phát triển khi điểm thay đổi
+  // 2. Tính toán giai đoạn phát triển + Lưu LocalStorage
   useEffect(() => {
+    // Logic tính toán Stage
     let newIndex = 0;
     for (let i = ROSE_STAGES.length - 1; i >= 0; i--) {
       if (waterPoints >= ROSE_STAGES[i].threshold) {
@@ -81,15 +88,20 @@ export default function RoseEvolutionGallery() {
       }
     }
 
-    if (newIndex > currentStageIndex) {
+    if (newIndex > currentStageIndex && isLoaded) { // Chỉ hiện effect nếu đã load
       setShowEvolution(true);
       setTimeout(() => setShowEvolution(false), 3000);
     }
-    setCurrentStageIndex(newIndex);
-    if (typeof window !== "undefined") {
+    
+    if (isLoaded) {
+        setCurrentStageIndex(newIndex);
+    }
+
+    // Logic Lưu LocalStorage (Chỉ lưu khi đã Load xong để tránh ghi đè số 0)
+    if (typeof window !== "undefined" && isLoaded) {
         localStorage.setItem("rose_water_points", waterPoints.toString());
     }
-  }, [waterPoints]);
+  }, [waterPoints, isLoaded]); // Bỏ currentStageIndex khỏi dependency để tránh loop
 
   const currentStage = ROSE_STAGES[currentStageIndex];
   const nextStage = ROSE_STAGES[currentStageIndex + 1];
@@ -106,47 +118,46 @@ export default function RoseEvolutionGallery() {
 
   // --- HÀM 1: Bấm nút quyên góp -> Mở DonateModal ---
   const handleOpenDonate = (amount: number) => {
-    if (!nextStage) { alert("Bạn đã đạt cấp độ tối đa!"); return; }
+    // Cho phép quyên góp kể cả khi max level (tùy chọn)
     if (!amount || amount <= 0) { alert("Vui lòng nhập số tiền hợp lệ."); return; }
     
-    setLastDonationAmount(amount); // Lưu lại số tiền để hiển thị ở ThankYou
-    setShowDonateModal(true);      // Mở modal quyên góp
+    setLastDonationAmount(amount); 
+    setShowDonateModal(true);      
   };
 
   // --- HÀM 2: Xử lý khi Donate thành công -> Mở ThankYouModal ---
   const handleDonationSuccess = () => {
-    setShowDonateModal(false); // Đóng modal quyên góp
+    setShowDonateModal(false); 
     
-    // Bắt đầu hiệu ứng tưới nước
     setIsWatering(true);
     
-    // Tính toán lượng điểm cộng thêm (Giả lập: 10% của chặng đường)
+    // Tính toán lượng điểm cộng thêm (Giả lập)
     const range = nextStage ? (nextStage.threshold - currentStage.threshold) : 100;
-    const pointsToAdd = Math.max(1, Math.ceil(range / 10)); 
+    const pointsToAdd = Math.max(1, Math.ceil(range / 5)); // Tăng tốc độ lên 20% mỗi lần donate để test nhanh
 
     setTimeout(() => {
       setWaterPoints(prev => prev + pointsToAdd);
       setIsWatering(false);
-      
-      // Mở modal cảm ơn
       setShowThankYou(true);
     }, 1000);
   };
 
   // Hàm chia sẻ
   const addPointsForSharing = () => {
-    if (!nextStage) return;
     setIsWatering(true);
-    const range = nextStage.threshold - currentStage.threshold;
-    const pointsToAdd = Math.max(1, Math.ceil(range / 100));
+    const range = nextStage ? (nextStage.threshold - currentStage.threshold) : 100;
+    const pointsToAdd = Math.max(1, Math.ceil(range / 50)); // 2%
 
     setTimeout(() => {
       setWaterPoints(prev => prev + pointsToAdd);
       setIsWatering(false);
-      alert("Cảm ơn bạn đã chia sẻ! Đóa hồng nhận thêm 1% sức sống.");
+      alert("Cảm ơn bạn đã chia sẻ! Đóa hồng nhận thêm sức sống.");
     }, 800);
   };
 
+  // Nếu chưa load xong dữ liệu từ LocalStorage, có thể hiện Loading hoặc render mặc định
+  // Ở đây render mặc định (0 điểm) nhưng chưa cho phép lưu đè
+  
   return (
     <div className="min-h-screen bg-[#FDFBF7] font-sans text-gray-800 pb-20">
       
@@ -186,10 +197,11 @@ export default function RoseEvolutionGallery() {
                 )}
 
                 <div className="h-20 w-full flex items-center justify-center mb-2 mt-1">
-                   <div 
-                     className={`h-full w-auto max-w-[80%] flex items-center justify-center transition-transform duration-700 ${isCurrent ? 'scale-110 drop-shadow-md' : 'scale-90'}`}
-                     dangerouslySetInnerHTML={{ __html: stage.svg.replace('<svg', '<svg style="overflow: visible; width: 100%; height: 100%;"') }} 
-                   />
+                    <div 
+                      className={`h-full w-auto max-w-[80%] flex items-center justify-center transition-transform duration-700 ${isCurrent ? 'scale-110 drop-shadow-md' : 'scale-90'}`}
+                      // Fix: Thêm width/height 100% vào style để SVG co giãn đúng
+                      dangerouslySetInnerHTML={{ __html: stage.svg.replace('<svg', '<svg style="width: 100%; height: 100%; overflow: visible;"') }} 
+                    />
                 </div>
 
                 <p className="text-[9px] text-gray-400 font-bold uppercase tracking-wider mb-0.5">Giai đoạn {idx + 1}</p>
@@ -199,7 +211,7 @@ export default function RoseEvolutionGallery() {
                 
                 <p className={`text-[10px] font-bold ${isCurrent ? 'text-emerald-600' : 'text-gray-400'}`}>
                   {idx < currentStageIndex ? (
-                    <span className="flex items-center gap-1"><CheckCircle2 size={10} /> Đạt được</span>
+                    <span className="flex items-center gap-1 justify-center"><CheckCircle2 size={10} /> Đạt được</span>
                   ) : isCurrent ? (
                     "Đang phát triển"
                   ) : (
@@ -239,7 +251,8 @@ export default function RoseEvolutionGallery() {
                       animate={{ scale: 1, opacity: 1 }}
                       transition={{ type: "spring", stiffness: 100 }}
                       className="w-full h-full max-w-[240px] max-h-[320px] drop-shadow-xl"
-                      dangerouslySetInnerHTML={{ __html: (currentStageIndex === 4 ? MAIN_FLOWER_SVG : currentStage.svg).replace('<svg', '<svg style="overflow: visible; width: 100%; height: 100%;"') }}
+                      // Fix: Đảm bảo SVG scale tốt
+                      dangerouslySetInnerHTML={{ __html: (currentStageIndex === 4 ? MAIN_FLOWER_SVG : currentStage.svg).replace('<svg', '<svg style="width: 100%; height: 100%; overflow: visible;"') }}
                     />
                 </div>
 
@@ -385,7 +398,7 @@ export default function RoseEvolutionGallery() {
               </button>
               <Share2 size={32} className="mx-auto text-pink-500 mb-4" />
               <h2 className="text-xl font-bold text-[#1A4D2E] mb-2">Lan Tỏa Yêu Thương</h2>
-              <p className="text-gray-500 text-sm mb-6">Mỗi lượt chia sẻ của bạn sẽ giúp đóa hồng nhận thêm 1% sức sống.</p>
+              <p className="text-gray-500 text-sm mb-6">Mỗi lượt chia sẻ của bạn sẽ giúp đóa hồng nhận thêm sức sống.</p>
               <div className="space-y-3">
                 <SocialShareButton platform="Facebook" icon={<Facebook size={20} />} onClick={() => { addPointsForSharing(); setShowShareModal(false); }} className="bg-[#1877F2] text-white" />
                 <SocialShareButton platform="Copy Link" icon={<LinkIcon size={20} />} onClick={() => { navigator.clipboard.writeText(window.location.href); addPointsForSharing(); setShowShareModal(false); alert("Đã sao chép liên kết!"); }} className="bg-gray-600 text-white" />
@@ -411,7 +424,7 @@ export default function RoseEvolutionGallery() {
         growthStage={currentStage.name}
         growthPercent={progressPercent}
         // Giả lập tính toán: 20.000đ = 1 bữa ăn
-        impactValue={`${Math.floor(lastDonationAmount / 20000)} bữa sáng cho em`}
+        impactValue={`${Math.max(1, Math.floor(lastDonationAmount / 20000))} bữa sáng cho em`}
       />
 
       {/* --- MODAL EVOLUTION --- */}
@@ -425,7 +438,7 @@ export default function RoseEvolutionGallery() {
               <p className="text-gray-600 mb-6">Đóa hoa của bạn đã tiến hóa thành công lên giai đoạn mới:</p>
               <h3 className="text-xl font-bold text-emerald-600 mb-6 bg-emerald-50 py-2 rounded-lg border border-emerald-100">{currentStage.name}</h3>
               <div className="h-40 w-full flex items-center justify-center mb-6">
-                 <div className="w-32 h-32" dangerouslySetInnerHTML={{ __html: currentStage.svg.replace('<svg', '<svg style="overflow: visible; width: 100%; height: 100%;"') }} />
+                 <div className="w-32 h-32" dangerouslySetInnerHTML={{ __html: currentStage.svg.replace('<svg', '<svg style="width: 100%; height: 100%; overflow: visible;"') }} />
               </div>
               <button onClick={() => setShowEvolution(false)} className="bg-[#1A4D2E] text-white w-full py-3 rounded-xl font-bold hover:bg-[#143d24] transition">Tuyệt vời!</button>
             </motion.div>

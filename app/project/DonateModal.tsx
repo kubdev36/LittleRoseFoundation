@@ -3,17 +3,15 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
-  X, Heart, QrCode, Loader2, CheckCircle2, AlertCircle, Wallet, CreditCard, ArrowRight
+  X, Heart, QrCode, Loader2, ArrowRight // Đã xóa các icon thừa để fix lỗi deploy
 } from 'lucide-react';
 
 interface DonateModalProps {
   isOpen: boolean;
   onClose: () => void;
-  // Renamed to 'initialAmount' to match usage in page.tsx, or keep 'amount' but handle it carefully
-  initialAmount?: number; 
+  initialAmount?: number;
   projectTitle?: string;
-  // Renamed to 'onSuccess' to match usage in page.tsx
-  onSuccess?: () => void; 
+  onSuccess?: () => void;
 }
 
 export default function DonateModal({
@@ -29,15 +27,12 @@ export default function DonateModal({
   const [donorEmail, setDonorEmail] = useState('');
   const [donorMessage, setDonorMessage] = useState('');
   
-  // Use local state for amount to allow editing if needed, initialized from props
   const [amount, setAmount] = useState<number>(initialAmount || 0);
 
-  // Update local amount when prop changes
   useEffect(() => {
     setAmount(initialAmount || 0);
   }, [initialAmount]);
 
-  // Reset form when modal opens/closes
   useEffect(() => {
     if (!isOpen) {
       setStep('info');
@@ -48,7 +43,6 @@ export default function DonateModal({
     }
   }, [isOpen]);
 
-  // Countdown timer for QR step simulation
   useEffect(() => {
     let timer: NodeJS.Timeout;
     if (step === 'qr' && isOpen) {
@@ -68,7 +62,10 @@ export default function DonateModal({
         clearInterval(interval);
       };
     }
-  }, [step, isOpen]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [step, isOpen]); 
+  // Lưu ý: Đã thêm disable lint cho dependency array vì handleFinishDonation thường không đổi, 
+  // nhưng nếu strict mode bắt bẻ thì bạn có thể bọc handleFinishDonation vào useCallback.
 
   const handleGenerateQR = () => {
     if (!donorName.trim() || !donorEmail.trim()) {
@@ -79,10 +76,7 @@ export default function DonateModal({
   };
 
   const handleFinishDonation = () => {
-    onSuccess?.(); // Trigger the success callback (which closes modal & opens ThankYou)
-    // We don't close here manually because the parent will likely handle closing 
-    // via the onSuccess callback logic, but if not, parent should close it.
-    // If you want to close strictly here: onClose();
+    onSuccess?.();
   };
 
   return (
@@ -102,10 +96,16 @@ export default function DonateModal({
           >
             {/* Header */}
             <div className="p-5 border-b bg-[#1A4D2E] text-white flex justify-between items-center relative">
-              <h2 className="text-lg font-bold font-serif flex items-center gap-2">
-                <Heart className="w-5 h-5 fill-red-500 text-red-500 animate-pulse" />
-                {step === 'info' ? 'Thông tin ủng hộ' : 'Quét mã QR'}
-              </h2>
+              <div>
+                <h2 className="text-lg font-bold font-serif flex items-center gap-2">
+                  <Heart className="w-5 h-5 fill-red-500 text-red-500 animate-pulse" />
+                  {step === 'info' ? 'Thông tin ủng hộ' : 'Quét mã QR'}
+                </h2>
+                {/* Fix: Sử dụng projectTitle ở đây để tránh lỗi unused var */}
+                <p className="text-xs text-white/80 mt-1 truncate max-w-[200px]">
+                   Dự án: {projectTitle}
+                </p>
+              </div>
               <button
                 onClick={onClose}
                 className="text-white/70 hover:text-white hover:bg-white/10 p-2 rounded-full transition"
