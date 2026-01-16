@@ -418,7 +418,7 @@ export default function ProjectDetailClient({ project, allProjects }: ProjectDet
             </div>
 
             {/* B. DONATION WIDGET (Sticky) */}
-            <div className="bg-white p-6 rounded-2xl shadow-[0_10px_40px_-15px_rgba(0,0,0,0.1)] border border-gray-100 sticky top-4 z-10">
+            <div className="bg-white p-6 rounded-2xl shadow-[0_10px_40px_-15px_rgba(0,0,0,0.1)] border border-gray-100">
                 <h3 className="font-bold text-[#1A4D2E] mb-4 flex items-center gap-2">
                     <Heart size={18} className="text-red-500 fill-current" /> ỦNG HỘ NGAY
                 </h3>

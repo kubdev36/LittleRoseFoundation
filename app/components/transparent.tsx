@@ -1,17 +1,8 @@
 "use client";
 
 import React from "react";
-// Import font từ Google để sửa lỗi hiển thị chữ bị tách dấu
-import { Inter, Playfair_Display } from "next/font/google";
 import { Heart, GraduationCap, MapPin, Lock } from "lucide-react";
 import Link from "next/link";
-
-// --- 1. CẤU HÌNH FONTS (Sửa lỗi hiển thị tiếng Việt) ---
-const inter = Inter({ subsets: ["latin"] });
-const playfair = Playfair_Display({ 
-  subsets: ["latin", "vietnamese"], // Thêm vietnamese để hỗ trợ dấu
-  weight: ["400", "700"] 
-});
 
 // --- 2. DỮ LIỆU GIẢ LẬP ---
 const DONORS = [
@@ -74,7 +65,8 @@ const DONORS = [
 // --- 3. COMPONENT CHÍNH ---
 export default function CharityPage() {
   return (
-    <div className={`min-h-screen py-10 px-4 md:px-8 font-sans text-gray-800 ${inter.className}`} style={{ background: "linear-gradient(to right, #d4ded6 0%, #d4ded6 100%)" }}>
+    // Đã xóa class 'font-sans'
+    <div className="min-h-screen py-10 px-4 md:px-8 text-gray-800" style={{ background: "linear-gradient(to right, #d4ded6 0%, #d4ded6 100%)" }}>
       
       {/* --- CSS STYLE TRỰC TIẾP CHO ANIMATION --- */}
       <style jsx>{`
@@ -107,8 +99,7 @@ export default function CharityPage() {
           <p className="text-xs uppercase tracking-[0.2em] text-gray-500 mb-2 font-medium">
             Ước lượng cho một năm
           </p>
-          {/* Áp dụng font Playfair để chữ không bị lỗi dấu */}
-          <h1 className={`text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 mb-6 leading-tight${playfair.className}`}>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-gray-900 mb-6 leading-tight">
             Hành trình <span className=" font-bold text-green-700">ươm mầm</span> hy vọng
           </h1>
           <p className="text-gray-500 max-w-2xl mx-auto font-light text-sm md:text-base">
@@ -129,7 +120,7 @@ export default function CharityPage() {
                 <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">
                   Trẻ em được hỗ trợ
                 </p>
-                <p className={`text-3xl text-[#1A4D2E] ${playfair.className}`}>5,280+</p>
+                <p className="text-3xl text-[#1A4D2E] font-bold">5,280+</p>
               </div>
               <p className="text-[10px] text-gray-400 mt-2 font-light">Số liệu cập nhật thời gian thực từ hiện trường.</p>
             </div>
@@ -141,7 +132,7 @@ export default function CharityPage() {
                 <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-1">
                   Dự án hoàn thành
                 </p>
-                <p className={`text-3xl text-[#1A4D2E] ${playfair.className}`}>124</p>
+                <p className="text-3xl text-[#1A4D2E] font-bold">124</p>
               </div>
               <p className="text-[10px] text-gray-400 mt-2 font-light">Cơ sở vật chất & trang thiết bị giáo dục.</p>
             </div>
@@ -155,7 +146,7 @@ export default function CharityPage() {
                   <p className="text-[10px] font-bold text-gray-400 uppercase tracking-wider mb-0.5">
                     Độ phủ tác động
                   </p>
-                  <p className="text-lg font-medium text-[#1A4D2E]">28 Tỉnh thành</p>
+                  <p className="text-lg font-medium text-[#1A4D2E] font-bold">28 Tỉnh thành</p>
                </div>
             </div>
           </div>
@@ -169,12 +160,12 @@ export default function CharityPage() {
                 Ước tính quyên góp năm 2025
               </div>
 
-              {/* Số tiền lớn - Dùng font Playfair để số đẹp hơn */}
+              {/* Số tiền lớn */}
               <div className="mt-12 mb-2 flex items-baseline justify-center flex-wrap gap-2">
                 <span className="text-5xl md:text-6xl font-bold text-[#1A4D2E] tracking-tight">
                   5,560,875,448
                 </span>
-                <span className={`text-2xl md:text-3xl text-gray-400 italic ${playfair.className}`}>VND</span>
+                <span className="text-2xl md:text-3xl text-gray-400 italic">VND</span>
               </div>
               
               <p className="text-xs text-gray-400 mb-8 font-light italic px-4">
@@ -215,7 +206,7 @@ export default function CharityPage() {
         {/* --- DANH SÁCH NHÀ HẢO TÂM (AUTO SCROLL) --- */}
         <div className="w-full bg-white rounded-xl shadow-sm border border-gray-100 p-6 md:p-8">
           <div className="flex justify-between items-end mb-6 border-b border-gray-100 pb-4">
-              <h3 className={`text-2xl text-[#1A4D2E] italic ${playfair.className}`}>Danh sách Nhà hảo tâm</h3>
+              <h3 className="text-2xl  italic font-bold">Danh sách <span className="text-[#055c27]">Nhà hảo tâm</span></h3>
               <button className="text-[10px] font-bold uppercase tracking-wider text-gray-400 hover:text-[#1A4D2E] transition-colors mb-1">
                 Xem tất cả
               </button>
@@ -235,7 +226,7 @@ export default function CharityPage() {
                           {/* Thông tin trái */}
                           <div className="flex items-center gap-4">
                               <div className="relative">
-                                {/* AVATAR GIỮ NGUYÊN MÀU (Đã xóa grayscale) */}
+                                {/* AVATAR */}
                                 <img 
                                     src={donor.avatar} 
                                     alt={donor.name} 
@@ -245,13 +236,15 @@ export default function CharityPage() {
                               <div>
                                   <p className="text-sm font-bold text-gray-800 group-hover:text-[#1A4D2E] transition-colors">{donor.name}</p>
                                   <p className="text-xs text-gray-500 italic mt-0.5">{donor.message}</p>
-                                  <p className="text-[10px] text-gray-400 mt-1 font-mono">{donor.time}</p>
+                                  {/* Đã xóa class 'font-mono' */}
+                                  <p className="text-[10px] text-gray-400 mt-1">{donor.time}</p>
                               </div>
                           </div>
                           {/* Thông tin phải (Số tiền) */}
                           <div className="text-right">
                               <p className="text-sm font-bold text-[#1A4D2E]">{donor.amount}</p>
-                              <p className="text-[10px] text-gray-300 font-mono mt-1 group-hover:text-gray-500 transition-colors">{donor.hash}</p>
+                              {/* Đã xóa class 'font-mono' */}
+                              <p className="text-[10px] text-gray-300 mt-1 group-hover:text-gray-500 transition-colors">{donor.hash}</p>
                           </div>
                       </div>
                   ))}
