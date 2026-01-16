@@ -34,7 +34,7 @@ export default function StoryPage() {
                 src="/images/story.jpg"
                 alt="Plant growing"
                 fill // Tự động fill container cha
-                className="object-cover grayscale-[10%]" // object-contain -> object-cover để đẹp hơn khi fill
+                className="object-contain grayscale-[10%]"
                 sizes="(max-width: 768px) 100vw, 50vw"
             />
           </div>
